@@ -1,0 +1,42 @@
+{
+  "builders": [
+    {
+      "type": "vmware",
+      "iso_url": "./iso/windows.iso",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "8dcde01d0da526100869e2457aafb7ca",
+      "boot_wait": "5m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10  /f /d p:4:1 /c \"Vagrant Shutdown\"",
+      "guest_os_type": "windows7srv-64",
+      "disk_size": 61440,
+	  "vnc_port_min": 5900,
+	  "vnc_port_max": 5980,
+      "floppy_files": [
+          "Autounattend.xml",
+          "install-cygwin-sshd.bat",
+          "setup.exe"
+        ],
+	  "vmx_data": {
+		  "RemoteDisplay.vnc.enabled": "false",
+		  "RemoteDisplay.vnc.port": "5900"
+	  }
+    }
+  ],
+  "provisioners": [
+      {
+        "type": "shell",
+        "script": "postinstall.sh"
+      }
+  ],
+  "post-processors": [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": false,
+        "output": "windows2008r2_{{.Provider}}_trial_201307232050.box",
+		"vagrantfile_template": "vagrantfile.template"
+      }
+    ]
+}

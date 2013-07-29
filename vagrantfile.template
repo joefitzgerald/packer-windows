@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "vagrant-windows"
+  config.vm.box = "windows2008r2"
+  
+  config.vm.provider :virtualbox do |v, override|
+  end
+
+  config.vm.provider :vmware_fusion do |v, override|
+    v.gui = true
+    v.vmx["ethernet0.virtualDev"] = "vmxnet3"
+  end
+
+  config.vm.provider :vmware_workstation do |v, override|
+    v.vmx["ethernet0.virtualDev"] = "vmxnet3"
+    v.gui = true
+  end
+end
