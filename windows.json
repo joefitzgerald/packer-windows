@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "vmware",
-      "iso_url": "./iso/windows.iso",
+      "iso_url": "./iso/en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "8dcde01d0da526100869e2457aafb7ca",
       "boot_wait": "5m",
