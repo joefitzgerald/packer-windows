@@ -1,1 +1,4 @@
 /iso/
+/output-vmware/
+/*.box
+/packer_cache/
