@@ -1,4 +1,5 @@
-/iso/
+/iso/*
+!/iso/README.md
 /output-vmware/
 /*.box
 /packer_cache/
