@@ -104,17 +104,11 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c a:install-cygwin-sshd.bat</CommandLine>
+                    <CommandLine>cmd.exe /c a:\install-cygwin-sshd.bat</CommandLine>
                     <Description>Install Cygwin SSH</Description>
                     <Order>1</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
-                <!--<SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c a:install-chocolatey.bat</CommandLine>
-                    <Description>Install Chocolatey</Description>
-                    <Order>2</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>-->
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c winrm quickconfig -q</CommandLine>
                     <Description>winrm quickconfig -q</Description>
@@ -194,9 +188,21 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+                    <CommandLine>cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
                     <Description>Start Win RM Service</Description>
                     <Order>15</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+                    <Description>Start Win RM Service</Description>
+                    <Order>16</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c a:\Get-WindowsUpdates.ps1 -Install -EulaAccept</CommandLine>
+                    <Description>Start Win RM Service</Description>
+                    <Order>17</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
             </FirstLogonCommands>

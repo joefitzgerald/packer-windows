@@ -16,8 +16,8 @@
 	  "vnc_port_max": 5980,
       "floppy_files": [
           "Autounattend.xml",
-          "install-cygwin-sshd.bat",
-          "setup.exe"
+          "./scripts/install-cygwin-sshd.bat",
+		  "./scripts/Get-WindowsUpdates.ps1"
         ],
 	  "vmx_data": {
 		  "RemoteDisplay.vnc.enabled": "false",
@@ -28,14 +28,14 @@
   "provisioners": [
       {
         "type": "shell",
-        "script": "postinstall.sh"
+        "script": "./scripts/postinstall.sh"
       }
   ],
   "post-processors": [
       {
         "type": "vagrant",
         "keep_input_artifact": false,
-        "output": "windows2008r2_{{.Provider}}_trial_201307232050.box",
+        "output": "windows2008r2_{{.Provider}}_201308021225.box",
 		"vagrantfile_template": "vagrantfile.template"
       }
     ]
