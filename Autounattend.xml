@@ -206,12 +206,6 @@
                     <Order>17</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>sleep 1000</CommandLine>
-                    <Description>Start Win RM Service</Description>
-                    <Order>18</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
             </FirstLogonCommands>
             <ShowWindowsLive>false</ShowWindowsLive>
         </component>
