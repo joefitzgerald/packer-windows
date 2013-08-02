@@ -22,6 +22,7 @@
 	  "vmx_data": {
 		  "RemoteDisplay.vnc.enabled": "false",
 		  "RemoteDisplay.vnc.port": "5900"
+		  "memsize": "2048"
 	  }
     }
   ],
