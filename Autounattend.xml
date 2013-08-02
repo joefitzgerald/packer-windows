@@ -117,7 +117,7 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c powershell -NoProfile -NonInteractive -File a:\Get-WindowsUpdates.ps1 -Install -EulaAccept -Verbose</CommandLine>
+                    <CommandLine>cmd.exe /c powershell -NoProfile -NonInteractive -File a:\Get-WindowsUpdates.ps1 -Install -EulaAccept -Verbose | a:\mtee.exe /+ c:\windowsupdate.log</CommandLine>
                     <Description>Install Windows Updates</Description>
                     <Order>3</Order>
                     <RequiresUserInput>true</RequiresUserInput>

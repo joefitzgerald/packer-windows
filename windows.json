@@ -17,7 +17,8 @@
       "floppy_files": [
           "Autounattend.xml",
           "./scripts/install-cygwin-sshd.bat",
-		  "./scripts/Get-WindowsUpdates.ps1"
+		  "./scripts/Get-WindowsUpdates.ps1",
+		  "./scripts/mtee.exe"
         ],
 	  "vmx_data": {
 		  "RemoteDisplay.vnc.enabled": "false",
