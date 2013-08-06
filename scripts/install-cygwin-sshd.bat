@@ -3,7 +3,7 @@ REM http://webcache.googleusercontent.com/search?q=cache:SjoPPpuQxuoJ:www.tcm.ph
 REM create the cygwin directory
 cmd /c mkdir %SystemDrive%\cygwin
 
-cmd /c bitsadmin /transfer CygwinSetupExe /download /priority normal http://www.cygwin.com/setup.exe %SystemDrive%\cygwin\cygwin-setup.exe
+cmd /c bitsadmin /transfer CygwinSetupExe /download /priority normal http://www.cygwin.com/setup-x86_64.exe %SystemDrive%\cygwin\cygwin-setup.exe
 
 REM goto a temp directory
 cd %SystemDrive%\windows\temp
@@ -32,7 +32,7 @@ cmd /c if exist %Systemroot%\system32\netsh.exe netsh advfirewall firewall add r
 
 %SystemDrive%\cygwin\bin\sleep 2
 
-net start sshd
+# net start sshd
 
 # Fix corrupt recycle bin
 # http://www.winhelponline.com/blog/fix-corrupted-recycle-bin-windows-7-vista/
