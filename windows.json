@@ -17,7 +17,7 @@
       "floppy_files": [
           "Autounattend.xml",
           "./scripts/install-cygwin-sshd.bat",
-		  "./scripts/Install-WindowsUpdates.ps1"
+		  "./scripts/install-win-updates.ps1"
         ],
 	  "vmx_data": {
 		  "RemoteDisplay.vnc.enabled": "false",
@@ -37,7 +37,7 @@
       {
         "type": "vagrant",
         "keep_input_artifact": false,
-        "output": "windows2008r2_{{.Provider}}_201308021225.box",
+        "output": "windows2008r2_{{.Provider}}_201308061720.box",
 		"vagrantfile_template": "vagrantfile.template"
       }
     ]

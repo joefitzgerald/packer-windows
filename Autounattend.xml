@@ -201,7 +201,7 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\vagrant\scripts\Install-WindowsUpdates.ps1</CommandLine>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\install-win-updates.ps1</CommandLine>
                     <Description>Install Windows Updates</Description>
                     <Order>17</Order>
                     <RequiresUserInput>true</RequiresUserInput>
