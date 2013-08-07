@@ -31,8 +31,9 @@ wget http://downloads.sourceforge.net/sevenzip/7z920-x64.msi
 msiexec /qb /i 7z920-x64.msi
 
 #Rather than do the manual install of ruby and chef, just use the opscode msi
-curl -L http://www.opscode.com/chef/install.msi -o chef-client-latest.msi
+wget http://www.opscode.com/chef/install.msi -O chef-client-latest.msi
 msiexec /qb /i chef-client-latest.msi
+rm chef-client-latest.msi
 
 # Download VMware Tools For Windows
 mkdir /home/vagrant/vmware
