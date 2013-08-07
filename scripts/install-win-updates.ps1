@@ -16,18 +16,18 @@ function Check-ContinueRestartOrEnd() {
 			Check-WindowsUpdates
 			if (($global:MoreUpdates -eq 1) -and ($script:Cycles -le $global:MaxCycles)) {
 			  Stop-Service $script:ServiceName -Force
-			  Set-Service -Name $script:ServiceName -StartupType Disabled –Status Stopped
+			  Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped
 			  Install-WindowsUpdates
 			} else {
   			Write-Host "Done Installing Windows Updates"
-			  Set-Service -Name $script:ServiceName -StartupType Automatic –Status Running
+			  Set-Service -Name $script:ServiceName -StartupType Automatic -Status Running
 			}
     }
     1 {
 	    $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
 		  if (-not $prop) {
 		    Write-Host "Restart Registry Entry Does Not Exist - Creating It"
-			  Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File C:\vagrant\scripts\Install-WindowsUpdates.ps1"
+			  Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\install-win-updates.ps1"
       } else {
 			  Write-Host "Restart Registry Entry Exists Already"
 			}
@@ -159,7 +159,7 @@ $script:Cycles = 0
 $script:ServiceName = "sshd"
 
 Stop-Service $script:ServiceName -Force
-Set-Service -Name $script:ServiceName -StartupType Disabled –Status Stopped
+Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped
 Check-WindowsUpdates
 if ($global:MoreUpdates -eq 1) {
   Install-WindowsUpdates
