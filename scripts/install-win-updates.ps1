@@ -18,6 +18,8 @@ function Check-ContinueRestartOrEnd() {
 			  Stop-Service $script:ServiceName -Force
 			  Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped
 			  Install-WindowsUpdates
+			} elseif ($script:Cycles -gt $global:MaxCycles) {
+			  Write-Host "Exceeded Cycle Count - Stopping"
 			} else {
   			Write-Host "Done Installing Windows Updates"
 			  Set-Service -Name $script:ServiceName -StartupType Automatic -Status Running
@@ -103,7 +105,7 @@ function Install-WindowsUpdates() {
 	
   Write-Host 'Installing updates...'
   
-  $Installer = $UpdateSession.CreateUpdateInstaller()
+  $Installer = $script:UpdateSession.CreateUpdateInstaller()
   $Installer.Updates = $UpdatesToInstall
   $InstallationResult = $Installer.Install()
   
