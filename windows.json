@@ -37,7 +37,7 @@
       {
         "type": "vagrant",
         "keep_input_artifact": false,
-        "output": "windows2008r2_{{.Provider}}_201308061720.box",
+        "output": "windows2008r2_{{.Provider}}.box",
 		"vagrantfile_template": "vagrantfile.template"
       }
     ]
