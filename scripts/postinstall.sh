@@ -51,4 +51,8 @@ rm /home/vagrant/vmware/tools-windows-9.2.3.exe
 rm C:\\Program\ Files\ \(x86\)\\VMware\\tools-windows\\windows.iso
 chown -R vagrant /home/vagrant/vmware
 cmd.exe /c "C:\\cygwin\\home\\vagrant\\vmware\\setup.exe /S /v\"/qn REBOOT=R\""
+rm -rf /home/vagrant/vmware
+cd /home/vagrant
+msiexec /qb /x 7z920-x64.msi
+rm 7z920-x64.msi
 sleep 1
