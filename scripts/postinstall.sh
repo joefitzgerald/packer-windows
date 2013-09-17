@@ -26,33 +26,4 @@ exec "$@"
 EOF
 chmod 755 /bin/sudo
 
-# 7zip will allow us to extract a file from an ISO
-wget http://downloads.sourceforge.net/sevenzip/7z920-x64.msi
-msiexec /qb /i 7z920-x64.msi
-
-#Rather than do the manual install of ruby and chef, just use the opscode msi
-wget http://www.opscode.com/chef/install.msi -O chef-client-latest.msi
-msiexec /qb /i chef-client-latest.msi
-rm chef-client-latest.msi
-
-# Download VMware Tools For Windows
-mkdir /home/vagrant/vmware
-chown -R vagrant /home/vagrant/vmware
-cd /home/vagrant/vmware
-wget http://softwareupdate.vmware.com/cds/vmw-desktop/ws/9.0.2/1031769/windows/packages/tools-windows-9.2.3.exe.tar
-tar -xvf /home/vagrant/vmware/tools-windows-9.2.3.exe.tar
-rm /home/vagrant/vmware/tools-windows-9.2.3.exe.tar
-chown -R vagrant /home/vagrant/vmware
-
-# Install the VMware Tools
-/home/vagrant/vmware/tools-windows-9.2.3.exe
-rm /home/vagrant/vmware/tools-windows-9.2.3.exe
-/cygdrive/c/Program\ Files/7-Zip/7z.exe x C:\\Program\ Files\ \(x86\)\\VMware\\tools-windows\\windows.iso
-rm C:\\Program\ Files\ \(x86\)\\VMware\\tools-windows\\windows.iso
-chown -R vagrant /home/vagrant/vmware
-cmd.exe /c "C:\\cygwin\\home\\vagrant\\vmware\\setup.exe /S /v\"/qn REBOOT=R\""
-rm -rf /home/vagrant/vmware
-cd /home/vagrant
-msiexec /qb /x 7z920-x64.msi
-rm 7z920-x64.msi
 sleep 1
