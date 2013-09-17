@@ -17,7 +17,7 @@ Currently, this repo expects you to do a little heavy lifting to get the Windows
 3. Clone this repo to a local directory
 4. Create a directory named `iso` in the root of the repo
 5. Move `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` to the `iso` directory
-6. Run `packer build windows.json`
+6. Run `packer build windows_2008_r2.json`
 
 ### Contributing
 
