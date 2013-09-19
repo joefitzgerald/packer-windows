@@ -2,5 +2,6 @@
 /iso/*
 !/iso/README.md
 /output-vmware/
+/output-virtualbox/
 /*.box
 /packer_cache/
