@@ -1,4 +1,7 @@
-if [ "$PACKER_BUILDER_TYPE" -ne "vmware" ]; then
+#!/bin/sh
+set -x
+
+if [ "$PACKER_BUILDER_TYPE" != "vmware" ]; then
   echo "not building vmware, skipping"
   exit
 fi
