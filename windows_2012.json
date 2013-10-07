@@ -17,7 +17,6 @@
     "floppy_files": [
       "./answer_files/2012/Autounattend.xml",
       "./scripts/win-updates.ps1",
-      "./scripts/openssh-6.2.exe",
       "./scripts/openssh-6.2.bat"
     ],
     "vmx_data": {
@@ -36,7 +35,7 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "8h",
-    "shutdown_command": "shutdown /s /t 2400 /f /d p:4:1 /c \"Vagrant Shutdown\"",
+    "shutdown_command": "shutdown /s /t 4800 /f /d p:4:1 /c \"Vagrant Shutdown\"",
     "shutdown_timeout": "8h",
     "guest_os_type": "Windows2012_64",
     "disk_size": 61440,
@@ -44,8 +43,6 @@
     "floppy_files": [
       "./answer_files/2012/Autounattend.xml",
       "./scripts/win-updates.ps1",
-      "./scripts/hotfix-KB2842230.ps1",
-      "./scripts/Windows8-RT-KB2842230-x64.msu",
       "./scripts/openssh-6.2.bat",
       "./scripts/oracle-cert.cer"
     ],
@@ -55,16 +52,15 @@
     ]
   }],
   "provisioners": [{
-    "type": "shell",
-    "remote_path": "/tmp/script.bat",
-    "execute_command": "cmd /c C:/Windows/Temp/script.bat",
-    "scripts": [
-      "./scripts/echo.bat",
-      "./scripts/virtualbox-tools.bat",
-      "./scripts/puppet.bat",
-      "./scripts/chef.bat",
-      "./scripts/chocolatey.bat"
-    ]
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/virtualbox-tools.bat",
+        "./scripts/puppet.bat",
+        "./scripts/chef.bat",
+        "./scripts/chocolatey.bat"
+      ]
   }],
   "post-processors": [{
     "type": "vagrant",

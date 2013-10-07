@@ -1,2 +1,0 @@
-
-set > echo.txt
