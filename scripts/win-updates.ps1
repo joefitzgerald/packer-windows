@@ -15,14 +15,11 @@ function Check-ContinueRestartOrEnd() {
       Write-Host "No Restart Required"
 			Check-WindowsUpdates
 			if (($global:MoreUpdates -eq 1) -and ($script:Cycles -le $global:MaxCycles)) {
-			  Stop-Service $script:ServiceName -Force
-			  Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped
 			  Install-WindowsUpdates
 			} elseif ($script:Cycles -gt $global:MaxCycles) {
 			  Write-Host "Exceeded Cycle Count - Stopping"
 			} else {
   			Write-Host "Done Installing Windows Updates"
-			  Set-Service -Name $script:ServiceName -StartupType Automatic -Status Running
 			}
     }
     1 {
@@ -158,13 +155,11 @@ $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
 $script:SearchResult = New-Object -ComObject 'Microsoft.Update.UpdateColl'
 $script:Cycles = 0
 
-$script:ServiceName = "sshd"
-
-Stop-Service $script:ServiceName -Force
-Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped
 Check-WindowsUpdates
 if ($global:MoreUpdates -eq 1) {
   Install-WindowsUpdates
 } else {
   Check-ContinueRestartOrEnd
 }
+
+

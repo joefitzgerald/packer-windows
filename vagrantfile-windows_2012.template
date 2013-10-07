@@ -3,8 +3,9 @@
 
 Vagrant.configure("2") do |config|
   config.vm.define "vagrant-windows-2012"
-  config.vm.box = "vagrant_windows_2012"
-  
+  config.vm.box = "windows_2012"
+  config.vm.base_mac = "{{ .BaseMacAddress }}"
+
   # You should be using the vagrant-windows Vagrant Plugin!
   # Admin user name and password
   config.winrm.username = "vagrant"

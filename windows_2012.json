@@ -9,12 +9,17 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "2h",
-    "shutdown_command": "shutdown /s /t 10  /f /d p:4:1 /c \"Vagrant Shutdown\"",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Vagrant Shutdown\"",
     "guest_os_type": "windows8srv-64",
     "disk_size": 61440,
     "vnc_port_min": 5900,
     "vnc_port_max": 5980,
-    "floppy_files": ["./answer_files/2012/Autounattend.xml", "./scripts/install-cygwin-sshd.bat", "./scripts/install-win-updates.ps1"],
+    "floppy_files": [
+      "./answer_files/2012/Autounattend.xml",
+      "./scripts/win-updates.ps1",
+      "./scripts/openssh-6.2.exe",
+      "./scripts/openssh-6.2.bat"
+    ],
     "vmx_data": {
       "RemoteDisplay.vnc.enabled": "false",
       "RemoteDisplay.vnc.port": "5900",
@@ -26,19 +31,23 @@
     "iso_url": "./iso/en_windows_server_2012_x64_dvd_915478.iso",
     "iso_checksum_type": "md5",
     "iso_checksum": "da91135483e24689bfdaf05d40301506",
-    "headless": true,
+    "headless": false,
     "boot_wait": "5m",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "ssh_wait_timeout": "2h",
-    "shutdown_command": "shutdown /s /t 10  /f /d p:4:1 /c \"Vagrant Shutdown\"",
+    "ssh_wait_timeout": "8h",
+    "shutdown_command": "shutdown /s /t 2400 /f /d p:4:1 /c \"Vagrant Shutdown\"",
+    "shutdown_timeout": "8h",
     "guest_os_type": "Windows2012_64",
     "disk_size": 61440,
+    "guest_additions_attach": "true",
     "floppy_files": [
       "./answer_files/2012/Autounattend.xml",
-      "./scripts/oracle-cert.cer",
-      "./scripts/install-cygwin-sshd.bat",
-      "./scripts/install-win-updates.ps1"
+      "./scripts/win-updates.ps1",
+      "./scripts/hotfix-KB2842230.ps1",
+      "./scripts/Windows8-RT-KB2842230-x64.msu",
+      "./scripts/openssh-6.2.bat",
+      "./scripts/oracle-cert.cer"
     ],
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
@@ -47,11 +56,18 @@
   }],
   "provisioners": [{
     "type": "shell",
-    "scripts": ["./scripts/postinstall.sh", "./scripts/install-vmware-tools.sh", "./scripts/install-virtualbox-tools.sh", "./scripts/install-chef.sh"]
+    "remote_path": "/tmp/script.bat",
+    "execute_command": "cmd /c C:/Windows/Temp/script.bat",
+    "scripts": [
+      "./scripts/echo.bat",
+      "./scripts/virtualbox-tools.bat",
+      "./scripts/puppet.bat",
+      "./scripts/chef.bat",
+      "./scripts/chocolatey.bat"
+    ]
   }],
   "post-processors": [{
     "type": "vagrant",
-    "keep_input_artifact": false,
     "output": "windows_2012_{{.Provider}}.box",
     "vagrantfile_template": "vagrantfile-windows_2012.template"
   }]
