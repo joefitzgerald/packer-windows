@@ -10,7 +10,6 @@
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "2h",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-    "shutdown_timeout": "2h",
     "guest_os_type": "windows8srv-64",
     "disk_size": 61440,
     "vnc_port_min": 5900,
@@ -39,7 +38,6 @@
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "Windows2012_64",
     "disk_size": 61440,
-    "guest_additions_attach": "true",
     "floppy_files": [
       "./answer_files/2012/Autounattend.xml",
       "./scripts/win-updates.ps1",
@@ -52,24 +50,20 @@
     ]
   }],
   "provisioners": [{
-      "type": "file", "source": "./scripts/Windows8-RT-KB2842230-x64.msu", "destination": "/tmp/Windows8-RT-KB2842230-x64.msu"
-    }, {
       "type": "shell",
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [
-        "./scripts/hotfix-KB2842230.bat",
         "./scripts/vm-guest-tools.bat",
-        "./scripts/puppet.bat",
         "./scripts/chef.bat",
-        "./scripts/chocolatey.bat"
+        "./scripts/vagrant-ssh.bat"
       ]
     }, {
       "type": "shell", "inline": ["rm -rf /tmp/*"]
-  }],
+    }],
   "post-processors": [{
     "type": "vagrant",
-    "only": ["virtualbox", "vmware"],
+    "keep_input_artifact": false,
     "output": "windows_2012_{{.Provider}}.box",
     "vagrantfile_template": "vagrantfile-windows_2012.template"
   }]

@@ -9,12 +9,16 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "2h",
-    "shutdown_command": "shutdown /s /t 10  /f /d p:4:1 /c \"Vagrant Shutdown\"",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "windows7srv-64",
     "disk_size": 61440,
     "vnc_port_min": 5900,
     "vnc_port_max": 5980,
-    "floppy_files": ["./answer_files/2008_r2/Autounattend.xml", "./scripts/install-cygwin-sshd.bat", "./scripts/install-win-updates.ps1"],
+    "floppy_files": [
+      "./answer_files/2008_r2/Autounattend.xml",
+      "./scripts/win-updates.ps1",
+      "./scripts/openssh-6.2.bat"
+    ],
     "vmx_data": {
       "RemoteDisplay.vnc.enabled": "false",
       "RemoteDisplay.vnc.port": "5900",
@@ -31,14 +35,14 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "2h",
-    "shutdown_command": "shutdown /s /t 10  /f /d p:4:1 /c \"Vagrant Shutdown\"",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "Windows2008_64",
     "disk_size": 61440,
     "floppy_files": [
       "./answer_files/2008_r2/Autounattend.xml",
-      "./scripts/oracle-cert.cer",
-      "./scripts/install-cygwin-sshd.bat",
-      "./scripts/install-win-updates.ps1"
+      "./scripts/win-updates.ps1",
+      "./scripts/openssh-6.2.bat",
+      "./scripts/oracle-cert.cer"
     ],
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
@@ -46,9 +50,17 @@
     ]
   }],
   "provisioners": [{
-    "type": "shell",
-    "scripts": ["./scripts/postinstall.sh", "./scripts/install-vmware-tools.sh", "./scripts/install-virtualbox-tools.sh", "./scripts/install-chef.sh"]
-  }],
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/chef.bat",
+        "./scripts/vagrant-ssh.bat"
+     ]
+    }, {
+      "type": "shell", "inline": ["rm -rf /tmp/*"]
+    }],
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
