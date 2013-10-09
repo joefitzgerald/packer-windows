@@ -224,7 +224,6 @@
 					<Order>21</Order>
 					<Description>Disable Hibernation Mode</Description>
 				</SynchronousCommand>
-
 <!-- WITHOUT WINDOWS UPDATES
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c a:\openssh-6.2.bat START</CommandLine>
@@ -232,7 +231,6 @@
 					<Order>99</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand> -->
-
 <!-- WITH WINDOWS UPDATES -->
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c a:\openssh-6.2.bat</CommandLine>
