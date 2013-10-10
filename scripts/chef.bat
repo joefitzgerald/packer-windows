@@ -4,4 +4,4 @@ if not exist "C:\Windows\Temp\chef.msi" (
 )
 
 msiexec /qb /i C:\Windows\Temp\chef.msi
-start /wait powershell -Command "Start-Sleep 1" <NUL
+powershell -Command "Start-Sleep 1" <NUL
