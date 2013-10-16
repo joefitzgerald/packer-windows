@@ -5,6 +5,7 @@ if not exist "C:\Windows\Temp\puppet.msi" (
 
 :: http://docs.puppetlabs.com/pe/latest/install_windows.html
 msiexec /qn /i C:\Windows\Temp\puppet.msi /log C:\Windows\Temp\puppet.log
-cmd /c setx /m PATH "%path%;C:\\Program Files (x86)\\Puppet Labs\\Puppet Enterprise\\bin"
 
-powershell -Command "Start-Sleep 1" <NUL
+<nul set /p ".=;C:\Program Files (x86)\Puppet Labs\Puppet Enterprise\bin" >> C:\Windows\Temp\PATH
+set /p PATH=<C:\Windows\Temp\PATH
+setx PATH "%PATH%" /m

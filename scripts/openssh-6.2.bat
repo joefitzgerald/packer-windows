@@ -15,6 +15,9 @@ rd /S /Q "C:\Program Files\OpenSSH\tmp"
 cmd /c ""C:\Program Files\OpenSSH\bin\junction.exe" /accepteula "C:\Program Files\OpenSSH\tmp" C:\Windows\Temp"
 cmd /c C:\Windows\System32\icacls.exe "C:\Windows\Temp" /grant vagrant:(OI)(CI)F
 
+:: record the path for use by provisioners
+<nul set /p ".=%PATH%" > C:\Windows\Temp\PATH
+
 if "%1" neq "START" (
   cmd /c net stop opensshd
 )
