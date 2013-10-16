@@ -117,115 +117,134 @@
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c a:\install-cygwin-sshd.bat</CommandLine>
-					<Description>Install Cygwin SSH</Description>
-					<Order>3</Order>
-					<RequiresUserInput>true</RequiresUserInput>
-				</SynchronousCommand>
-				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm quickconfig -q</CommandLine>
 					<Description>winrm quickconfig -q</Description>
-					<Order>4</Order>
+					<Order>3</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm quickconfig -transport:http</CommandLine>
 					<Description>winrm quickconfig -transport:http</Description>
-					<Order>5</Order>
+					<Order>4</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm set winrm/config @{MaxTimeoutms="1800000"}</CommandLine>
 					<Description>Win RM MaxTimoutms</Description>
-					<Order>6</Order>
+					<Order>5</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"}</CommandLine>
 					<Description>Win RM MaxMemoryPerShellMB</Description>
-					<Order>7</Order>
+					<Order>6</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm set winrm/config/service @{AllowUnencrypted="true"}</CommandLine>
 					<Description>Win RM AllowUnencrypted</Description>
-					<Order>8</Order>
+					<Order>7</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm set winrm/config/service/auth @{Basic="true"}</CommandLine>
 					<Description>Win RM auth Basic</Description>
-					<Order>9</Order>
+					<Order>8</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm set winrm/config/client/auth @{Basic="true"}</CommandLine>
 					<Description>Win RM client auth Basic</Description>
-					<Order>10</Order>
+					<Order>9</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"} </CommandLine>
 					<Description>Win RM listener Address/Port</Description>
-					<Order>11</Order>
+					<Order>10</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c netsh advfirewall firewall set rule group="remote administration" new enable=yes </CommandLine>
 					<Description>Win RM adv firewall enable</Description>
-					<Order>12</Order>
+					<Order>11</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c netsh firewall add portopening TCP 5985 "Port 5985" </CommandLine>
 					<Description>Win RM port open</Description>
-					<Order>13</Order>
+					<Order>12</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c net stop winrm </CommandLine>
 					<Description>Stop Win RM Service </Description>
-					<Order>14</Order>
+					<Order>13</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c sc config winrm start= auto</CommandLine>
+					<CommandLine>cmd.exe /c sc config winrm start=auto</CommandLine>
 					<Description>Win RM Autostart</Description>
-					<Order>15</Order>
+					<Order>14</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c net start winrm</CommandLine>
 					<Description>Start Win RM Service</Description>
-					<Order>16</Order>
+					<Order>15</Order>
 					<RequiresUserInput>true</RequiresUserInput>
-				</SynchronousCommand>
-				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\install-win-updates.ps1</CommandLine>
-					<Description>Install Windows Updates</Description>
-					<Order>17</Order>
-					<RequiresUserInput>true</RequiresUserInput>
-				</SynchronousCommand>
-				<SynchronousCommand wcm:action="add">
-					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\Console /v QuickEdit /t REG_DWORD /d 1 /f</CommandLine>
-					<Order>18</Order>
-					<Description>Enable QuickEdit mode</Description>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v HideFileExt /t REG_DWORD /d 0 /f</CommandLine>
-					<Order>19</Order>
+					<Order>16</Order>
 					<Description>Show file extensions in Explorer</Description>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
+					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\Console /v QuickEdit /t REG_DWORD /d 1 /f</CommandLine>
+					<Order>17</Order>
+					<Description>Enable QuickEdit mode</Description>
+				</SynchronousCommand>
+				<SynchronousCommand wcm:action="add">
 					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v Start_ShowRun /t REG_DWORD /d 1 /f</CommandLine>
-					<Order>20</Order>
+					<Order>18</Order>
 					<Description>Show Run command in Start Menu</Description>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v StartMenuAdminTools /t REG_DWORD /d 1 /f</CommandLine>
-					<Order>21</Order>
+					<Order>19</Order>
 					<Description>Show Administrative Tools in Start Menu</Description>
 				</SynchronousCommand>
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateFileSizePercent /t REG_DWORD /d 0 /f</CommandLine>
+					<Order>20</Order>
+					<Description>Zero Hibernation File</Description>
+				</SynchronousCommand>
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateEnabled /t REG_DWORD /d 0 /f</CommandLine>
+					<Order>21</Order>
+					<Description>Disable Hibernation Mode</Description>
+				</SynchronousCommand>
+<!-- WITHOUT WINDOWS UPDATES
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>cmd.exe /c a:\openssh-6.2.bat START</CommandLine>
+					<Description>Install OpenSSH</Description>
+					<Order>99</Order>
+					<RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand> -->
+<!-- WITH WINDOWS UPDATES -->
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>cmd.exe /c a:\openssh-6.2.bat</CommandLine>
+					<Description>Install OpenSSH</Description>
+					<Order>99</Order>
+					<RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
+					<Description>Install Windows Updates</Description>
+					<Order>100</Order>
+					<RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+
 			</FirstLogonCommands>
 			<ShowWindowsLive>false</ShowWindowsLive>
 		</component>
