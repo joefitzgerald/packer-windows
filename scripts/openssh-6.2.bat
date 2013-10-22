@@ -10,6 +10,10 @@ cmd /c C:\Windows\System32\icacls.exe "C:\Program Files\OpenSSH\bin" /grant vagr
 cmd /c C:\Windows\System32\icacls.exe "C:\Program Files\OpenSSH\usr\sbin" /grant vagrant:(OI)RX
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\passwd') | Foreach-Object { $_ -replace '/home/(\w+)', '/cygdrive/c/Users/$1' } | Set-Content 'C:\Program Files\OpenSSH\etc\passwd'"
 
+:: fix opensshd to not be strict
+powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') | Foreach-Object { $_ -replace 'StrictModes yes', 'StrictModes no' } | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
+powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') | Foreach-Object { $_ -replace '#PubkeyAuthentication yes', 'PubkeyAuthentication yes' } | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
+
 :: use Windows\Temp as /tmp location
 rd /S /Q "C:\Program Files\OpenSSH\tmp"
 cmd /c ""C:\Program Files\OpenSSH\bin\junction.exe" /accepteula "C:\Program Files\OpenSSH\tmp" C:\Windows\Temp"
