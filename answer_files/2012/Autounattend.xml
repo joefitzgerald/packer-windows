@@ -226,14 +226,14 @@
 				</SynchronousCommand>
 <!-- WITHOUT WINDOWS UPDATES
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c a:\openssh-6.2.bat START</CommandLine>
+					<CommandLine>cmd.exe /c a:\openssh-6.3.bat START</CommandLine>
 					<Description>Install OpenSSH</Description>
 					<Order>99</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand> -->
 <!-- WITH WINDOWS UPDATES -->
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c a:\openssh-6.2.bat</CommandLine>
+					<CommandLine>cmd.exe /c a:\openssh-6.3.bat</CommandLine>
 					<Description>Install OpenSSH</Description>
 					<Order>99</Order>
 					<RequiresUserInput>true</RequiresUserInput>
@@ -244,7 +244,6 @@
 					<Order>100</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
-
 			</FirstLogonCommands>
 			<ShowWindowsLive>false</ShowWindowsLive>
 		</component>
