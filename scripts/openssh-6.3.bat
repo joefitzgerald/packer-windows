@@ -13,11 +13,13 @@ powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\passwd') | Forea
 :: fix opensshd to not be strict
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace 'StrictModes yes', 'StrictModes no' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace '#PubkeyAuthentication yes', 'PubkeyAuthentication yes' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
+powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace '#PermitUserEnvironment no', 'PermitUserEnvironment yes' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
 
 :: use Windows\Temp as /tmp location
 rd /S /Q "C:\Program Files\OpenSSH\tmp"
 cmd /c ""C:\Program Files\OpenSSH\bin\junction.exe" /accepteula "C:\Program Files\OpenSSH\tmp" C:\Windows\Temp"
 cmd /c C:\Windows\System32\icacls.exe "C:\Windows\Temp" /grant vagrant:(OI)(CI)F
+powershell -Command "Add-Content C:\Users\vagrant\.ssh\environment "TEMP=C:\Windows\Temp""
 
 :: record the path for use by provisioners
 <nul set /p ".=%PATH%" > C:\Windows\Temp\PATH

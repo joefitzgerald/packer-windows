@@ -100,7 +100,7 @@
 					<Value>vagrant</Value>
 					<PlainText>true</PlainText>
 				</Password>
-				<Username>administrator</Username>
+				<Username>vagrant</Username>
 				<Enabled>true</Enabled>
 			</AutoLogon>
 			<FirstLogonCommands>
