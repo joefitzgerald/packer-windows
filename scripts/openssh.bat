@@ -1,7 +1,7 @@
 
 :: setup openssh
-powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://www.mls-software.com/files/setupssh-6.3p1-1(x64).exe', 'C:\Windows\Temp\openssh-6.3.exe')"
-cmd /c C:\Windows\temp\openssh-6.3.exe /S /port=22 /privsep=1 /password=D@rj33l1ng
+powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://www.mls-software.com/files/setupssh-6.3p1-1(x64).exe', 'C:\Windows\Temp\openssh.exe')"
+cmd /c C:\Windows\temp\openssh.exe /S /port=22 /privsep=1 /password=D@rj33l1ng
 
 :: ensure vagrant can log in
 mkdir "C:\Users\vagrant\.ssh"
