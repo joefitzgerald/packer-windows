@@ -17,7 +17,7 @@
     "floppy_files": [
       "./answer_files/2008_r2/Autounattend.xml",
       "./scripts/win-updates.ps1",
-      "./scripts/openssh.bat"
+      "./scripts/openssh.ps1"
     ],
     "vmx_data": {
       "RemoteDisplay.vnc.enabled": "false",
@@ -41,7 +41,7 @@
     "floppy_files": [
       "./answer_files/2008_r2/Autounattend.xml",
       "./scripts/win-updates.ps1",
-      "./scripts/openssh.bat",
+      "./scripts/openssh.ps1",
       "./scripts/oracle-cert.cer"
     ],
     "vboxmanage": [
