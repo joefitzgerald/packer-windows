@@ -4,4 +4,3 @@ powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object n
 <nul set /p ".=;C:\Chocolatey\bin" >> C:\Windows\Temp\PATH
 set /p PATH=<C:\Windows\Temp\PATH
 setx PATH "%PATH%" /m
-setx ChocolateyInstall "C:\Chocolatey" /m
