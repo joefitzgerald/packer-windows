@@ -1,6 +1,6 @@
 
 :: setup openssh
-powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://www.mls-software.com/files/setupssh-6.3p1-1(x64).exe', 'C:\Windows\Temp\openssh.exe')"
+powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://www.mls-software.com/files/setupssh-6.4p1-1(x64).exe', 'C:\Windows\Temp\openssh.exe')"
 cmd /c C:\Windows\temp\openssh.exe /S /port=22 /privsep=1 /password=D@rj33l1ng
 
 :: ensure vagrant can log in
@@ -14,6 +14,12 @@ powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\passwd') | Forea
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace 'StrictModes yes', 'StrictModes no' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace '#PubkeyAuthentication yes', 'PubkeyAuthentication yes' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace '#PermitUserEnvironment no', 'PermitUserEnvironment yes' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
+
+:: disable the use of DNS to speed up the time it takes to establish a connection
+powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace '#UseDNS yes', 'UseDNS no' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
+
+:: disable the login banner
+powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace 'Banner /etc/banner.txt', '#Banner /etc/banner.txt' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
 
 :: use Windows\Temp as /tmp location
 rd /S /Q "C:\Program Files\OpenSSH\tmp"
