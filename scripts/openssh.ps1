@@ -39,6 +39,8 @@ $sshd_config = $sshd_config -replace '#PubkeyAuthentication yes', 'PubkeyAuthent
 $sshd_config = $sshd_config -replace '#PermitUserEnvironment no', 'PermitUserEnvironment yes'
 # disable the use of DNS to speed up the time it takes to establish a connection
 $sshd_config = $sshd_config -replace '#UseDNS yes', 'UseDNS no'
+# disable the login banner
+$sshd_config = $sshd_config -replace 'Banner /etc/banner.txt', '#Banner /etc/banner.txt'
 Set-Content "C:\Program Files\OpenSSH\etc\sshd_config" $sshd_config
 
 # use c:\Windows\Temp as /tmp location
