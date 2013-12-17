@@ -18,6 +18,9 @@ powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -r
 :: disable the use of DNS to speed up the time it takes to establish a connection
 powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace '#UseDNS yes', 'UseDNS no' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
 
+:: disable the login banner
+powershell -Command "(Get-Content 'C:\Program Files\OpenSSH\etc\sshd_config') -replace 'Banner /etc/banner.txt', '#Banner /etc/banner.txt' | Set-Content 'C:\Program Files\OpenSSH\etc\sshd_config'"
+
 :: use Windows\Temp as /tmp location
 rd /S /Q "C:\Program Files\OpenSSH\tmp"
 cmd /c ""C:\Program Files\OpenSSH\bin\junction.exe" /accepteula "C:\Program Files\OpenSSH\tmp" C:\Windows\Temp"
