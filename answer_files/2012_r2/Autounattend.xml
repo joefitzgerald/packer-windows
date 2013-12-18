@@ -103,7 +103,6 @@
 				</Password>
 				<Enabled>true</Enabled>
 				<Username>vagrant</Username>
-				<LogonCount>1</LogonCount>
 			</AutoLogon>
 			<FirstLogonCommands>
 				<SynchronousCommand wcm:action="add">
