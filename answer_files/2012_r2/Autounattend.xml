@@ -19,7 +19,7 @@
 							<Letter>C</Letter>
 							<Order>1</Order>
 							<PartitionID>1</PartitionID>
-							<Label>Windows 2012</Label>
+							<Label>Windows 2012R2</Label>
 						</ModifyPartition>
 					</ModifyPartitions>
 					<DiskID>0</DiskID>
@@ -33,10 +33,10 @@
 				<Organization>Vagrant Inc.</Organization>
 				<!-- Product Key from http://technet.microsoft.com/en-us/library/ff793406.aspx -->
 				<ProductKey>
-					<Key>XC9B7-NBPP2-83J2H-RHMBY-92BT4</Key>
+					<Key>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9</Key>
 					<WillShowUI>Never</WillShowUI>
 				</ProductKey>
-            </UserData>
+			</UserData>
 			<ImageInstall>
 				<OSImage>
 					<InstallTo>
@@ -48,7 +48,7 @@
 					<InstallFrom>
 						<MetaData wcm:action="add">
 							<Key>/IMAGE/NAME</Key>
-							<Value>Windows Server 2012 SERVERSTANDARD</Value>
+							<Value>Windows Server 2012 R2 SERVERDATACENTER</Value>
 						</MetaData>
 					</InstallFrom>
 				</OSImage>
@@ -99,7 +99,7 @@
                 <HideLocalAccountScreen>true</HideLocalAccountScreen>
                 <SkipUserOOBE>true</SkipUserOOBE>
                 <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
-			</OOBE>
+            </OOBE>
 			<AutoLogon>
 				<Password>
 					<Value>vagrant</Value>
