@@ -6,11 +6,26 @@ This repository contains Windows templates that can be used to create boxes for 
 
 This repo began by borrowing bits from the VeeWee Windows templates (https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were made to work with Packer and the VMware Fusion provider for Packer and Vagrant.
 
+### Windows Updates
+
+The scripts in this repo will install all Windows updates – by default – during Windows Setup. This is a _very_ time consuming process, depending on the age of the OS and the quantity of updates released since the last service pack. You might want to do yourself a favor during development and disable this functionality, by commenting out this First Logon Command:
+
+```
+<SynchronousCommand wcm:action="add">
+	<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
+	<Description>Install Windows Updates</Description>
+	<Order>100</Order>
+	<RequiresUserInput>true</RequiresUserInput>
+</SynchronousCommand>
+```
+
+Doing so will give you hours back in your day, which is a good thing.
+
 ### Getting Started
 
 This repository assumes that you have access to [MSDN](http://msdn.microsoft.com) and can download the ISO images Microsoft makes available there.
 
-Currently, this repo expects you to do a little heavy lifting to get the Windows ISO required to build boxes.
+Currently, this repo leverages trial versions of Windows 2008 R2 / 2012 / 2012 R2. If you would like to leverage RTM (non-trial) versions, you should update the relevent `.json` file, setting `iso_url` to `"./iso/<path to your iso>.iso"` and `iso_checksum` to `<the md5 of your iso>` after following these instructions:
 
 1. Download the Windows Server 2008 R2 with Service Pack 1 (x64) - DVD (English) ISO (`en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso`)
 2. Verify that `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` has an MD5 hash of `8dcde01d0da526100869e2457aafb7ca` (Microsoft lists a SHA1 hash of `d3fd7bf85ee1d5bdd72de5b2c69a7b470733cd0a`, which is equivalent)
@@ -21,4 +36,4 @@ Currently, this repo expects you to do a little heavy lifting to get the Windows
 
 ### Contributing
 
-Pull requests welcomed. I plan to include other variants of Windows 2008 R2 and Windows 2012 next.
+Pull requests welcomed. Please ensure you create your edits in a branch off of the `develop` branch, not the `master` branch.

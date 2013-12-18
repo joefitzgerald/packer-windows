@@ -1,21 +1,21 @@
 {
   "builders": [{
     "type": "vmware",
-    "iso_url": "http://care.dlservice.microsoft.com//dl/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",
     "iso_checksum_type": "md5",
-    "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
+    "iso_checksum": "458ff91f8abc21b75cb544744bf92e6a",
     "headless": true,
     "boot_wait": "5m",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "2h",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-    "guest_os_type": "windows7srv-64",
+    "guest_os_type": "windows8srv-64",
     "disk_size": 61440,
     "vnc_port_min": 5900,
     "vnc_port_max": 5980,
     "floppy_files": [
-      "./answer_files/2008_r2/Autounattend.xml",
+      "./answer_files/2012_r2/Autounattend.xml",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1"
     ],
@@ -27,19 +27,19 @@
     }
   }, {
     "type": "virtualbox",
-    "iso_url": "http://care.dlservice.microsoft.com//dl/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",
     "iso_checksum_type": "md5",
-    "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
+    "iso_checksum": "458ff91f8abc21b75cb544744bf92e6a",
     "headless": true,
     "boot_wait": "5m",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "2h",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-    "guest_os_type": "Windows2008_64",
+    "guest_os_type": "Windows2012_64",
     "disk_size": 61440,
     "floppy_files": [
-      "./answer_files/2008_r2/Autounattend.xml",
+      "./answer_files/2012_r2/Autounattend.xml",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1",
       "./scripts/oracle-cert.cer"
@@ -57,14 +57,14 @@
         "./scripts/vm-guest-tools.bat",
         "./scripts/chef.bat",
         "./scripts/vagrant-ssh.bat"
-     ]
+      ]
     }, {
       "type": "shell", "inline": ["rm -rf /tmp/*"]
     }],
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "windows_2008_r2_{{.Provider}}.box",
-    "vagrantfile_template": "vagrantfile-windows_2008_r2.template"
+    "output": "windows_2012_r2_{{.Provider}}.box",
+    "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
   }]
 }
