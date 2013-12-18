@@ -103,7 +103,6 @@
 				</Password>
 				<Enabled>true</Enabled>
 				<Username>vagrant</Username>
-				<LogonCount>1</LogonCount>
 			</AutoLogon>
 			<FirstLogonCommands>
 				<SynchronousCommand wcm:action="add">
@@ -255,6 +254,10 @@
 				</AdministratorPassword>
 				<LocalAccounts>
 					<LocalAccount wcm:action="add">
+						<Password>
+							<Value>vagrant</Value>
+							<PlainText>true</PlainText>
+						</Password>
 						<Group>administrators</Group>
 						<DisplayName>Vagrant</DisplayName>
 						<Name>vagrant</Name>
