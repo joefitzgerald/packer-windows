@@ -9,6 +9,10 @@ goto :done
 
 :vmware
 
+if exist "C:\Users\vagrant\windows.iso" (
+	move /Y C:\Users\vagrant\windows.iso C:\Windows\Temp
+)
+
 if not exist "C:\Windows\Temp\windows.iso" (
   powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/10.0.1/1379776/windows/packages/tools-windows-9.6.1.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
   cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\vmware-tools.exe.tar -oC:\Windows\Temp"
@@ -29,7 +33,7 @@ goto :done
 :: to prevent user intervention popups which will undermine a silent installation.
 cmd /c certutil -addstore -f "TrustedPublisher" A:\oracle-cert.cer
 
-mv C:\Users\vagrant\VBoxGuestAdditions.iso C:\Windows\Temp
+move /Y C:\Users\vagrant\VBoxGuestAdditions.iso C:\Windows\Temp
 cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\VBoxGuestAdditions.iso -oC:\Windows\Temp\virtualbox"
 cmd /c C:\Windows\Temp\virtualbox\VBoxWindowsAdditions.exe /S
 goto :done

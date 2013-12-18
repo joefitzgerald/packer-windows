@@ -11,6 +11,7 @@
     "ssh_wait_timeout": "2h",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "windows7srv-64",
+	"tools_upload_flavor": "windows",
     "disk_size": 61440,
     "vnc_port_min": 5900,
     "vnc_port_max": 5980,
@@ -28,7 +29,7 @@
     }
   }, {
     "type": "virtualbox",
-    "iso_url": "http://care.dlservice.microsoft.com//dl/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
     "iso_checksum_type": "md5",
     "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
     "headless": true,
