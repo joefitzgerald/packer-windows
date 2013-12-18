@@ -6,6 +6,18 @@ This repository contains Windows templates that can be used to create boxes for 
 
 This repo began by borrowing bits from the VeeWee Windows templates (https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were made to work with Packer and the VMware Fusion provider for Packer and Vagrant.
 
+### Windows Versions
+
+The following Windows versions are known to work:
+
+* Windows 2008 R2
+* Windows 2012
+* Windows 2012 R2
+
+### Windows Editions
+
+All Windows Server versions are defaulted to the Server Standard edition. You can modify this by editing the Autounattend.xml file, changing the `ImageInstall`>`OSImage`>`InstallFrom`>`MetaData`>`Value` element (e.g. to Windows Server 2012 R2 SERVERSTANDARD). You also need to update the `UserData`>`ProductKey`> element with the appropriate key from http://technet.microsoft.com/en-us/library/jj612867.aspx.
+
 ### Windows Updates
 
 The scripts in this repo will install all Windows updates – by default – during Windows Setup. This is a _very_ time consuming process, depending on the age of the OS and the quantity of updates released since the last service pack. You might want to do yourself a favor during development and disable this functionality, by commenting out this First Logon Command:
