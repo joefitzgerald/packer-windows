@@ -16,7 +16,7 @@ The following Windows versions are known to work:
 
 ### Windows Editions
 
-All Windows Server versions are defaulted to the Server Standard edition. You can modify this by editing the Autounattend.xml file, changing the `ImageInstall`>`OSImage`>`InstallFrom`>`MetaData`>`Value` element (e.g. to Windows Server 2012 R2 SERVERSTANDARD). You also need to update the `UserData`>`ProductKey`> element with the appropriate key from http://technet.microsoft.com/en-us/library/jj612867.aspx.
+All Windows Server versions are defaulted to the Server Standard edition. You can modify this by editing the Autounattend.xml file, changing the `ImageInstall`>`OSImage`>`InstallFrom`>`MetaData`>`Value` element (e.g. to Windows Server 2012 R2 SERVERDATACENTER). You also need to update the `UserData`>`ProductKey` element with the appropriate key from http://technet.microsoft.com/en-us/library/jj612867.aspx.
 
 ### Windows Updates
 
