@@ -9,15 +9,18 @@ goto :done
 
 :vmware
 
-if not exist "C:\Windows\Temp\VMWare\setup.exe" (
-  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/10.0.0/1295980/windows/packages/tools-windows-9.6.0.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
+if not exist "C:\Windows\Temp\windows.iso" (
+  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/10.0.1/1379776/windows/packages/tools-windows-9.6.1.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
   cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\vmware-tools.exe.tar -oC:\Windows\Temp"
-  cmd /c C:\Windows\Temp\tools-windows-9.6.0
-  cmd /c ""C:\Program Files\7-Zip\7z.exe" x "C:\Program Files ^(x86^)\VMWare\tools-windows\windows.iso" -oC:\Windows\Temp\VMWare"
-  del /F /S /Q "C:\Program Files (x86)\VMWare"
+  FOR /r "C:\Windows\Temp" %a in (tools-windows-*.exe) DO REN "%~a" "tools-windows.exe"
+  cmd /c C:\Windows\Temp\tools-windows.exe
+  move /Y "C:\Program Files (x86)\VMware\tools-windows\windows.iso" C:\Windows\Temp
+  rd /S /Q "C:\Program Files (x86)\VMWare"
 )
 
+cmd /c ""C:\Program Files\7-Zip\7z.exe" x "C:\Windows\Temp\windows.iso" -oC:\Windows\Temp\VMWare"
 cmd /c C:\Windows\Temp\VMWare\setup.exe /S /v"/qn REBOOT=R\"
+
 goto :done
 
 :virtualbox
