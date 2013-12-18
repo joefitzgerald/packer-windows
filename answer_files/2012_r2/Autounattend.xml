@@ -255,6 +255,10 @@
 				</AdministratorPassword>
 				<LocalAccounts>
 					<LocalAccount wcm:action="add">
+						<Password>
+							<Value>vagrant</Value>
+							<PlainText>true</PlainText>
+						</Password>
 						<Group>administrators</Group>
 						<DisplayName>Vagrant</DisplayName>
 						<Name>vagrant</Name>
