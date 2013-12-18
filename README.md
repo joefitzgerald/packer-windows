@@ -23,9 +23,10 @@ Doing so will give you hours back in your day, which is a good thing.
 
 ### Getting Started
 
-This repository assumes that you have access to [MSDN](http://msdn.microsoft.com) and can download the ISO images Microsoft makes available there.
+Currently, this repo leverages trial versions of Windows 2008 R2 / 2012 / 2012 R2. 
 
-Currently, this repo leverages trial versions of Windows 2008 R2 / 2012 / 2012 R2. If you would like to leverage RTM (non-trial) versions, you should update the relevent `.json` file, setting `iso_url` to `"./iso/<path to your iso>.iso"` and `iso_checksum` to `<the md5 of your iso>` after following these instructions:
+
+Alternatively, if you have access to [MSDN](http://msdn.microsoft.com) or TechNet, you can download the ISO images Microsoft makes available there and place them in the `iso` directory. If you do so, you should update the relevent `.json` file, setting `iso_url` to `"./iso/<path to your iso>.iso"` and `iso_checksum` to `<the md5 of your iso>` after following these instructions:
 
 1. Download the Windows Server 2008 R2 with Service Pack 1 (x64) - DVD (English) ISO (`en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso`)
 2. Verify that `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` has an MD5 hash of `8dcde01d0da526100869e2457aafb7ca` (Microsoft lists a SHA1 hash of `d3fd7bf85ee1d5bdd72de5b2c69a7b470733cd0a`, which is equivalent)
