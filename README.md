@@ -8,7 +8,7 @@ This repo began by borrowing bits from the VeeWee Windows templates (https://git
 
 ### Windows Versions
 
-The following Windows versions are known to work:
+The following Windows versions are known to work (built with VMware Fusion 6.0.2):
 
 * Windows 2008 R2 - [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2008-r2/)
 * Windows 2012 - [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012/)
@@ -32,6 +32,20 @@ The scripts in this repo will install all Windows updates – by default – dur
 ```
 
 Doing so will give you hours back in your day, which is a good thing.
+
+### OpenSSH / WinRM
+
+Currently, [Packer](http://packer.io) has a single communitator that uses SSH. This means we need an SSH server installed on Windows - which is not optimal as we could use WinRM to communicate with the Windows VM. In the short term, everything works well with SSH; in the medium term, work is underway on a WinRM communicator for Packer. 
+
+If you have serious objections to OpenSSH being installed, you can always add another stage to your build pipeline:
+
+* Build a base box using Packer
+* Create a Vagrantfile, use the base box from Packer, connect to the VM via WinRM (using the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin) and disable the 'sshd' service or uninstall OpenSSH completely
+* Perform a Vagrant run and and output a .box file
+
+### Using .box Files With Vagrant
+
+If you are going to use the .box files produced by the project with Vagrant, you should also use the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin, which will ensure Vagrant works well with Windows. This will also allow Vagrant to use WinRM to communicate with the box. 
 
 ### Getting Started
 
