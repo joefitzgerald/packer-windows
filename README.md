@@ -10,9 +10,9 @@ This repo began by borrowing bits from the VeeWee Windows templates (https://git
 
 The following Windows versions are known to work:
 
-* Windows 2008 R2
-* Windows 2012
-* Windows 2012 R2
+* Windows 2008 R2 - [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2008-r2/)
+* Windows 2012 - [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012/)
+* Windows 2012 R2 - [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012-r2/)
 
 ### Windows Editions
 
