@@ -63,9 +63,8 @@ Alternatively, if you have access to [MSDN](http://msdn.microsoft.com) or TechNe
 1. Download the Windows Server 2008 R2 with Service Pack 1 (x64) - DVD (English) ISO (`en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso`)
 2. Verify that `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` has an MD5 hash of `8dcde01d0da526100869e2457aafb7ca` (Microsoft lists a SHA1 hash of `d3fd7bf85ee1d5bdd72de5b2c69a7b470733cd0a`, which is equivalent)
 3. Clone this repo to a local directory
-4. Create a directory named `iso` in the root of the repo
-5. Move `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` to the `iso` directory
-6. Run `packer build windows_2008_r2.json`
+4. Move `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` to the `iso` directory
+5. Run `packer build windows_2008_r2.json`
 
 ### Contributing
 
