@@ -19,7 +19,7 @@
 							<Letter>C</Letter>
 							<Order>1</Order>
 							<PartitionID>1</PartitionID>
-							<Label>Windows 2012</Label>
+							<Label>Windows 2008R2</Label>
 						</ModifyPartition>
 					</ModifyPartitions>
 					<DiskID>0</DiskID>
@@ -32,10 +32,10 @@
 				<FullName>Vagrant Administrator</FullName>
 				<Organization>Vagrant Inc.</Organization>
 				<!-- Product Key from http://technet.microsoft.com/en-us/library/ff793406.aspx -->
-				<ProductKey>XC9B7-NBPP2-83J2H-RHMBY-92BT4
+				<ProductKey>
 					<WillShowUI>Never</WillShowUI>
 				</ProductKey>
-            </UserData>
+			</UserData>
 			<ImageInstall>
 				<OSImage>
 					<InstallTo>
@@ -47,7 +47,7 @@
 					<InstallFrom>
 						<MetaData wcm:action="add">
 							<Key>/IMAGE/NAME</Key>
-							<Value>Windows Server 2012 SERVERSTANDARD</Value>
+							<Value>Windows Server 2008 R2 SERVERSTANDARDCORE</Value>
 						</MetaData>
 					</InstallFrom>
 				</OSImage>
@@ -93,11 +93,6 @@
 				<HideEULAPage>true</HideEULAPage>
 				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
 				<NetworkLocation>Home</NetworkLocation>
-                <ProtectYourPC>1</ProtectYourPC>
-                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
-                <HideLocalAccountScreen>true</HideLocalAccountScreen>
-                <SkipUserOOBE>true</SkipUserOOBE>
-                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
 			</OOBE>
 			<AutoLogon>
 				<Password>
@@ -108,18 +103,6 @@
 				<Enabled>true</Enabled>
 			</AutoLogon>
 			<FirstLogonCommands>
-				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
-					<Description>Set Execution Policy 64 Bit</Description>
-					<Order>1</Order>
-					<RequiresUserInput>true</RequiresUserInput>
-				</SynchronousCommand>
-				<SynchronousCommand wcm:action="add">
-					<CommandLine>C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
-					<Description>Set Execution Policy 32 Bit</Description>
-					<Order>2</Order>
-					<RequiresUserInput>true</RequiresUserInput>
-				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c winrm quickconfig -q</CommandLine>
 					<Description>winrm quickconfig -q</Description>
@@ -227,19 +210,67 @@
 					<CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateEnabled /t REG_DWORD /d 0 /f</CommandLine>
 					<Order>21</Order>
 					<Description>Disable Hibernation Mode</Description>
-				</SynchronousCommand>
+                </SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart $True</CommandLine>
-					<Description>Install OpenSSH</Description>
+					<CommandLine>DISM.exe /online /enable-feature /featurename:NetFx2-ServerCore</CommandLine>
+					<Description>Install Netfx2</Description>
+					<Order>93</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                 <SynchronousCommand wcm:action="add">
+                     <CommandLine>DISM.exe /online /enable-feature /featurename:NetFx3-ServerCore</CommandLine>
+					<Description>Install Netfx3</Description>
+					<Order>94</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>DISM.exe /online /enable-feature /featurename:NetFx2-ServerCore-WOW64</CommandLine>
+					<Description>Install Netfx2Wow</Description>
+					<Order>95</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>DISM.exe /online /enable-feature /featurename:NetFx3-ServerCore-WOW64</CommandLine>
+					<Description>Install Netfx3Wow</Description>
+					<Order>96</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>DISM.exe /online /enable-feature /featurename:MicrosoftWindowsPowerShell</CommandLine>
+					<Description>Install Powershell</Description>
+					<Order>97</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>DISM.exe /online /enable-feature /featurename:MicrosoftWindowsPowerShell-WOW64</CommandLine>
+					<Description>Install Powershell</Description>
+					<Order>98</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                	<SynchronousCommand wcm:action="add">
+					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+					<Description>Set Execution Policy 64 Bit</Description>
 					<Order>99</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
-					<Description>Install Windows Updates</Description>
+					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe  -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+					<Description>Set Execution Policy 32 Bit</Description>
 					<Order>100</Order>
 					<RequiresUserInput>true</RequiresUserInput>
 				</SynchronousCommand>
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
+					<Description>Install OpenSSH</Description>
+					<Order>101</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+				</SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
+					<Description>Install Windows Updates</Description>
+					<Order>102</Order>
+					<RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
 			</FirstLogonCommands>
 			<ShowWindowsLive>false</ShowWindowsLive>
 		</component>
@@ -250,7 +281,7 @@
 				<HelpCustomized>false</HelpCustomized>
 			</OEMInformation>
 			<!-- Rename computer here. -->
-			<ComputerName>vagrant-2012</ComputerName>
+			<ComputerName>vagrant-2008R2Core</ComputerName>
 			<TimeZone>Pacific Standard Time</TimeZone>
 			<RegisteredOwner/>
 		</component>

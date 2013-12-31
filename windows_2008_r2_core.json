@@ -16,7 +16,7 @@
     "vnc_port_min": 5900,
     "vnc_port_max": 5980,
     "floppy_files": [
-      "./answer_files/2008_r2/Autounattend.xml",
+      "./answer_files/2008_r2_core/Autounattend.xml",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1"
     ],
@@ -41,7 +41,7 @@
     "guest_os_type": "Windows2008_64",
     "disk_size": 61440,
     "floppy_files": [
-      "./answer_files/2008_r2/Autounattend.xml",
+      "./answer_files/2008_r2_core/Autounattend.xml",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1",
       "./scripts/oracle-cert.cer"
@@ -66,7 +66,7 @@
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "windows_2008_r2_{{.Provider}}.box",
+    "output": "windows_2008_r2_core_{{.Provider}}.box",
     "vagrantfile_template": "vagrantfile-windows_2008_r2.template"
   }]
 }

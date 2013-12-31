@@ -28,12 +28,23 @@ All Windows Server versions are defaulted to the Server Standard edition. You ca
 
 The scripts in this repo will install all Windows updates – by default – during Windows Setup. This is a _very_ time consuming process, depending on the age of the OS and the quantity of updates released since the last service pack. You might want to do yourself a favor during development and disable this functionality, by commenting out this First Logon Command:
 
-```
+```xml
 <SynchronousCommand wcm:action="add">
 	<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
 	<Description>Install Windows Updates</Description>
 	<Order>100</Order>
 	<RequiresUserInput>true</RequiresUserInput>
+</SynchronousCommand>
+```
+
+Note: If you comment the windows update command you need to add the following argument to the previous `Synchronous Command`
+
+```xml
+<SynchronousCommand wcm:action="add">
+	<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart $True</CommandLine>
+	<Description>Install OpenSSH</Description>
+    <Order>100</Order>
+    <RequiresUserInput>true</RequiresUserInput>
 </SynchronousCommand>
 ```
 
