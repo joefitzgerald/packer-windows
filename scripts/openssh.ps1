@@ -1,7 +1,7 @@
 param (
   [switch]$AutoStart = $false
 )
-
+Write-Host "AutoStart: $AutoStart"
 $is_64bit = [IntPtr]::size -eq 8
 
 # setup openssh
