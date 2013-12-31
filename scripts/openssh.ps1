@@ -1,20 +1,21 @@
 param (
   [switch]$AutoStart = $false
 )
+
 Write-Host "AutoStart: $AutoStart"
 $is_64bit = [IntPtr]::size -eq 8
 
 # setup openssh
 $ssh_download_url = "http://www.mls-software.com/files/setupssh-6.4p1-1.exe"
 if ($is_64bit) {
-  Write-Host "64 bit OS found"
-  $ssh_download_url = "http://www.mls-software.com/files/setupssh-6.4p1-1(x64).exe"
+    Write-Host "64 bit OS found"
+    $ssh_download_url = "http://www.mls-software.com/files/setupssh-6.4p1-1(x64).exe"
 }
 
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
-  Write-Host "Downloading $ssh_download_url"
-  (New-Object System.Net.WebClient).DownloadFile($ssh_download_url, "C:\Windows\Temp\openssh.exe")
-  Start-Process "C:\Windows\Temp\openssh.exe" "/S /port=22 /privsep=1 /password=D@rj33l1ng" -NoNewWindow -Wait
+    Write-Host "Downloading $ssh_download_url"
+    (New-Object System.Net.WebClient).DownloadFile($ssh_download_url, "C:\Windows\Temp\openssh.exe")
+    Start-Process "C:\Windows\Temp\openssh.exe" "/S /port=22 /privsep=1 /password=D@rj33l1ng" -NoNewWindow -Wait
 }
 
 Stop-Service "OpenSSHd" -Force
@@ -26,9 +27,9 @@ C:\Windows\System32\icacls.exe "C:\Users\vagrant" /grant "vagrant:(OI)(CI)F"
 C:\Windows\System32\icacls.exe "C:\Program Files\OpenSSH\bin" /grant "vagrant:(OI)RX"
 C:\Windows\System32\icacls.exe "C:\Program Files\OpenSSH\usr\sbin" /grant "vagrant:(OI)RX"
 
-Write-Host "Setting SSH home directories"
-(Get-Content "C:\Program Files\OpenSSH\etc\passwd") |
-  Foreach-Object { $_ -replace '/home/(\w+)', '/cygdrive/c/Users/$1' } |
+Write-Host "Setting SSH home directories" 
+    (Get-Content "C:\Program Files\OpenSSH\etc\passwd") |
+    Foreach-Object { $_ -replace '/home/(\w+)', '/cygdrive/c/Users/$1' } |
     Set-Content 'C:\Program Files\OpenSSH\etc\passwd'
 
 # fix opensshd to not be strict
@@ -53,11 +54,11 @@ C:\Windows\System32\icacls.exe "C:\Windows\Temp" /grant "vagrant:(OI)(CI)F"
 Write-Host "Setting SSH environment"
 $sshenv = "TEMP=C:\Windows\Temp"
 if ($is_64bit) {
-  $env_vars = "ProgramFiles(x86)=C:\Program Files (x86)", `
-    "ProgramW6432=C:\Program Files", `
-    "CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files", `
-    "CommonProgramW6432=C:\Program Files\Common Files"
-  $sshenv = $sshenv + "`r`n" + ($env_vars -join "`r`n")
+    $env_vars = "ProgramFiles(x86)=C:\Program Files (x86)", `
+        "ProgramW6432=C:\Program Files", `
+        "CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files", `
+        "CommonProgramW6432=C:\Program Files\Common Files"
+    $sshenv = $sshenv + "`r`n" + ($env_vars -join "`r`n")
 }
 Set-Content C:\Users\vagrant\.ssh\environment $sshenv
 
@@ -72,5 +73,5 @@ netsh advfirewall firewall add rule name="SSHD" dir=in action=allow program="C:\
 netsh advfirewall firewall add rule name="ssh" dir=in action=allow protocol=TCP localport=22
 
 if ($AutoStart -eq $true) {
-  Start-Service "OpenSSHd"
+    Start-Service "OpenSSHd"
 }
