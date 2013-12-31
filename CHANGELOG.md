@@ -1,3 +1,8 @@
+## v1.4 (December 31, 2013)
+
+* Update .json files to work with Packer 0.5.0 (the `vmware` builder is renamed to `vmware-iso`, the `virtualbox` builder is renamed to `virtualbox-iso`)
+* Update README with better examples for using retail custom ISO files and disabling Windows Update installation
+
 ## v1.3 (December 18, 2013)
 
 * Allow Packer to upload VMware Tools by default, but fall back to downloading the tools from VMware if required
