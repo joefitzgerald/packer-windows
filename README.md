@@ -35,25 +35,25 @@ The scripts in this repo will install all Windows updates – by default – dur
 ```xml
 <!-- WITHOUT WINDOWS UPDATES -->
 <SynchronousCommand wcm:action="add">
-	<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
-	<Description>Install OpenSSH</Description>
-	<Order>99</Order>
-	<RequiresUserInput>true</RequiresUserInput>
+    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
+    <Description>Install OpenSSH</Description>
+    <Order>99</Order>
+    <RequiresUserInput>true</RequiresUserInput>
 </SynchronousCommand>
 <!-- END WITHOUT WINDOWS UPDATES -->
 <!-- WITH WINDOWS UPDATES -->
 <!--
 <SynchronousCommand wcm:action="add">
-	<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
-	<Description>Install OpenSSH</Description>
-	<Order>99</Order>
-	<RequiresUserInput>true</RequiresUserInput>
+    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
+    <Description>Install OpenSSH</Description>
+    <Order>99</Order>
+    <RequiresUserInput>true</RequiresUserInput>
 </SynchronousCommand>
 <SynchronousCommand wcm:action="add">
-	<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
-	<Description>Install Windows Updates</Description>
-	<Order>100</Order>
-	<RequiresUserInput>true</RequiresUserInput>
+    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
+    <Description>Install Windows Updates</Description>
+    <Order>100</Order>
+    <RequiresUserInput>true</RequiresUserInput>
 </SynchronousCommand>
 -->
 <!-- END WITH WINDOWS UPDATES -->

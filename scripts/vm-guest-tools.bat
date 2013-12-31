@@ -1,5 +1,5 @@
 if not exist "C:\Windows\Temp\7z920-x64.msi" (
-  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://downloads.sourceforge.net/sevenzip/7z920-x64.msi', 'C:\Windows\Temp\7z920-x64.msi')" <NUL
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://downloads.sourceforge.net/sevenzip/7z920-x64.msi', 'C:\Windows\Temp\7z920-x64.msi')" <NUL
 )
 msiexec /qb /i C:\Windows\Temp\7z920-x64.msi
 
@@ -10,16 +10,16 @@ goto :done
 :vmware
 
 if exist "C:\Users\vagrant\windows.iso" (
-	move /Y C:\Users\vagrant\windows.iso C:\Windows\Temp
+    move /Y C:\Users\vagrant\windows.iso C:\Windows\Temp
 )
 
 if not exist "C:\Windows\Temp\windows.iso" (
-  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/10.0.1/1379776/windows/packages/tools-windows-9.6.1.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
-  cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\vmware-tools.exe.tar -oC:\Windows\Temp"
-  FOR /r "C:\Windows\Temp" %%a in (tools-windows-*.exe) DO REN "%%~a" "tools-windows.exe"
-  cmd /c C:\Windows\Temp\tools-windows
-  move /Y "C:\Program Files (x86)\VMware\tools-windows\windows.iso" C:\Windows\Temp
-  rd /S /Q "C:\Program Files (x86)\VMWare"
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/10.0.1/1379776/windows/packages/tools-windows-9.6.1.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
+    cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\vmware-tools.exe.tar -oC:\Windows\Temp"
+    FOR /r "C:\Windows\Temp" %%a in (tools-windows-*.exe) DO REN "%%~a" "tools-windows.exe"
+    cmd /c C:\Windows\Temp\tools-windows
+    move /Y "C:\Program Files (x86)\VMware\tools-windows\windows.iso" C:\Windows\Temp
+    rd /S /Q "C:\Program Files (x86)\VMWare"
 )
 
 cmd /c ""C:\Program Files\7-Zip\7z.exe" x "C:\Windows\Temp\windows.iso" -oC:\Windows\Temp\VMWare"
