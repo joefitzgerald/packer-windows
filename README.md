@@ -92,3 +92,10 @@ Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [Te
 ### Contributing
 
 Pull requests welcomed. Please ensure you create your edits in a branch off of the `develop` branch, not the `master` branch.
+
+### Acknowledgements
+
+[CloudBees](http://www.cloudbees.com) is providing a hosted [Jenkins](http://jenkins-ci.org/) master through their CloudBees FOSS program. We also use their [On-Premise Executor](https://developer.cloudbees.com/bin/view/DEV/On-Premise+Executors) feature to connect a physical [Mac Mini Server](http://www.apple.com/mac-mini/server/) running VMware Fusion.
+
+![Powered By CloudBees](http://www.cloudbees.com/sites/default/files/Button-Powered-by-CB.png "Powered By CloudBees")![Built On DEV@Cloud](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png "Built On DEV@Cloud")
+ 
