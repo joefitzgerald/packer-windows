@@ -1,3 +1,7 @@
+## v1.5 (January 9, 2014)
+
+* Fix issue with installation of VM guest tools [GH-23]
+
 ## v1.4 (December 31, 2013)
 
 * Update .json files to work with Packer 0.5.0 (the `vmware` builder is renamed to `vmware-iso`, the `virtualbox` builder is renamed to `virtualbox-iso`)
