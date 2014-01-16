@@ -4,25 +4,21 @@
 
 This repository contains Windows templates that can be used to create boxes for Vagrant using Packer ([Website](packer.io)) ([Github](http://github.com/mitchellh/packer)).
 
-This repo began by borrowing bits from the VeeWee Windows templates (https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were made to work with Packer and the VMware Fusion provider for Packer and Vagrant.
+This repo began by borrowing bits from the VeeWee Windows templates (https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were made to work with Packer and the VMware Fusion / VirtualBox providers for Packer and Vagrant.
 
 ### Packer Version
 
-[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.5.0` or greater is required.
+[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.5.1` or greater is required.
 
 ### Windows Versions
 
-The following Windows versions are known to work (built with VMware Fusion 6.0.2):
+The following Windows versions are known to work (built with VMware Fusion 6.0.2 and VirtualBox 4.3.6):
 
-* Windows 2008 R2
-  * [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2008-r2/) `Develop`
-  * [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2008-r2/) `Master`
-* Windows 2012
-  * [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012/) `Develop`
-  * [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012/) `Master`
-* Windows 2012 R2
-  * [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012-r2/) `Develop`
-  * [![Build Status - Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012-r2/) `Master`
+|                              | Develop                                                                                                                                                                                                               | Master                                                                                                                                                                                                             |
+| ---------------------------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Windows 2008 R2 SP1 Standard | [![Build Status - Windows 2008 R2 SP1 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2008-r2/) | [![Build Status - Windows 2008 R2 SP1 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2008-r2/) |
+| Windows 2012 Standard        | [![Build Status - Windows 2012 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012/)              | [![Build Status - Windows 2012 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012/)              |
+| Windows 2012 R2 Standard     | [![Build Status - Windows 2012 R2 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012-r2/)     | [![Build Status - Windows 2012 R2 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012-r2/)     |
 
 ### Windows Editions
 
