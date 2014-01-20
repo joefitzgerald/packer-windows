@@ -1,3 +1,7 @@
+## v1.6 (January 20, 2014
+
+* Remove `config.vm.base_mac = "{{ .BaseMacAddress }}"` from vagrantfile templates, ensure SCSI controller is set in VMX (fixes #26)
+
 ## v1.5 (January 9, 2014)
 
 * Fix issue with installation of VM guest tools [GH-23]
