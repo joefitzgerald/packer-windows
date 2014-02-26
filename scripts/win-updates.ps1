@@ -99,6 +99,7 @@ function Install-WindowsUpdates() {
         Write-Host 'No updates available to install...'
         $global:MoreUpdates=0
         $global:RestartRequired=0
+        Set-Service -Name $script:ServiceName -StartupType Automatic -Status Running
         break
     }
 
