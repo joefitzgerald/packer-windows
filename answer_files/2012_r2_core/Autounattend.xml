@@ -62,7 +62,8 @@
             </ImageInstall>
             <UserData>
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
-                <ProductKey>D2N9P-3P6X9-2R39C-7RTCD-MDVJX
+                <ProductKey>
+                    <Key>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</Key>
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
