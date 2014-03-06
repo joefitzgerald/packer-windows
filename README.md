@@ -22,7 +22,16 @@ The following Windows versions are known to work (built with VMware Fusion 6.0.2
 
 ### Windows Editions
 
-All Windows Server versions are defaulted to the Server Standard edition. You can modify this by editing the Autounattend.xml file, changing the `ImageInstall`>`OSImage`>`InstallFrom`>`MetaData`>`Value` element (e.g. to Windows Server 2012 R2 SERVERDATACENTER). You also need to update the `UserData`>`ProductKey` element with the appropriate key from http://technet.microsoft.com/en-us/library/jj612867.aspx.  Note that you will need to enclose the ProductKey in a child `Key` element, which differs from the default trial edition format provided in these templates.  See [this TechNet article](http://technet.microsoft.com/en-us/library/cc721925(v=ws.10).aspx) for more details.
+All Windows Server versions are defaulted to the Server Standard edition. You can modify this by editing the Autounattend.xml file, changing the `ImageInstall`>`OSImage`>`InstallFrom`>`MetaData`>`Value` element (e.g. to Windows Server 2012 R2 SERVERDATACENTER).
+
+### Product Keys
+
+The `Autounattend.xml` files are configured to work correctly with trial ISOs (which will be downloaded and cached for you the first time you perform a `packer build`. If you would like to use retail or volume license ISOs, you need to update the `UserData`>`ProductKey` element as follows:
+
+* Uncomment the `<Key>...</Key>` element
+* Insert your product key into the `Key` element
+
+If you are going to configure your VM as a KMS client, you can use the product keys at http://technet.microsoft.com/en-us/library/jj612867.aspx. These are the default values used in the `Key` element.
 
 ### Windows Updates
 
@@ -59,7 +68,7 @@ Doing so will give you hours back in your day, which is a good thing.
 
 ### OpenSSH / WinRM
 
-Currently, [Packer](http://packer.io) has a single communitator that uses SSH. This means we need an SSH server installed on Windows - which is not optimal as we could use WinRM to communicate with the Windows VM. In the short term, everything works well with SSH; in the medium term, work is underway on a WinRM communicator for Packer. 
+Currently, [Packer](http://packer.io) has a single communitator that uses SSH. This means we need an SSH server installed on Windows - which is not optimal as we could use WinRM to communicate with the Windows VM. In the short term, everything works well with SSH; in the medium term, work is underway on a WinRM communicator for Packer.
 
 If you have serious objections to OpenSSH being installed, you can always add another stage to your build pipeline:
 
@@ -69,7 +78,7 @@ If you have serious objections to OpenSSH being installed, you can always add an
 
 ### Using .box Files With Vagrant
 
-If you are going to use the .box files produced by the project with Vagrant, you should also use the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin, which will ensure Vagrant works well with Windows. This will also allow Vagrant to use WinRM to communicate with the box. 
+If you are going to use the .box files produced by the project with Vagrant, you should also use the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin, which will ensure Vagrant works well with Windows. This will also allow Vagrant to use WinRM to communicate with the box.
 
 ### Getting Started
 
@@ -94,4 +103,3 @@ Pull requests welcomed. Please ensure you create your edits in a branch off of t
 [CloudBees](http://www.cloudbees.com) is providing a hosted [Jenkins](http://jenkins-ci.org/) master through their CloudBees FOSS program. We also use their [On-Premise Executor](https://developer.cloudbees.com/bin/view/DEV/On-Premise+Executors) feature to connect a physical [Mac Mini Server](http://www.apple.com/mac-mini/server/) running VMware Fusion.
 
 ![Powered By CloudBees](http://www.cloudbees.com/sites/default/files/Button-Powered-by-CB.png "Powered By CloudBees")![Built On DEV@Cloud](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png "Built On DEV@Cloud")
- 
