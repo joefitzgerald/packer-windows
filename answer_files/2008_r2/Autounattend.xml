@@ -33,6 +33,7 @@
                 <Organization>Vagrant Inc.</Organization>
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/ff793406.aspx -->
                 <ProductKey>
+                    <!--<Key>Product Key</Key>-->
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
