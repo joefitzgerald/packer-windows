@@ -26,7 +26,7 @@ All Windows Server versions are defaulted to the Server Standard edition. You ca
 
 ### Product Keys
 
-The `Autounattend.xml` files are configured to work correctly with trial ISOs (which will be downloaded and cached for you the first time you perform a `packer build`. If you would like to use retail or volume license ISOs, you need to update the `UserData`>`ProductKey` element as follows:
+The `Autounattend.xml` files are configured to work correctly with trial ISOs (which will be downloaded and cached for you the first time you perform a `packer build`). If you would like to use retail or volume license ISOs, you need to update the `UserData`>`ProductKey` element as follows:
 
 * Uncomment the `<Key>...</Key>` element
 * Insert your product key into the `Key` element
