@@ -19,7 +19,7 @@
                             <Letter>C</Letter>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
-                            <Label>Windows 2012</Label>
+                            <Label>Windows 7</Label>
                         </ModifyPartition>
                     </ModifyPartitions>
                     <DiskID>0</DiskID>
@@ -35,7 +35,7 @@
                 <ProductKey>
                     <!-- Do not uncomment the Key element if you are using trial ISOs -->
                     <!-- You must uncomment the Key element (and optionally insert your own key) if you are using retail or volume license ISOs -->
-                    <!--<Key>XC9B7-NBPP2-83J2H-RHMBY-92BT4</Key>-->
+                    <!--<Key>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</Key>-->
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
@@ -50,7 +50,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows Server 2012 SERVERSTANDARD</Value>
+                            <Value>Windows 7 ENTERPRISE</Value>
                         </MetaData>
                     </InstallFrom>
                 </OSImage>
@@ -97,10 +97,6 @@
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                 <NetworkLocation>Home</NetworkLocation>
                 <ProtectYourPC>1</ProtectYourPC>
-                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
-                <HideLocalAccountScreen>true</HideLocalAccountScreen>
-                <SkipUserOOBE>true</SkipUserOOBE>
-                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
             </OOBE>
             <AutoLogon>
                 <Password>
@@ -243,6 +239,12 @@
                 <!-- END WITHOUT WINDOWS UPDATES -->
                 <!-- WITH WINDOWS UPDATES -->
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\dis-updates.ps1</CommandLine>
+                    <Description>Disable Windows Updates</Description>
+                    <Order>98</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
                     <Description>Install OpenSSH</Description>
                     <Order>99</Order>
@@ -269,20 +271,9 @@
             <TimeZone>Pacific Standard Time</TimeZone>
             <RegisteredOwner/>
         </component>
-        <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-            <DoNotOpenServerManagerAtLogon>true</DoNotOpenServerManagerAtLogon>
-        </component>
-        <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-IE-ESC" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-            <!--  Disable IE ESC.  -->
-            <IEHardenAdmin>false</IEHardenAdmin>
-            <IEHardenUser>false</IEHardenUser>
-        </component>
-        <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-OutOfBoxExperience" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-            <DoNotOpenInitialConfigurationTasksAtLogon>true</DoNotOpenInitialConfigurationTasksAtLogon>
-        </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <SkipAutoActivation>true</SkipAutoActivation>
         </component>
     </settings>
-    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows server 2008 r2 serverdatacenter.clg"/>
+    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows 7 ENTERPRISE.clg"/>
 </unattend>

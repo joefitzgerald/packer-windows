@@ -62,7 +62,10 @@
             </ImageInstall>
             <UserData>
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
-                <ProductKey>D2N9P-3P6X9-2R39C-7RTCD-MDVJX
+                <ProductKey>
+                    <!-- Do not uncomment the Key element if you are using trial ISOs -->
+                    <!-- You must uncomment the Key element (and optionally insert your own key) if you are using retail or volume license ISOs -->
+                    <!--<Key>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</Key>-->
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>

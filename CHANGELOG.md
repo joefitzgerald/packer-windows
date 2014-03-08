@@ -1,4 +1,20 @@
-## v1.6 (January 20, 2014
+## v1.9 (Planned)
+
+* 
+
+## v1.8 (March 7th, 2014)
+
+* Updated oracle.cer to allow installation of VirtualBox tools
+
+## v1.7 (February 26, 2014)
+
+* Add support for Windows 7 Enterprise
+* Add support for Windows 2008 R2 Core
+* Add support for Windows 2012 R2 Core
+* Remove port forwarding from Vagrantfile templates
+* Update Puppet version in scripts/puppet.bat
+
+## v1.6 (January 20, 2014)
 
 * Remove `config.vm.base_mac = "{{ .BaseMacAddress }}"` from vagrantfile templates, ensure SCSI controller is set in VMX (fixes #26)
 
