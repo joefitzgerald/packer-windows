@@ -60,8 +60,6 @@
             "remote_path": "/tmp/script.bat",
             "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
             "scripts": [
-                "./scripts/svorakA5.bat",
-                "./scripts/vsphereclient.bat",
                 "./scripts/vm-guest-tools.bat",
                 "./scripts/chef.bat",
                 "./scripts/vagrant-ssh.bat"
