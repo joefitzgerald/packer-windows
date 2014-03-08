@@ -1,6 +1,10 @@
-## v1.8 (Planned)
+## v1.9 (Planned)
 
 * 
+
+## v1.8 (March 7th, 2014)
+
+* Updated oracle.cer to allow installation of VirtualBox tools
 
 ## v1.7 (February 26, 2014)
 
