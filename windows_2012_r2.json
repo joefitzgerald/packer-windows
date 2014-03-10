@@ -62,7 +62,6 @@
             "scripts": [
                 "./scripts/vm-guest-tools.bat",
                 "./scripts/chef.bat",
-                "./scripts/chocolatey.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         }, 
