@@ -18,6 +18,7 @@
             "vnc_port_max": 5980,
             "floppy_files": [
                 "./answer_files/7/Autounattend.xml",
+                "./scripts/InstallNet4.ps1",
                 "./scripts/dis-updates.ps1",
                 "./scripts/win-updates.ps1",
                 "./scripts/openssh.ps1"
@@ -45,6 +46,7 @@
             "disk_size": 61440,
             "floppy_files": [
                 "./answer_files/7/Autounattend.xml",
+                "./scripts/InstallNet4.ps1",
                 "./scripts/dis-updates.ps1",
                 "./scripts/win-updates.ps1",
                 "./scripts/openssh.ps1",
@@ -64,6 +66,8 @@
             "scripts": [
                 "./scripts/vm-guest-tools.bat",
                 "./scripts/chef.bat",
+                "./scripts/InstallNet4.bat",
+                "./scripts/chocolatey.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         }, 

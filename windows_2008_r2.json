@@ -19,6 +19,7 @@
             "floppy_files": [
                 "./answer_files/2008_r2/Autounattend.xml",
                 "./scripts/win-updates.ps1",
+                "./scripts/InstallNet4.ps1",
                 "./scripts/openssh.ps1"
             ],
             "vmx_data": {
@@ -45,6 +46,7 @@
             "floppy_files": [
                 "./answer_files/2008_r2/Autounattend.xml",
                 "./scripts/win-updates.ps1",
+                "./scripts/InstallNet4.ps1",
                 "./scripts/openssh.ps1",
                 "./scripts/oracle-cert.cer"
             ],
@@ -62,6 +64,8 @@
             "scripts": [
                 "./scripts/vm-guest-tools.bat",
                 "./scripts/chef.bat",
+                "./scripts/InstallNet4.bat",
+                "./scripts/chocolatey.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         }, 
