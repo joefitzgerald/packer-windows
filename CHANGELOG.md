@@ -1,6 +1,12 @@
-## v1.9 (Planned)
+## v1.10 (Planned)
 
 * 
+
+## v1.9 (March 14th, 2014)
+
+* Add support for Windows 8.1
+* Add port forwarding for WinRM (5985) by default, with vagrant auto-correct enabled
+* Require the use of the vagrant-windows plugin in the Vagrantfile templates
 
 ## v1.8 (March 7th, 2014)
 
