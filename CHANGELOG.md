@@ -1,6 +1,10 @@
-## v1.10 (Planned)
+## v1.11 (Planned)
 
 * 
+
+## v1.10 (March 18th, 2014)
+
+* Ensure WinRM service starts immediately rather than after 120 seconds (#43)
 
 ## v1.9 (March 14th, 2014)
 
