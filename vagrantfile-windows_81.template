@@ -1,0 +1,47 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.define "vagrant-windows-81"
+    config.vm.box = "windows_81"
+
+    if !Vagrant.has_plugin?('vagrant-windows')
+      puts "vagrant-windows missing, please install the vagrant-windows plugin!"
+      puts "Run this command in your terminal:"
+      puts "vagrant plugin install vagrant-windows"
+      exit 1
+    end
+
+    # Admin user name and password
+    config.winrm.username = "vagrant"
+    config.winrm.password = "vagrant"
+
+    config.vm.guest = :windows
+    config.windows.halt_timeout = 15
+
+    config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
+
+    config.vm.provider :virtualbox do |v, override|
+        #v.gui = true
+        v.customize ["modifyvm", :id, "--memory", 2048]
+        v.customize ["modifyvm", :id, "--cpus", 2]
+    end
+
+    config.vm.provider :vmware_fusion do |v, override|
+        #v.gui = true
+        v.vmx["memsize"] = "2048"
+        v.vmx["ethernet0.virtualDev"] = "vmxnet3"
+        v.vmx["RemoteDisplay.vnc.enabled"] = "false"
+        v.vmx["RemoteDisplay.vnc.port"] = "5900"
+        v.vmx["scsi0.virtualDev"] = "lsisas1068"
+    end
+
+    config.vm.provider :vmware_workstation do |v, override|
+        #v.gui = true
+        v.vmx["memsize"] = "2048"
+        v.vmx["ethernet0.virtualDev"] = "vmxnet3"
+        v.vmx["RemoteDisplay.vnc.enabled"] = "false"
+        v.vmx["RemoteDisplay.vnc.port"] = "5900"
+        v.vmx["scsi0.virtualDev"] = "lsisas1068"
+    end
+end
