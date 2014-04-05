@@ -1,6 +1,10 @@
-## v1.11 (Planned)
+## v1.12 (Planned)
 
 * 
+
+## v1.11 (April 5th, 2014)
+
+* Change the default shell for OpenSSH from /bin/bash to /bin/sh (#45)
 
 ## v1.10 (March 18th, 2014)
 
