@@ -1,6 +1,6 @@
-## v1.12 (Planned)
+## v1.12 (April 29th, 2014)
 
-* 
+* Update OpenSSH
 
 ## v1.11 (April 5th, 2014)
 
