@@ -2,7 +2,7 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
+            "iso_url": "http://download.microsoft.com/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
             "iso_checksum_type": "md5",
             "iso_checksum": "1d0d239a252cb53e466d39e752b17c28",
             "headless": true,
@@ -29,7 +29,7 @@
                 "numvcpus": "2",
                 "scsi0.virtualDev": "lsisas1068"
             }
-        }, 
+        },
         {
             "type": "virtualbox-iso",
             "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
@@ -66,7 +66,7 @@
                 "./scripts/chef.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
-        }, 
+        },
         {
             "type": "shell", "inline": ["rm -rf /tmp/*"]
         }
