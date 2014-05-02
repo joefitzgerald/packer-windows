@@ -1,3 +1,7 @@
+## v1.13 (May 2nd, 2014)
+
+* Fixed ISO Urls (#47)
+
 ## v1.12 (April 29th, 2014)
 
 * Update OpenSSH
