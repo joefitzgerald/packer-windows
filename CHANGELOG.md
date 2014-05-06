@@ -1,3 +1,8 @@
+## v1.14 (May 6th, 2014)
+
+* Compact generated VMs using ultradefrag and sdelete (#53)
+* Fix 2008 R2 Core Autounattend.xml steps
+
 ## v1.13 (May 2nd, 2014)
 
 * Fixed ISO Urls (#47)
