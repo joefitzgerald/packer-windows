@@ -1,3 +1,7 @@
+## v1.16 (May 7th, 2014)
+
+* Fix VirtualBox ISO URLs
+
 ## v1.15 (May 7th, 2014)
 
 * Update Puppet to 3.5.1 (#54)
