@@ -1,3 +1,8 @@
+## v1.15 (May 7th, 2014)
+
+* Update Puppet to 3.5.1 (#54)
+* Fix ISO Url for 2008 R2 (#56)
+
 ## v1.14 (May 6th, 2014)
 
 * Compact generated VMs using ultradefrag and sdelete (#53)
