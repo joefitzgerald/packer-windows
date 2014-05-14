@@ -262,6 +262,11 @@
                     <Order>27</Order>
                     <Description>Disable Hibernation Mode</Description>
                 </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
+                    <Order>28</Order>
+                    <Description>Enable Microsoft Updates</Description>
+                </SynchronousCommand>
                 <!-- WITHOUT WINDOWS UPDATES -->
                 <!--
                 <SynchronousCommand wcm:action="add">
