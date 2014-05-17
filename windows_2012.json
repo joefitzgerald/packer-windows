@@ -18,6 +18,7 @@
             "vnc_port_max": 5980,
             "floppy_files": [
                 "./answer_files/2012/Autounattend.xml",
+                "./scripts/microsoft-updates.bat",
                 "./scripts/win-updates.ps1",
                 "./scripts/openssh.ps1"
             ],
@@ -44,6 +45,7 @@
             "disk_size": 61440,
             "floppy_files": [
                 "./answer_files/2012/Autounattend.xml",
+                "./scripts/microsoft-updates.bat",
                 "./scripts/win-updates.ps1",
                 "./scripts/openssh.ps1",
                 "./scripts/oracle-cert.cer"
