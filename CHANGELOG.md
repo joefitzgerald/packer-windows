@@ -1,3 +1,8 @@
+## v1.18 (May 16th, 2014)
+* Require Vagrant 1.6.2 (#57)
+* Remove WinRM port forward, as it's done automatically in Vagrant 1.6.2+ (#57)
+* Update chef-client source to getchef.com (#63)
+
 ## v1.16 (May 7th, 2014)
 
 * Fix VirtualBox ISO URLs
