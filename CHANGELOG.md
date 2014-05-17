@@ -1,4 +1,10 @@
+## v1.19 (May 17th, 2014)
+
+* Enable Microsoft Updates by default (#60)
+* Remove disable Windows Updates script from Windows 7 and 8.1; you can run this as a provioner step, and use Autounattend sections to achieve the same outcome
+
 ## v1.18 (May 16th, 2014)
+
 * Require Vagrant 1.6.2 (#57)
 * Remove WinRM port forward, as it's done automatically in Vagrant 1.6.2+ (#57)
 * Update chef-client source to getchef.com (#63)
