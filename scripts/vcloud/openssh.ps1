@@ -69,6 +69,8 @@ Set-Content C:\Windows\Temp\PATH ([byte[]][char[]] $env:PATH) -Encoding Byte
 # install rsync for vcloud
 (New-Object System.Net.WebClient).DownloadFile("http://roecloudsrv001.sealsystems.local/vagrant/rsync/rsync.exe", "C:\Program Files\OpenSSH\bin\rsync.exe")
 (New-Object System.Net.WebClient).DownloadFile("http://roecloudsrv001.sealsystems.local/vagrant/rsync/cygpopt-0.dll", "C:\Program Files\OpenSSH\bin\cygpopt-0.dll")
+# make symlink for c:/vagrant share
+cmd.exe /C mklink /D "C:\Program Files\OpenSSH\vagrant" "C:\vagrant"
 
 # configure firewall
 Write-Host "Configuring firewall"
