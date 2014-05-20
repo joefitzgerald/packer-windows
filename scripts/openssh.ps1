@@ -1,5 +1,8 @@
 param (
-  [switch]$AutoStart = $false
+  [switch]$AutoStart = $false,
+  [Parameter(Mandatory = $true)]
+  [string]$password
+
 )
 
 Write-Host "AutoStart: $AutoStart"
@@ -15,7 +18,7 @@ if ($is_64bit) {
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
     Write-Host "Downloading $ssh_download_url"
     (New-Object System.Net.WebClient).DownloadFile($ssh_download_url, "C:\Windows\Temp\openssh.exe")
-    Start-Process "C:\Windows\Temp\openssh.exe" "/S /port=22 /privsep=1 /password=D@rj33l1ng" -NoNewWindow -Wait
+    Start-Process "C:\Windows\Temp\openssh.exe" "/S /port=22 /privsep=1 /password=$password" -NoNewWindow -Wait
 }
 
 Stop-Service "OpenSSHd" -Force
