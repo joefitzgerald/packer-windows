@@ -21,7 +21,7 @@
             "floppy_files": [
                 "./answer_files/2012_r2/Autounattend.xml",
                 "./scripts/win-updates.ps1",
-                "./scripts/openssh.ps1"
+                "./scripts/vcloud/openssh.ps1"
             ],
             "vmx_data": {
                 "RemoteDisplay.vnc.enabled": "false",
