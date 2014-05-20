@@ -3,9 +3,9 @@
         {
             "type": "vmware-iso",
             "vm_name": "windows_2012_r2",
-            "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",
+            "iso_checksum": "fb101ed6d7328aca6473158006630a9d",
             "iso_checksum_type": "md5",
-            "iso_checksum": "458ff91f8abc21b75cb544744bf92e6a",
+            "iso_url": "http://roecloudsrv001/windows/win2012r2_datacenter_en/SW_DVD9_Windows_Svr_Std_and_DataCtr_2012_R2_64Bit_English_-2_Core_MLF_X19-31419.ISO",
             "headless": false,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
