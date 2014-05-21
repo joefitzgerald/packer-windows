@@ -2,26 +2,25 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "vm_name": "windows_7",
-            "iso_url": "http://roecloudsrv001/windows/win7sp1_enterprise_en/x64/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
+            "vm_name": "windows_81",
+            "iso_url": "http://roecloudsrv001/windows/win81_enterprise_en/SW_DVD9_SA_Win_Ent_8.1_64BIT_English_-2_MLF_X19-49847.ISO",
             "iso_checksum_type": "sha1",
-            "iso_checksum": "a491f985dccfb5863f31b728dddbedb2ff4df8d1",
+            "iso_checksum": "8fb332a827998f807a1346bef55969c6519668b9",
             "headless": false,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
-            "ssh_wait_timeout": "4h",
+            "ssh_wait_timeout": "2h",
             "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-            "guest_os_type": "windows7-64",
+            "guest_os_type": "windows8srv-64",
             "tools_upload_flavor": "windows",
             "disk_size": 61440,
             "vnc_port_min": 5900,
             "vnc_port_max": 5980,
             "floppy_files": [
-                "./answer_files/7/Autounattend.xml",
-                "./scripts/dis-updates.ps1",
+                "./answer_files/81/Autounattend.xml",
                 "./scripts/win-updates.ps1",
-                "./scripts/vcloud/openssh.ps1"
+                "./scripts/openssh.ps1"
             ],
             "vmx_data": {
                 "RemoteDisplay.vnc.enabled": "false",
@@ -30,7 +29,7 @@
                 "numvcpus": "2",
                 "scsi0.virtualDev": "lsisas1068"
             }
-        } 
+        }
     ],
     "provisioners": [
         {
@@ -43,7 +42,7 @@
                 "./scripts/enable-remote-desktop.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
-        }, 
+        },
         {
             "type": "shell", "inline": ["rm -rf /tmp/*"]
         }
@@ -53,8 +52,8 @@
             "type": "vagrant",
             "provider": "vcloud",
             "keep_input_artifact": false,
-            "output": "windows_7_{{.Provider}}.box",
-            "vagrantfile_template": "vagrantfile-windows_7.template"
+            "output": "windows_81_{{.Provider}}.box",
+            "vagrantfile_template": "vagrantfile-windows_81.template"
         }
     ]
 }
