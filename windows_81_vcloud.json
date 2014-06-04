@@ -3,7 +3,7 @@
         {
             "type": "vmware-iso",
             "vm_name": "windows_81",
-            "iso_url": "http://roecloudsrv001/windows/win81_enterprise_en/SW_DVD9_SA_Win_Ent_8.1_64BIT_English_-2_MLF_X19-49847.ISO",
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win81_enterprise_en/SW_DVD9_SA_Win_Ent_8.1_64BIT_English_-2_MLF_X19-49847.ISO",
             "iso_checksum_type": "sha1",
             "iso_checksum": "8fb332a827998f807a1346bef55969c6519668b9",
             "headless": false,

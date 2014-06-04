@@ -5,7 +5,7 @@
             "vm_name": "windows_2008_r2",
             "iso_checksum": "8d397b69135d207452a78c3c3051339d",
             "iso_checksum_type": "md5",
-            "iso_url": "http://roecloudsrv001/windows/win2008r2sp1_datacenter_en/SW_DVD5_Windows_Svr_DC_EE_SE_Web_2008_R2_64Bit_English_w_SP1_MLF_X17-22580.ISO",
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win2008r2sp1_datacenter_en/SW_DVD5_Windows_Svr_DC_EE_SE_Web_2008_R2_64Bit_English_w_SP1_MLF_X17-22580.ISO",
             "headless": false,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
