@@ -78,6 +78,9 @@ netsh advfirewall firewall add rule name="SSHD" dir=in action=allow service=Open
 netsh advfirewall firewall add rule name="SSHD" dir=in action=allow program="C:\Program Files\OpenSSH\usr\sbin\sshd.exe" enable=yes
 netsh advfirewall firewall add rule name="ssh" dir=in action=allow protocol=TCP localport=22
 
+# helper for WinRM
+netsh advfirewall firewall add rule name="WinRM" dir=in action=allow protocol=TCP localport=5985
+
 if ($AutoStart -eq $true) {
     Start-Service "OpenSSHd"
 }
