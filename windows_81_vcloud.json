@@ -19,15 +19,20 @@
             "vnc_port_max": 5980,
             "floppy_files": [
                 "./answer_files/81/Autounattend.xml",
+                "./scripts/dis-updates.ps1",
                 "./scripts/win-updates.ps1",
-                "./scripts/openssh.ps1"
+                "./scripts/vcloud/openssh.ps1"
             ],
             "vmx_data": {
                 "RemoteDisplay.vnc.enabled": "false",
                 "RemoteDisplay.vnc.port": "5900",
                 "memsize": "2048",
                 "numvcpus": "2",
-                "scsi0.virtualDev": "lsisas1068"
+                "scsi0.virtualDev": "lsisas1068",
+                "svga.autodetect": "FALSE",
+                "svga.vramSize": "20971520",
+                "svga.maxWidth": "2560",
+                "svga.maxHeight": "2048"
             }
         }
     ],
@@ -38,8 +43,9 @@
             "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
             "scripts": [
                 "./scripts/vm-guest-tools.bat",
-                "./scripts/chef.bat",
+                "./scripts/chocolatey.bat",
                 "./scripts/enable-remote-desktop.bat",
+                "./scripts/enable-winrm.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         },
