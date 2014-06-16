@@ -52,9 +52,8 @@
     ],
     "post-processors": [
         {
-            "type": "vagrant",
+            "type": "vagrant-vmware-ovf",
             "provider": "vcloud",
-            "keep_input_artifact": false,
             "output": "windows_2008_r2_{{.Provider}}.box",
             "vagrantfile_template": "vagrantfile-windows_2008_r2.template"
         }
