@@ -28,7 +28,7 @@
                 "RemoteDisplay.vnc.port": "5900",
                 "memsize": "2048",
                 "numvcpus": "2",
-                "scsi0.virtualDev": "lsisas1068"
+                "scsi0.virtualDev": "lsisas1068",
                 "svga.autodetect": "FALSE",
                 "svga.vramSize": "20971520",
                 "svga.maxWidth": "2560",
