@@ -32,6 +32,9 @@
                 "svga.vramSize": "20971520",
                 "svga.maxWidth": "2560",
                 "svga.maxHeight": "2048"
+            },
+            "vmx_data_post": {
+                "ethernet0.virtualDev": "vmxnet3"
             }
         } 
     ],
