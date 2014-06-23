@@ -62,6 +62,10 @@ if ($is_64bit) {
 }
 Set-Content C:\Users\vagrant\.ssh\environment $sshenv
 
+if (!($env:PATH -contains "OpenSSH")) {
+  $env:PATH += ";C:\Program Files\OpenSSH\bin"
+}
+
 # record the path for provisioners (without the newline)
 Write-Host "Recording PATH for provisioners"
 Set-Content C:\Windows\Temp\PATH ([byte[]][char[]] $env:PATH) -Encoding Byte
