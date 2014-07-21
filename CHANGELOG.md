@@ -1,3 +1,10 @@
+## v1.20 (July 21st, 2014)
+
+* Update Chocolatey script for Chocolatey 0.9.8.27
+* Password for Vagrant user never expires
+* Salt installation script
+* Microsoft-updates.bat script for Win 7/8
+
 ## v1.19 (May 17th, 2014)
 
 * Enable Microsoft Updates by default (#60)
@@ -85,3 +92,4 @@
 ## v1.1 (December 17, 2013)
 
 * Initial release, including working Windows 2008 R2 configuration
+
