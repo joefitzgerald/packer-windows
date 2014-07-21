@@ -49,6 +49,11 @@ The scripts in this repo will install all Windows updates – by default – dur
 <!-- WITH WINDOWS UPDATES -->
 <!--
 <SynchronousCommand wcm:action="add">
+    <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
+    <Order>98</Order>
+    <Description>Enable Microsoft Updates</Description>
+</SynchronousCommand>
+<SynchronousCommand wcm:action="add">
     <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
     <Description>Install OpenSSH</Description>
     <Order>99</Order>
