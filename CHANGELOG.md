@@ -1,3 +1,8 @@
+## v1.21 (Aug 6th, 2014)
+
+* Added rsync.bat as an optional script to include rsync capabilities to the vagrant box (#88)
+* RDP now enabled for use with vagrant (#75)
+
 ## v1.20 (July 21st, 2014)
 
 * Update Chocolatey script for Chocolatey 0.9.8.27

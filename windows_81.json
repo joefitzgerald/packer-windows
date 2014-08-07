@@ -74,7 +74,8 @@
       "scripts": [
         "./scripts/vm-guest-tools.bat",
         "./scripts/chef.bat",
-        "./scripts/vagrant-ssh.bat"
+        "./scripts/vagrant-ssh.bat",
+        "./scripts/enable-rdp.bat"
       ]
     },
     {
