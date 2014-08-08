@@ -27,10 +27,11 @@ Write-Host "Setting SSH home directories"
     Foreach-Object { $_ -replace '/home/(\w+)', '/cygdrive/c/Users/$1' } |
     Set-Content 'C:\Program Files\OpenSSH\etc\passwd'
 
+# disabled for vcloud to make vagrant-serverspec work
 # Set shell to /bin/sh to return exit status
-$passwd_file = Get-Content 'C:\Program Files\OpenSSH\etc\passwd'
-$passwd_file = $passwd_file -replace '/bin/bash', '/bin/sh'
-Set-Content 'C:\Program Files\OpenSSH\etc\passwd' $passwd_file
+# $passwd_file = Get-Content 'C:\Program Files\OpenSSH\etc\passwd'
+# $passwd_file = $passwd_file -replace '/bin/bash', '/bin/sh'
+# Set-Content 'C:\Program Files\OpenSSH\etc\passwd' $passwd_file
 
 # fix opensshd to not be strict
 Write-Host "Setting OpenSSH to be non-strict"
