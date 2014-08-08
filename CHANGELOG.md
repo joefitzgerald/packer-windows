@@ -1,3 +1,7 @@
+## v1.22 (not yet released)
+
+* Forward SSH port by default on Vagrant boxes (#76)
+
 ## v1.21 (Aug 6th, 2014)
 
 * Added rsync.bat as an optional script to include rsync capabilities to the vagrant box (#88)
