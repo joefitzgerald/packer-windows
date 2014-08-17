@@ -10,7 +10,7 @@
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "4h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /generalize /oobe /quiet /shutdown /unattend:a:/unattend.xml",
       "guest_os_type": "windows7-64",
       "tools_upload_flavor": "windows",
       "disk_size": 61440,
@@ -20,7 +20,8 @@
         "./answer_files/7_ultimate/Autounattend.xml",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1"
+        "./scripts/openssh.ps1",
+        "./scripts/unattend.xml"
       ],
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
@@ -35,12 +36,12 @@
       "iso_url": "file:///Users/stefan/iso/windows7-ultimate-x64.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "51f51abbddab7055c8ca8bafe4ca3123",
-      "headless": false,
+      "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "4h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /generalize /oobe /quiet /shutdown /unattend:a:/unattend.xml",
       "guest_os_type": "Windows7_64",
       "disk_size": 61440,
       "floppy_files": [
@@ -48,7 +49,8 @@
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/oracle-cert.cer",
+        "./scripts/unattend.xml"
       ],
       "vboxmanage": [
         [
@@ -73,7 +75,6 @@
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
-        "./scripts/chef.bat",
         "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/enable-winrm.bat"
@@ -90,7 +91,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "windows_7_{{.Provider}}.box",
+      "output": "windows_7_ultimate_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_7.template"
     }
   ]
