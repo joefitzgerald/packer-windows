@@ -1,6 +1,65 @@
-## v1.9 (Planned)
+## v1.22 (not yet released)
 
-* 
+* Forward SSH port by default on Vagrant boxes (#76)
+
+## v1.21 (Aug 6th, 2014)
+
+* Added rsync.bat as an optional script to include rsync capabilities to the vagrant box (#88)
+* RDP now enabled for use with vagrant (#75)
+
+## v1.20 (July 21st, 2014)
+
+* Update Chocolatey script for Chocolatey 0.9.8.27
+* Password for Vagrant user never expires
+* Salt installation script
+* Microsoft-updates.bat script for Win 7/8
+
+## v1.19 (May 17th, 2014)
+
+* Enable Microsoft Updates by default (#60)
+* Remove disable Windows Updates script from Windows 7 and 8.1; you can run this as a provioner step, and use Autounattend sections to achieve the same outcome
+
+## v1.18 (May 16th, 2014)
+
+* Require Vagrant 1.6.2 (#57)
+* Remove WinRM port forward, as it's done automatically in Vagrant 1.6.2+ (#57)
+* Update chef-client source to getchef.com (#63)
+
+## v1.16 (May 7th, 2014)
+
+* Fix VirtualBox ISO URLs
+
+## v1.15 (May 7th, 2014)
+
+* Update Puppet to 3.5.1 (#54)
+* Fix ISO Url for 2008 R2 (#56)
+
+## v1.14 (May 6th, 2014)
+
+* Compact generated VMs using ultradefrag and sdelete (#53)
+* Fix 2008 R2 Core Autounattend.xml steps
+
+## v1.13 (May 2nd, 2014)
+
+* Fixed ISO Urls (#47)
+
+## v1.12 (April 29th, 2014)
+
+* Update OpenSSH
+
+## v1.11 (April 5th, 2014)
+
+* Change the default shell for OpenSSH from /bin/bash to /bin/sh (#45)
+
+## v1.10 (March 18th, 2014)
+
+* Ensure WinRM service starts immediately rather than after 120 seconds (#43)
+
+## v1.9 (March 14th, 2014)
+
+* Add support for Windows 8.1
+* Add port forwarding for WinRM (5985) by default, with vagrant auto-correct enabled
+* Require the use of the vagrant-windows plugin in the Vagrantfile templates
 
 ## v1.8 (March 7th, 2014)
 

@@ -6,10 +6,10 @@ Write-Host "AutoStart: $AutoStart"
 $is_64bit = [IntPtr]::size -eq 8
 
 # setup openssh
-$ssh_download_url = "http://www.mls-software.com/files/setupssh-6.4p1-1.exe"
+$ssh_download_url = "http://www.mls-software.com/files/setupssh-6.6p1-1.exe"
 if ($is_64bit) {
     Write-Host "64 bit OS found"
-    $ssh_download_url = "http://www.mls-software.com/files/setupssh-6.4p1-1(x64).exe"
+    $ssh_download_url = "http://www.mls-software.com/files/setupssh-6.6p1-1(x64).exe"
 }
 
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
@@ -31,6 +31,11 @@ Write-Host "Setting SSH home directories"
     (Get-Content "C:\Program Files\OpenSSH\etc\passwd") |
     Foreach-Object { $_ -replace '/home/(\w+)', '/cygdrive/c/Users/$1' } |
     Set-Content 'C:\Program Files\OpenSSH\etc\passwd'
+
+# Set shell to /bin/sh to return exit status
+$passwd_file = Get-Content 'C:\Program Files\OpenSSH\etc\passwd'
+$passwd_file = $passwd_file -replace '/bin/bash', '/bin/sh'
+Set-Content 'C:\Program Files\OpenSSH\etc\passwd' $passwd_file
 
 # fix opensshd to not be strict
 Write-Host "Setting OpenSSH to be non-strict"

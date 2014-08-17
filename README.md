@@ -49,6 +49,11 @@ The scripts in this repo will install all Windows updates – by default – dur
 <!-- WITH WINDOWS UPDATES -->
 <!--
 <SynchronousCommand wcm:action="add">
+    <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
+    <Order>98</Order>
+    <Description>Enable Microsoft Updates</Description>
+</SynchronousCommand>
+<SynchronousCommand wcm:action="add">
     <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
     <Description>Install OpenSSH</Description>
     <Order>99</Order>
@@ -74,11 +79,13 @@ If you have serious objections to OpenSSH being installed, you can always add an
 
 * Build a base box using Packer
 * Create a Vagrantfile, use the base box from Packer, connect to the VM via WinRM (using the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin) and disable the 'sshd' service or uninstall OpenSSH completely
-* Perform a Vagrant run and and output a .box file
+* Perform a Vagrant run and output a .box file
 
 ### Using .box Files With Vagrant
 
-If you are going to use the .box files produced by the project with Vagrant, you should also use the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin, which will ensure Vagrant works well with Windows. This will also allow Vagrant to use WinRM to communicate with the box.
+The generated box files include a Vagrantfile template that is suitable for
+use with Vagrant 1.6.2+, which includes native support for Windows and uses
+WinRM to communicate with the box.
 
 ### Getting Started
 
