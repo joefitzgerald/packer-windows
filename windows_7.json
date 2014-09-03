@@ -26,7 +26,7 @@
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
-        "memsize": "2048",
+        "memsize": "4096",
         "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068"
       }
@@ -57,7 +57,7 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "2048"
+          "4096"
         ],
         [
           "modifyvm",
