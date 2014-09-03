@@ -1,6 +1,7 @@
 param($global:RestartRequired=0,
         $global:MoreUpdates=0,
-        $global:MaxCycles=5)
+        $global:MaxCycles=5,
+        $global:MaxUpdatesPerCycle=500)
 
 function Check-ContinueRestartOrEnd() {
     $RegistryKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
@@ -29,7 +30,7 @@ function Check-ContinueRestartOrEnd() {
             $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
             if (-not $prop) {
                 Write-Host "Restart Registry Entry Does Not Exist - Creating It"
-                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File $($script:ScriptPath)"
+                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File $($script:ScriptPath) -MaxUpdatesPerCycle $($global:MaxUpdatesPerCycle)"
             } else {
                 Write-Host "Restart Registry Entry Exists Already"
             }
@@ -46,9 +47,11 @@ function Check-ContinueRestartOrEnd() {
 
 function Install-WindowsUpdates() {
     $script:Cycles++
-    Write-Host 'Evaluating Available Updates:'
+    Write-Host 'Evaluating Available Updates with limit of $($global:MaxUpdatesPerCycle):'
     $UpdatesToDownload = New-Object -ComObject 'Microsoft.Update.UpdateColl'
-    foreach ($Update in $SearchResult.Updates) {
+    $script:i = 0;
+    while($script:i -lt $SearchResult.Updates.Count -and $script:CycleUpdateCount -lt $global:MaxUpdatesPerCycle) {
+        $Update = $SearchResult.Updates[$script:i] | Select-Object
         if (($Update -ne $null) -and (!$Update.IsDownloaded)) {
             [bool]$addThisUpdate = $false
             if ($Update.InstallationBehavior.CanRequestUserInput) {
@@ -58,8 +61,10 @@ function Install-WindowsUpdates() {
                     Write-Host "> Note: $($Update.Title) has a license agreement that must be accepted. Accepting the license."
                     $Update.AcceptEula()
                     [bool]$addThisUpdate = $true
+                    $script:CycleUpdateCount++
                 } else {
                     [bool]$addThisUpdate = $true
+                    $script:CycleUpdateCount++
                 }
             }
         
@@ -68,6 +73,7 @@ function Install-WindowsUpdates() {
                 $UpdatesToDownload.Add($Update) |Out-Null
             }
 		}
+        $script:i++
     }
     
     if ($UpdatesToDownload.Count -eq 0) {
@@ -174,6 +180,7 @@ $script:UpdateSession.ClientApplicationID = 'Packer Windows Update Installer'
 $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
 $script:SearchResult = New-Object -ComObject 'Microsoft.Update.UpdateColl'
 $script:Cycles = 0
+$script:CycleUpdateCount = 0
 
 Check-WindowsUpdates
 if ($global:MoreUpdates -eq 1) {
