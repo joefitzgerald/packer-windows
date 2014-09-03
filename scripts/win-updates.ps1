@@ -143,7 +143,20 @@ function Check-WindowsUpdates() {
     Write-Host $Message
 
     $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
-    $script:SearchResult = $script:UpdateSearcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0")      
+    $script:successful = $FALSE
+    $script:attempts = 0
+    $script:maxAttempts = 12
+    while(-not $script:successful -and $script:attempts -lt $script:maxAttempts) {
+        try {
+            $script:SearchResult = $script:UpdateSearcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0")
+            $script:successful = $TRUE
+        } catch {
+            Write-Error "Search call to UpdateSearcher was unsuccessful. Retrying in 10s."
+            $script:attempts = $script:attempts + 1
+            Start-Sleep -s 10
+        }
+    }
+
     if ($SearchResult.Updates.Count -ne 0) {
         $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
         $global:MoreUpdates=1
