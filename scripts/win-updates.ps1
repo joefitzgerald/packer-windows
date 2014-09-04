@@ -47,11 +47,12 @@ function Check-ContinueRestartOrEnd() {
 
 function Install-WindowsUpdates() {
     $script:Cycles++
-    Write-Host 'Evaluating Available Updates with limit of $($global:MaxUpdatesPerCycle):'
+    Write-Host "Evaluating Available Updates with limit of $($global:MaxUpdatesPerCycle):"
     $UpdatesToDownload = New-Object -ComObject 'Microsoft.Update.UpdateColl'
     $script:i = 0;
-    while($script:i -lt $SearchResult.Updates.Count -and $script:CycleUpdateCount -lt $global:MaxUpdatesPerCycle) {
-        $Update = $SearchResult.Updates[$script:i] | Select-Object
+    $CurrentUpdates = $SearchResult.Updates | Select-Object
+    while($script:i -lt $CurrentUpdates.Count -and $script:CycleUpdateCount -lt $global:MaxUpdatesPerCycle) {
+        $Update = $CurrentUpdates[$script:i]
         if (($Update -ne $null) -and (!$Update.IsDownloaded)) {
             [bool]$addThisUpdate = $false
             if ($Update.InstallationBehavior.CanRequestUserInput) {
@@ -157,7 +158,8 @@ function Check-WindowsUpdates() {
             $script:SearchResult = $script:UpdateSearcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0")
             $script:successful = $TRUE
         } catch {
-            Write-Error "Search call to UpdateSearcher was unsuccessful. Retrying in 10s."
+            Write-Host $_.Exception | Format-List -force
+            Write-Host "Search call to UpdateSearcher was unsuccessful. Retrying in 10s."
             $script:attempts = $script:attempts + 1
             Start-Sleep -s 10
         }
