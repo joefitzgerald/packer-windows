@@ -1,4 +1,4 @@
-## v1.22 (Sept 4th, 2014)
+## v1.22 (Sept 8th, 2014)
 
 * Forward SSH port by default on Vagrant boxes (#76)
 * Box no longer auto logs on upon boot (#66)
