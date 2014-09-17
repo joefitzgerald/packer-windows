@@ -1,6 +1,8 @@
-## v1.22 (not yet released)
+## v1.22 (Sept 8th, 2014)
 
 * Forward SSH port by default on Vagrant boxes (#76)
+* Box no longer auto logs on upon boot (#66)
+* Updated Virtualbox Guest OS Type for Win8.1 (#81)
 
 ## v1.21 (Aug 6th, 2014)
 

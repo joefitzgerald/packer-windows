@@ -78,6 +78,7 @@
         "./scripts/chef.bat",
         "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
+        "./scripts/disable-auto-logon.bat",
         "./scripts/compact.bat"
       ]
     },

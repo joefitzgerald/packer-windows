@@ -41,7 +41,7 @@
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows2012_64",
+      "guest_os_type": "Windows81_64",
       "disk_size": 61440,
       "floppy_files": [
         "./answer_files/81/Autounattend.xml",
@@ -75,7 +75,10 @@
         "./scripts/vm-guest-tools.bat",
         "./scripts/chef.bat",
         "./scripts/vagrant-ssh.bat",
-        "./scripts/enable-rdp.bat"
+        "./scripts/disable-auto-logon.bat",
+        "./scripts/enable-rdp.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/compact.bat"
       ]
     },
     {
