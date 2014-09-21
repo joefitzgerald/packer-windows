@@ -17,7 +17,6 @@
     "vnc_port_max": 5980,
     "floppy_files": [
       "./answer_files/2008_r2_core/Autounattend.xml",
-      "./scripts/hotfix-KB2552055.bat",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1"
     ],
@@ -43,7 +42,6 @@
     "disk_size": 61440,
     "floppy_files": [
       "./answer_files/2008_r2_core/Autounattend.xml",
-      "./scripts/hotfix-KB2552055.bat",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1",
       "./scripts/oracle-cert.cer"
