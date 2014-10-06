@@ -18,6 +18,7 @@
       "vnc_port_max": 5980,
       "floppy_files": [
         "./answer_files/7_ultimate/Autounattend.xml",
+        "./scripts/dis-updates.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
@@ -36,7 +37,7 @@
       "iso_url": "file:///Users/stefan/iso/windows7-ultimate-x64.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "51f51abbddab7055c8ca8bafe4ca3123",
-      "headless": true,
+      "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -46,6 +47,7 @@
       "disk_size": 61440,
       "floppy_files": [
         "./answer_files/7_ultimate/Autounattend.xml",
+        "./scripts/dis-updates.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
@@ -64,7 +66,19 @@
           "{{.Name}}",
           "--cpus",
           "2"
-        ]
+        ],
+[
+  "modifyvm",
+  "{{.Name}}",
+  "--vcpenabled",
+  "on"
+],
+[
+  "modifyvm",
+  "{{.Name}}",
+  "--vcpfile",
+  "windows_7_ultimate.webm"
+]
       ]
     }
   ],
@@ -76,6 +90,7 @@
       "scripts": [
         "./scripts/vm-guest-tools.bat",
         "./scripts/vagrant-ssh.bat",
+        "./scripts/dis-updates.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/enable-winrm.bat"
       ]
