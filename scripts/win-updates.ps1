@@ -186,8 +186,17 @@ function Check-WindowsUpdates() {
     }
 
     if ($SearchResult.Updates.Count -ne 0) {
-        $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
-        $global:MoreUpdates=1
+        $Message = "There are " + $SearchResult.Updates.Count + " more updates."
+        LogWrite $Message
+        try {
+            $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
+            $global:MoreUpdates=1
+        } catch {
+            LogWrite $_.Exception | Format-List -force
+            LogWrite "Showing SearchResult was unsuccessful. Aborting."
+            $global:RestartRequired=0
+            $global:MoreUpdates=0
+        }
     } else {
         LogWrite 'There are no applicable updates'
         $global:RestartRequired=0
