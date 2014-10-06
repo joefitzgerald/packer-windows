@@ -90,9 +90,20 @@ function Install-WindowsUpdates() {
         LogWrite "No Updates To Download..."
     } else {
         LogWrite 'Downloading Updates...'
-        $Downloader = $UpdateSession.CreateUpdateDownloader()
-        $Downloader.Updates = $UpdatesToDownload
-        $Downloader.Download()
+        $ok = 0;
+        while (! $ok) {
+            try {
+                $Downloader = $UpdateSession.CreateUpdateDownloader()
+                $Downloader.Updates = $UpdatesToDownload
+                $Downloader.Download()
+                $ok = 1;
+            } catch {
+                LogWrite $_.Exception | Format-List -force
+                LogWrite "Error downloading updates. Retrying in 30s."
+                $script:attempts = $script:attempts + 1
+                Start-Sleep -s 30
+            }
+        }
     }
 
     $UpdatesToInstall = New-Object -ComObject 'Microsoft.Update.UpdateColl'
