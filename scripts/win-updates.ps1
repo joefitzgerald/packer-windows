@@ -193,9 +193,12 @@ function Check-WindowsUpdates() {
             $global:MoreUpdates=1
         } catch {
             LogWrite $_.Exception | Format-List -force
-            LogWrite "Showing SearchResult was unsuccessful. Aborting."
-            $global:RestartRequired=0
+            LogWrite "Showing SearchResult was unsuccessful. Rebooting."
+            $global:RestartRequired=1
             $global:MoreUpdates=0
+            Check-ContinueRestartOrEnd
+            LogWrite "Show never happen to see this text!"
+            Restart-Computer
         }
     } else {
         LogWrite 'There are no applicable updates'
