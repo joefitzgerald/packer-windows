@@ -5,7 +5,7 @@
       "iso_url": "file:///Users/stefan/iso/windows7-ultimate-x64.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "51f51abbddab7055c8ca8bafe4ca3123",
-      "headless": true,
+      "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
