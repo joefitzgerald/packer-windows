@@ -11,6 +11,8 @@ rem net stop wuauserv
 if exist C:\Windows\Temp\win-updates.log (
   echo Show Windows Updates log file C:\Windows\Temp\win-updates.log
   dir C:\Windows\Temp\win-updates.log
-  type C:\Windows\Temp\win-updates.log
+  rem type C:\Windows\Temp\win-updates.log
+  rem output of type command is not fully shown in packer/ssh session, so try PowerShell
+  powershell -command "Get-Content C:\Windows\Temp\win-updates.log"
   echo End of Windows Updates log file C:\Windows\Temp\win-updates.log
 )
