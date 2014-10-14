@@ -16,7 +16,7 @@ function Check-ContinueRestartOrEnd() {
 
             Write-Host "No Restart Required"
             Check-WindowsUpdates
-            
+
             if (($global:MoreUpdates -eq 1) -and ($script:Cycles -le $global:MaxCycles)) {
                 Install-WindowsUpdates
             } elseif ($script:Cycles -gt $global:MaxCycles) {
@@ -38,8 +38,8 @@ function Check-ContinueRestartOrEnd() {
             Write-Host "Restart Required - Restarting..."
             Restart-Computer
         }
-        default { 
-            Write-Host "Unsure If A Restart Is Required" 
+        default {
+            Write-Host "Unsure If A Restart Is Required"
             break
         }
     }
@@ -76,14 +76,25 @@ function Install-WindowsUpdates() {
         }
         $script:i++
     }
-    
+
     if ($UpdatesToDownload.Count -eq 0) {
         Write-Host "No Updates To Download..."
     } else {
         Write-Host 'Downloading Updates...'
-        $Downloader = $UpdateSession.CreateUpdateDownloader()
-        $Downloader.Updates = $UpdatesToDownload
-        $Downloader.Download()
+        $ok = 0;
+        while (! $ok) {
+            try {
+                $Downloader = $UpdateSession.CreateUpdateDownloader()
+                $Downloader.Updates = $UpdatesToDownload
+                $Downloader.Download()
+                $ok = 1;
+            } catch {
+                Write-Host $_.Exception | Format-List -force
+                Write-Host "Error downloading updates. Retrying in 30s."
+                $script:attempts = $script:attempts + 1
+                Start-Sleep -s 30
+            }
+        }
     }
 
     $UpdatesToInstall = New-Object -ComObject 'Microsoft.Update.UpdateColl'
@@ -93,7 +104,7 @@ function Install-WindowsUpdates() {
         if (($Update.IsDownloaded)) {
             Write-Host "> $($Update.Title)"
             $UpdatesToInstall.Add($Update) |Out-Null
-              
+
             if ($Update.InstallationBehavior.RebootBehavior -gt 0){
                 [bool]$rebootMayBeRequired = $true
             }
@@ -114,7 +125,7 @@ function Install-WindowsUpdates() {
     }
 
     Write-Host 'Installing updates...'
-  
+
     $Installer = $script:UpdateSession.CreateUpdateInstaller()
     $Installer.Updates = $UpdatesToInstall
     $InstallationResult = $Installer.Install()
@@ -166,8 +177,19 @@ function Check-WindowsUpdates() {
     }
 
     if ($SearchResult.Updates.Count -ne 0) {
-        $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
-        $global:MoreUpdates=1
+        $Message = "There are " + $SearchResult.Updates.Count + " more updates."
+        Write-Host $Message
+        try {
+            $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
+            $global:MoreUpdates=1
+        } catch {
+            Write-Host $_.Exception | Format-List -force
+            Write-Host "Showing SearchResult was unsuccessful. Rebooting."
+            $global:RestartRequired=1
+            $global:MoreUpdates=0
+            Check-ContinueRestartOrEnd
+            Restart-Computer
+        }
     } else {
         Write-Host 'There are no applicable updates'
         $global:RestartRequired=0
