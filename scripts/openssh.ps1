@@ -15,7 +15,10 @@ if ($is_64bit) {
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
     Write-Host "Downloading $ssh_download_url"
     (New-Object System.Net.WebClient).DownloadFile($ssh_download_url, "C:\Windows\Temp\openssh.exe")
-    Start-Process "C:\Windows\Temp\openssh.exe" "/S /port=22 /privsep=1 /password=D@rj33l1ng" -NoNewWindow -Wait
+
+    # initially set the port to 2222 so that there is not a race
+    # condition in which packer connects to SSH before we can disable the service
+    Start-Process "C:\Windows\Temp\openssh.exe" "/S /port=2222 /privsep=1 /password=D@rj33l1ng" -NoNewWindow -Wait
 }
 
 Stop-Service "OpenSSHd" -Force
@@ -47,6 +50,8 @@ $sshd_config = $sshd_config -replace '#PermitUserEnvironment no', 'PermitUserEnv
 $sshd_config = $sshd_config -replace '#UseDNS yes', 'UseDNS no'
 # disable the login banner
 $sshd_config = $sshd_config -replace 'Banner /etc/banner.txt', '#Banner /etc/banner.txt'
+# next time OpenSSH starts have it listen on th eproper port
+$sshd_config = $sshd_config -replace 'Port 2222', "Port 22"
 Set-Content "C:\Program Files\OpenSSH\etc\sshd_config" $sshd_config
 
 # use c:\Windows\Temp as /tmp location
