@@ -1,3 +1,7 @@
+## v1.23 (Nov 5th, 2014)
+
+* Resolved issue with Windows 7 not successfully completing an update run (#83)
+
 ## v1.22 (Sept 8th, 2014)
 
 * Forward SSH port by default on Vagrant boxes (#76)

@@ -31,7 +31,7 @@ function Check-ContinueRestartOrEnd() {
             } elseif ($script:Cycles -gt $global:MaxCycles) {
                 LogWrite "Exceeded Cycle Count - Stopping"
                 Invoke-Expression "a:\openssh.ps1 -AutoStart"
-			} else {
+            } else {
                 LogWrite "Done Installing Windows Updates"
                 Invoke-Expression "a:\openssh.ps1 -AutoStart"
             }
@@ -83,7 +83,7 @@ function Install-WindowsUpdates() {
                 LogWrite "Adding: $($Update.Title)"
                 $UpdatesToDownload.Add($Update) |Out-Null
             }
-		}
+        }
         $script:i++
     }
 
