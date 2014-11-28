@@ -64,6 +64,36 @@
           "{{.Name}}",
           "--cpus",
           "2"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrde",
+          "on"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrdeaddress",
+          "127.0.0.1"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrdeport",
+          "13389"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vcpenabled",
+          "off"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vcpfile",
+          "windows_7.webm"
         ]
       ]
     }
