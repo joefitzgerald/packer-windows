@@ -6,5 +6,5 @@ if not exist "C:\Windows\Temp\puppet.msi" (
 msiexec /qn /i C:\Windows\Temp\puppet.msi /log C:\Windows\Temp\puppet.log
 
 <nul set /p ".=;C:\Program Files (x86)\Puppet Labs\Puppet\bin" >> C:\Windows\Temp\PATH
-set /p PATH=<C:\Windows\Temp\PATH
+set /p PATH=%PATH%<C:\Windows\Temp\PATH
 setx PATH "%PATH%" /m
