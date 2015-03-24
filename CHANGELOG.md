@@ -2,7 +2,8 @@
 
 * Clarified use of the `<Key>` element in Windows 8.1 autounattend file (#114)
 * Fixed issue with OpenSSH / Packer race condition (#113)
-* 
+* Fixed issue with Windows 8.1 product key and computer name (#121)
+* Fixed issue where disk size would always be 60GB regardless of value in packer template (#117)
 
 ## v1.23 (Nov 5th, 2014)
 
