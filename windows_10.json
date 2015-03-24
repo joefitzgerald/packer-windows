@@ -1,0 +1,77 @@
+{
+  "builders": [
+    {
+      "type": "vmware-iso",
+      "iso_url": "http://iso.esd.microsoft.com/W9TPI/B6B0A0278A90510669EAB90ABF80B22A/Windows10_TechnicalPreview_x64_EN-US_9926.iso",
+      "iso_checksum_type": "sha1",
+      "iso_checksum": "6A95316728299D95249A29FBEB9676DED23B8BEB",
+      "headless": false,
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "windows8srv-64",
+      "tools_upload_flavor": "windows",
+      "disk_size": 61440,
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "floppy_files": [
+        "./answer_files/10/Autounattend.xml",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+        "./scripts/openssh.ps1"
+      ],
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "2048",
+        "numvcpus": "2",
+        "scsi0.virtualDev": "lsisas1068"
+      }
+    },
+    {
+      "type": "virtualbox-iso",
+      "iso_url": "http://iso.esd.microsoft.com/W9TPI/B6B0A0278A90510669EAB90ABF80B22A/Windows10_TechnicalPreview_x64_EN-US_9926.iso",
+      "iso_checksum_type": "sha1",
+      "iso_checksum": "6A95316728299D95249A29FBEB9676DED23B8BEB",
+      "headless": false,
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "Windows81_64",
+      "disk_size": 61440,
+      "floppy_files": [
+        "./answer_files/10/Autounattend.xml",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+        "./scripts/openssh.ps1",
+        "./scripts/oracle-cert.cer"
+      ],
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_10_{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile-windows_10.template"
+    }
+  ]
+}
