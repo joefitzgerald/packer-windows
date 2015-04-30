@@ -46,7 +46,7 @@
                 -->
 
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
-                <ProductKey>NKJFK-GPHP7-G8C3J-P6JXR-HQRJR
+                <ProductKey>6P99N-YF42M-TPGBG-9VMJP-YKHCF
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
@@ -61,7 +61,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows 8.1 Pro</Value>
+                            <Value>Windows 10 Pro Technical Preview</Value>
                         </MetaData>
                     </InstallFrom>
                 </OSImage>

@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://iso.esd.microsoft.com/W9TPI/B6B0A0278A90510669EAB90ABF80B22A/Windows10_TechnicalPreview_x64_EN-US_9926.iso",
+      "iso_url": "http://iso.esd.microsoft.com/W10IP/E0F85BFCD0F6BA607BF1528926371D21F8F6B6BF/Windows10_InsiderPreview_x64_EN-US_10074.iso",
       "iso_checksum_type": "sha1",
-      "iso_checksum": "6A95316728299D95249A29FBEB9676DED23B8BEB",
+      "iso_checksum": "E354B44994B46FB7CDC295FA1F075D9F95FECEA8",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -32,9 +32,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://iso.esd.microsoft.com/W9TPI/B6B0A0278A90510669EAB90ABF80B22A/Windows10_TechnicalPreview_x64_EN-US_9926.iso",
+      "iso_url": "http://iso.esd.microsoft.com/W10IP/E0F85BFCD0F6BA607BF1528926371D21F8F6B6BF/Windows10_InsiderPreview_x64_EN-US_10074.iso",
       "iso_checksum_type": "sha1",
-      "iso_checksum": "6A95316728299D95249A29FBEB9676DED23B8BEB",
+      "iso_checksum": "E354B44994B46FB7CDC295FA1F075D9F95FECEA8",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
