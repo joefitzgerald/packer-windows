@@ -269,7 +269,7 @@
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
             <!-- Rename computer here. -->
-            <ComputerName>vagrant-2012</ComputerName>
+            <ComputerName>vagrant-81</ComputerName>
             <TimeZone>W. Europe Standard Time</TimeZone>
             <RegisteredOwner/>
         </component>
