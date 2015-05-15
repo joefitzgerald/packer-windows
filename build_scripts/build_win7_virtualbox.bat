@@ -1,0 +1,1 @@
+packer build windows_7.json -debug -machine-readable -only=virtualbox-iso
