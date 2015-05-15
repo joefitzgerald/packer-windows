@@ -1,12 +1,13 @@
+# encoding: utf-8
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
 Vagrant.require_version ">= 1.6.2"
 
 Vagrant.configure("2") do |config|
     config.vm.define "vagrant-windows-7"
-    config.vm.box = "windows_7"
     config.vm.communicator = "winrm"
+    config.vm.box = "windows_7"
+    config.vm.box_url = "windows_7.box"
 
     # Admin user name and password
     config.winrm.username = "vagrant"
@@ -19,7 +20,7 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", auto_correct: true
 
     config.vm.provider :virtualbox do |v, override|
-        #v.gui = true
+        v.gui = true
         v.customize ["modifyvm", :id, "--memory", 2048]
         v.customize ["modifyvm", :id, "--cpus", 2]
         v.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
