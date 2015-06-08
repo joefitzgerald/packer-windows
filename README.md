@@ -90,6 +90,10 @@ If you have serious objections to OpenSSH being installed, you can always add an
 * Create a Vagrantfile, use the base box from Packer, connect to the VM via WinRM (using the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin) and disable the 'sshd' service or uninstall OpenSSH completely
 * Perform a Vagrant run and output a .box file
 
+It's worth mentioning that many Chef cookbooks will not work properly through Cygwin's SSH environment on Windows. Specifically, packages that need access to environment-specific configurations such as the `PATH` variable, will fail. This includes packages that use the Windows installer, `msiexec.exe`.
+
+It's currently recommended that you add a second step to your pipeline and use Vagrant to install your packages through Chef.
+
 ### Using .box Files With Vagrant
 
 The generated box files include a Vagrantfile template that is suitable for
