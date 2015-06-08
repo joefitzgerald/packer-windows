@@ -12,6 +12,7 @@
 * Added support for Hyper-V Server 2012 R2 (#120)
 * Updated OpenSSH to 6.7 (#111)
 * Updated Ultadefrag to 6.1.0 (#145)
+* Fixed ComputerName for Windows 7 build (#125)
 
 ## v1.23 (Nov 5th, 2014)
 
