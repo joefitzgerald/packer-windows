@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://iso.esd.microsoft.com/W10IP/E0F85BFCD0F6BA607BF1528926371D21F8F6B6BF/Windows10_InsiderPreview_x64_EN-US_10074.iso",
+      "iso_url": "http://iso.esd.microsoft.com/W10IP/4B33E0680A465FBA52C09A34454D5EB6/Windows10_InsiderPreview_x64_EN-US_10162.iso",
       "iso_checksum_type": "sha1",
-      "iso_checksum": "E354B44994B46FB7CDC295FA1F075D9F95FECEA8",
+      "iso_checksum": "31346458255AFEAC1AFEED5C4C61F15D57708B9B",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -32,9 +32,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://iso.esd.microsoft.com/W10IP/E0F85BFCD0F6BA607BF1528926371D21F8F6B6BF/Windows10_InsiderPreview_x64_EN-US_10074.iso",
+      "iso_url": "http://iso.esd.microsoft.com/W10IP/4B33E0680A465FBA52C09A34454D5EB6/Windows10_InsiderPreview_x64_EN-US_10162.iso",
       "iso_checksum_type": "sha1",
-      "iso_checksum": "E354B44994B46FB7CDC295FA1F075D9F95FECEA8",
+      "iso_checksum": "31346458255AFEAC1AFEED5C4C61F15D57708B9B",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -63,6 +63,19 @@
           "--cpus",
           "2"
         ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/vagrant-ssh.bat",
+        "./scripts/enable-rdp.bat",
+        "./scripts/compact.bat"
       ]
     }
   ],
