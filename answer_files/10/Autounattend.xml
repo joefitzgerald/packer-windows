@@ -33,7 +33,7 @@
                 <Organization>Vagrant Inc.</Organization>
 
                 <!--
-                    NOTE: If you are re-configuring this for use of a retail key 
+                    NOTE: If you are re-configuring this for use of a retail key
                     and using a retail ISO, you need to adjust the <ProductKey> block
                     below to look like this:
 
@@ -46,7 +46,8 @@
                 -->
 
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
-                <ProductKey>6P99N-YF42M-TPGBG-9VMJP-YKHCF
+                <ProductKey>
+                    <Key>8N67H-M3CY9-QT7C4-2TR7M-TXYCV</Key>
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
