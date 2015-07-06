@@ -173,7 +173,7 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"}</CommandLine>
+                    <CommandLine>cmd.exe /c winrm set winrm/config/winrs @{MaxMemoryPerShellMB="800"}</CommandLine>
                     <Description>Win RM MaxMemoryPerShellMB</Description>
                     <Order>12</Order>
                     <RequiresUserInput>true</RequiresUserInput>
