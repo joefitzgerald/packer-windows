@@ -4,7 +4,7 @@ if not exist "C:\Windows\Temp\7z920-x64.msi" (
 msiexec /qb /i C:\Windows\Temp\7z920-x64.msi
 
 if not exist "C:\Windows\Temp\ultradefrag.zip" (
-	powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://downloads.sourceforge.net/ultradefrag/ultradefrag-portable-6.1.0.bin.amd64.zip', 'C:\Windows\Temp\ultradefrag.zip')" <NUL
+	powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://downloads.sourceforge.net/project/ultradefrag/stable-release/6.0.4/ultradefrag-portable-6.0.4.bin.amd64.zip', 'C:\Windows\Temp\ultradefrag.zip')" <NUL
 )
 
 if not exist "C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe" (
