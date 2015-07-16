@@ -41,9 +41,11 @@ goto :done
 
 :parallels
 if exist "C:\Users\vagrant\prl-tools-win.iso" (
-    powershell -ExecutionPolicy Bypass -File C:\Windows\Temp\install-parallels-tools.ps1
+	move /Y C:\Users\vagrant\prl-tools-win.iso C:\Windows\Temp
+	cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\prl-tools-win.iso -oC:\Windows\Temp\parallels"
+	start /B /W C:\Windows\Temp\parallels\PTAgent.exe /install_silent
+	rd /S /Q "c:\Windows\Temp\parallels"
 )
-
 goto :done
 
 :done
