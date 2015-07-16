@@ -42,11 +42,10 @@ goto :done
 :parallels
 if exist "C:\Users\vagrant\prl-tools-win.iso" (
 	move /Y C:\Users\vagrant\prl-tools-win.iso C:\Windows\Temp
-	cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\prl-tools-win.iso -oC:\Windows\Temp\parallels"
-	start /B /W C:\Windows\Temp\parallels\PTAgent.exe /install_silent
+	start /B /W """C:\Program Files\7-Zip\7z.exe"" x ""C:\Windows\Temp\prl-tools-win.iso"" -oC:\Windows\Temp\parallels"
+	cmd /C C:\Windows\Temp\parallels\PTAgent.exe /install_silent
 	rd /S /Q "c:\Windows\Temp\parallels"
 )
-goto :done
 
 :done
 msiexec /qb /x C:\Windows\Temp\7z920-x64.msi
