@@ -64,6 +64,54 @@
           "2"
         ]
       ]
+    },
+    {
+      "type": "parallels-iso",
+      "iso_url": "http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "458ff91f8abc21b75cb544744bf92e6a",
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "win-2012",
+      "parallels_tools_flavor": "win",
+      "disk_size": 61440,
+      "floppy_files": [
+        "./answer_files/2012_r2/Autounattend.xml",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+        "./scripts/openssh.ps1",
+        "./scripts/oracle-cert.cer"
+      ],
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--memsize",
+          "2048"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--winsystray-in-macmenu",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--startup-view",
+          "window"
+        ],
+        ["set", "{{.Name}}", "--efi-boot", "off"]
+      ]
     }
   ],
   "provisioners": [
