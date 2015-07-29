@@ -19,6 +19,7 @@ The following Windows versions are known to work (built with VMware Fusion 6.0.4
  * Windows 2012
  * Windows 2008 R2
  * Windows 2008 R2 Core
+ * Windows 10
  * Windows 8.1
  * Windows 7
 
