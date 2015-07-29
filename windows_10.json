@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://iso.esd.microsoft.com/W10IP/4B33E0680A465FBA52C09A34454D5EB6/Windows10_InsiderPreview_x64_EN-US_10162.iso",
+      "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
       "iso_checksum_type": "sha1",
-      "iso_checksum": "31346458255AFEAC1AFEED5C4C61F15D57708B9B",
+      "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -32,9 +32,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://iso.esd.microsoft.com/W10IP/4B33E0680A465FBA52C09A34454D5EB6/Windows10_InsiderPreview_x64_EN-US_10162.iso",
+      "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
       "iso_checksum_type": "sha1",
-      "iso_checksum": "31346458255AFEAC1AFEED5C4C61F15D57708B9B",
+      "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
