@@ -14,7 +14,7 @@ if exist "C:\Users\vagrant\windows.iso" (
 )
 
 if not exist "C:\Windows\Temp\windows.iso" (
-    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/10.0.1/1379776/windows/packages/tools-windows-9.6.1.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://softwareupdate.vmware.com/cds/vmw-desktop/ws/11.1.2/2780323/windows/packages/tools-windows-9.9.3.exe.tar', 'C:\Windows\Temp\vmware-tools.exe.tar')" <NUL
     cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\vmware-tools.exe.tar -oC:\Windows\Temp"
     FOR /r "C:\Windows\Temp" %%a in (tools-windows-*.exe) DO REN "%%~a" "tools-windows.exe"
     cmd /c C:\Windows\Temp\tools-windows
