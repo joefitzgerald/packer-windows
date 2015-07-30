@@ -6,7 +6,7 @@ Write-Output "AutoStart: $AutoStart"
 $is_64bit = [IntPtr]::size -eq 8
 
 # setup openssh
-$ssh_download_url = "http://www.mls-software.com/files/setupssh-6.7p1-1.exe"
+$ssh_download_url = "http://www.mls-software.com/files/setupssh-6.7p1-2.exe"
 
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
     Write-Output "Downloading $ssh_download_url"
@@ -51,7 +51,7 @@ $sshd_config = $sshd_config -replace 'Banner /etc/banner.txt', '#Banner /etc/ban
 $sshd_config = $sshd_config -replace 'Port 2222', "Port 22"
 Set-Content "C:\Program Files\OpenSSH\etc\sshd_config" $sshd_config
 
-Write-Host "Removing ed25519 key as Vagrant net-ssh 2.9.1 does not support it"
+Write-Output "Removing ed25519 key as Vagrant net-ssh 2.9.1 does not support it"
 Remove-Item -Force -ErrorAction SilentlyContinue "C:\Program Files\OpenSSH\etc\ssh_host_ed25519_key"
 Remove-Item -Force -ErrorAction SilentlyContinue "C:\Program Files\OpenSSH\etc\ssh_host_ed25519_key.pub"
 

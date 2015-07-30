@@ -154,6 +154,8 @@ function Install-WindowsUpdates() {
             Title = $UpdatesToInstall.Item($i).Title
             Result = $InstallationResult.GetUpdateResult($i).ResultCode
         }
+        LogWrite "Item: " $UpdatesToInstall.Item($i).Title
+        LogWrite "Result: " $InstallationResult.GetUpdateResult($i).ResultCode;
     }
 
     Check-ContinueRestartOrEnd
@@ -190,7 +192,12 @@ function Check-WindowsUpdates() {
         $Message = "There are " + $SearchResult.Updates.Count + " more updates."
         LogWrite $Message
         try {
-            $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
+            for($i=0; $i -lt $script:SearchResult.Updates.Count; $i++) {
+              LogWrite $script:SearchResult.Updates.Item($i).Title
+              LogWrite $script:SearchResult.Updates.Item($i).Description
+              LogWrite $script:SearchResult.Updates.Item($i).RebootRequired
+              LogWrite $script:SearchResult.Updates.Item($i).EulaAccepted
+          }
             $global:MoreUpdates=1
         } catch {
             LogWrite $_.Exception | Format-List -force

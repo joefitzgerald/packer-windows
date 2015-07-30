@@ -1,9 +1,18 @@
 ## Unreleased
 
+## v1.24 (June 8th, 2015)
+
 * Clarified use of the `<Key>` element in Windows 8.1 autounattend file (#114)
 * Fixed issue with OpenSSH / Packer race condition (#113)
 * Fixed issue with Windows 8.1 product key and computer name (#121)
 * Fixed issue where disk size would always be 60GB regardless of value in packer template (#117)
+* Added Windows 10 Technical Preview (#132, #144)
+* Fixed Windows Updates for Windows 2008 R2 builds (#135)
+* Display Windows Updates that have been installed (#139)
+* Added support for Hyper-V Server 2012 R2 (#120)
+* Updated OpenSSH to 6.7 (#111)
+* Updated Ultadefrag to 6.1.0 (#145)
+* Fixed ComputerName for Windows 7 build (#125)
 
 ## v1.23 (Nov 5th, 2014)
 

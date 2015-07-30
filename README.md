@@ -13,19 +13,13 @@ This repo began by borrowing bits from the VeeWee Windows templates (https://git
 ### Windows Versions
 
 The following Windows versions are known to work (built with VMware Fusion 6.0.4 and VirtualBox 4.3.12):
-<!--
-|                              | Develop                                                                                                                                                                                                               | Master                                                                                                                                                                                                             |
-| ---------------------------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Windows 2008 R2 SP1 Standard | [![Build Status - Windows 2008 R2 SP1 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2008-r2/) | [![Build Status - Windows 2008 R2 SP1 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2008-r2/) |
-| Windows 2012 Standard        | [![Build Status - Windows 2012 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012/)              | [![Build Status - Windows 2012 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012/)              |
-| Windows 2012 R2 Standard     | [![Build Status - Windows 2012 R2 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012-r2/)     | [![Build Status - Windows 2012 R2 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012-r2/)     |
--->
 
  * Windows 2012 R2
  * Windows 2012 R2 Core
  * Windows 2012
  * Windows 2008 R2
  * Windows 2008 R2 Core
+ * Windows 10
  * Windows 8.1
  * Windows 7
 
@@ -82,7 +76,7 @@ Doing so will give you hours back in your day, which is a good thing.
 
 ### OpenSSH / WinRM
 
-Currently, [Packer](http://packer.io) has a single communitator that uses SSH. This means we need an SSH server installed on Windows - which is not optimal as we could use WinRM to communicate with the Windows VM. In the short term, many Packer features work well with SSH; in the medium term, work is underway on a WinRM communicator for Packer.
+Currently, [Packer](http://packer.io) has a single communicator that uses SSH. This means we need an SSH server installed on Windows - which is not optimal as we could use WinRM to communicate with the Windows VM. In the short term, everything works well with SSH; in the medium term, work is underway on a WinRM communicator for Packer.
 
 If you have serious objections to OpenSSH being installed, you can always add another stage to your build pipeline:
 
@@ -116,7 +110,7 @@ Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [Te
 
 ### Contributing
 
-Pull requests welcomed. Please ensure you create your edits in a branch off of the `develop` branch, not the `master` branch.
+Pull requests welcomed.
 
 ### Acknowledgements
 
