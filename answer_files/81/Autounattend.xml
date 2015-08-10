@@ -9,7 +9,7 @@
                         <CreatePartition wcm:action="add">
                             <Order>1</Order>
                             <Type>Primary</Type>
-                            <Size>60000</Size>
+                            <Extend>true</Extend>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
@@ -31,8 +31,22 @@
                 <AcceptEula>true</AcceptEula>
                 <FullName>Vagrant Administrator</FullName>
                 <Organization>Vagrant Inc.</Organization>
-                <!-- Product Key from http://technet.microsoft.com/en-us/library/ff793406.aspx -->
-                <ProductKey>XC9B7-NBPP2-83J2H-RHMBY-92BT4
+
+                <!--
+                    NOTE: If you are re-configuring this for use of a retail key 
+                    and using a retail ISO, you need to adjust the <ProductKey> block
+                    below to look like this:
+
+                    <ProductKey>
+                        <Key>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</Key>
+                        <WillShowUI>Never</WillShowUI>
+                    </ProductKey>
+
+                    Notice the addition of the `<Key>` element.
+                -->
+
+                <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
+                <ProductKey>MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
@@ -262,7 +276,7 @@
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
             <!-- Rename computer here. -->
-            <ComputerName>vagrant-2012</ComputerName>
+            <ComputerName>vagrant-81</ComputerName>
             <TimeZone>Pacific Standard Time</TimeZone>
             <RegisteredOwner/>
         </component>

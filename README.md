@@ -13,19 +13,13 @@ This repo began by borrowing bits from the VeeWee Windows templates (https://git
 ### Windows Versions
 
 The following Windows versions are known to work (built with VMware Fusion 6.0.4 and VirtualBox 4.3.12):
-<!--
-|                              | Develop                                                                                                                                                                                                               | Master                                                                                                                                                                                                             |
-| ---------------------------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Windows 2008 R2 SP1 Standard | [![Build Status - Windows 2008 R2 SP1 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2008-r2/) | [![Build Status - Windows 2008 R2 SP1 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2008-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2008-r2/) |
-| Windows 2012 Standard        | [![Build Status - Windows 2012 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012/)              | [![Build Status - Windows 2012 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012/)              |
-| Windows 2012 R2 Standard     | [![Build Status - Windows 2012 R2 Standard on Develop](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-develop-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-develop-2012-r2/)     | [![Build Status - Windows 2012 R2 Standard on Master](https://packer.ci.cloudbees.com/buildStatus/icon?job=packer-windows-master-2012-r2)](https://packer.ci.cloudbees.com/job/packer-windows-master-2012-r2/)     |
--->
 
  * Windows 2012 R2
  * Windows 2012 R2 Core
  * Windows 2012
  * Windows 2008 R2
  * Windows 2008 R2 Core
+ * Windows 10
  * Windows 8.1
  * Windows 7
 
@@ -90,6 +84,10 @@ If you have serious objections to OpenSSH being installed, you can always add an
 * Create a Vagrantfile, use the base box from Packer, connect to the VM via WinRM (using the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin) and disable the 'sshd' service or uninstall OpenSSH completely
 * Perform a Vagrant run and output a .box file
 
+It's worth mentioning that many Chef cookbooks will not work properly through Cygwin's SSH environment on Windows. Specifically, packages that need access to environment-specific configurations such as the `PATH` variable, will fail. This includes packages that use the Windows installer, `msiexec.exe`.
+
+It's currently recommended that you add a second step to your pipeline and use Vagrant to install your packages through Chef.
+
 ### Using .box Files With Vagrant
 
 The generated box files include a Vagrantfile template that is suitable for
@@ -112,7 +110,7 @@ Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [Te
 
 ### Contributing
 
-Pull requests welcomed. Please ensure you create your edits in a branch off of the `develop` branch, not the `master` branch.
+Pull requests welcomed.
 
 ### Acknowledgements
 
