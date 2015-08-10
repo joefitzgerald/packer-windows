@@ -47,9 +47,9 @@
       "floppy_files": [
         "./answer_files/7/Autounattend.xml",
         "./scripts/dis-updates.ps1",
+		"./scripts/openssh.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1",
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
@@ -79,7 +79,6 @@
         "./scripts/vagrant-ssh.bat",
         "./scripts/disable-auto-logon.bat",
         "./scripts/enable-rdp.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/compact.bat"
       ]
     }
