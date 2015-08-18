@@ -1,4 +1,7 @@
 {
+  "push": {
+    "vcs": true
+  },
   "builders": [
     {
       "type": "vmware-iso",
