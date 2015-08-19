@@ -60,9 +60,9 @@ function Install-WindowsUpdates() {
     LogWrite "Evaluating Available Updates with limit of $($MaxUpdatesPerCycle):"
     $UpdatesToDownload = New-Object -ComObject 'Microsoft.Update.UpdateColl'
     $script:i = 0;
-    $CurrentUpdates = $SearchResult.Updates | Select-Object
+    $CurrentUpdates = $SearchResult.Updates
     while($script:i -lt $CurrentUpdates.Count -and $script:CycleUpdateCount -lt $MaxUpdatesPerCycle) {
-        $Update = $CurrentUpdates[$script:i]
+        $Update = $CurrentUpdates.Item($script:i)
         if (($Update -ne $null) -and (!$Update.IsDownloaded)) {
             [bool]$addThisUpdate = $false
             if ($Update.InstallationBehavior.CanRequestUserInput) {
@@ -230,3 +230,4 @@ if ($global:MoreUpdates -eq 1) {
 } else {
     Check-ContinueRestartOrEnd
 }
+
