@@ -1,5 +1,13 @@
 ## Unreleased
 
+## v1.25 (August 13th, 2015)
+
+* Updated 7-Zip, UltraDefrag URLs (#154)
+* Added Windows 10 build (#149, #163)
+* Updated VMware Tools to 9.9.3 (#162)
+* Improved update script (#164)
+* Increased memory for WinRM shell (#165)
+
 ## v1.24 (June 8th, 2015)
 
 * Clarified use of the `<Key>` element in Windows 8.1 autounattend file (#114)
@@ -123,4 +131,3 @@
 ## v1.1 (December 17, 2013)
 
 * Initial release, including working Windows 2008 R2 configuration
-
