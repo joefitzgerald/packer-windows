@@ -75,18 +75,7 @@
         "./scripts/vm-guest-tools.bat",
         "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
-        "./scripts/install-containers.bat"
-      ]
-    },
-    {
-      "type": "windows-restart"
-    },
-    {
-      "type": "shell",
-      "remote_path": "/tmp/script.bat",
-      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
-      "scripts": [
-        "./scripts/restart-helper.bat",
+        "./scripts/install-containers.bat",
         "./scripts/install-docker.bat",
         "./scripts/disable-auto-logon.bat"
       ]
