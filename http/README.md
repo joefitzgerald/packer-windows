@@ -14,7 +14,14 @@ $ curl -L -o ContainerOSImage https://aka.ms/ContainerOSImage
 ## Run the http cache server
 
 ```
-$ python -m SimpleHTTPServer 8000
+$ go build webserver.go
+$ ./webserver
+```
+
+As an alternative you might try this HTTP server
+
+```
+python -m SimpleHTTPServer 8000
 ```
 
 ## Build the packer box
