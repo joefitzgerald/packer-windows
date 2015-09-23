@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -17,7 +17,7 @@
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
-        "./answer_files/81/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1"
@@ -32,9 +32,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -44,7 +44,7 @@
       "guest_os_type": "Windows81_64",
       "disk_size": 61440,
       "floppy_files": [
-        "./answer_files/81/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
@@ -95,5 +95,11 @@
       "output": "windows_81_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_81.template"
     }
-  ]
+  ],
+  "variables": {
+    "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+    "autounattend": "./answer_files/81/Autounattend.xml"
+  }
 }

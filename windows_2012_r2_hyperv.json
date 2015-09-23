@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://care.dlservice.microsoft.com/dl/download/F/7/D/F7DF966B-5C40-4674-9A32-D83D869A3244/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVERHYPERCORE_EN-US-IRM_SHV_X64FRE_EN-US_DV5.ISO",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "9c9e0d82cb6301a4b88fd2f4c35caf80",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -17,7 +17,7 @@
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
-        "./answer_files/2012_r2_hyperv/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1"
@@ -32,9 +32,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://care.dlservice.microsoft.com/dl/download/F/7/D/F7DF966B-5C40-4674-9A32-D83D869A3244/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVERHYPERCORE_EN-US-IRM_SHV_X64FRE_EN-US_DV5.ISO",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "9c9e0d82cb6301a4b88fd2f4c35caf80",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -44,7 +44,7 @@
       "guest_os_type": "Windows2012_64",
       "disk_size": 61440,
       "floppy_files": [
-        "./answer_files/2012_r2_hyperv/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
@@ -95,5 +95,11 @@
       "output": "windows_2012_r2_hyperv_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
     }
-  ]
+  ],
+  "variables": {
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/F/7/D/F7DF966B-5C40-4674-9A32-D83D869A3244/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVERHYPERCORE_EN-US-IRM_SHV_X64FRE_EN-US_DV5.ISO",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "9c9e0d82cb6301a4b88fd2f4c35caf80",
+    "autounattend": "./answer_files/2012_r2_hyperv/Autounattend.xml"
+  }
 }
