@@ -77,7 +77,7 @@
         "./scripts/enable-rdp.bat",
         "./scripts/install-containers.bat",
         "./scripts/install-docker.bat",
-        "./scripts/disable-auto-logon.bat"
+        "./scripts/uac-enable.bat"
       ]
     },
     {
