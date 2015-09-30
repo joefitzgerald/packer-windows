@@ -84,7 +84,7 @@
     {
       "type": "shell",
       "inline": [
-        "rm -rf /tmp/*"
+        "rm -rf /tmp/* || ! false"
       ]
     }
   ],
