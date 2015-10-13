@@ -73,17 +73,10 @@
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
-        "./scripts/chef.bat",
         "./scripts/vagrant-ssh.bat",
-        "./scripts/enable-rdp.bat",
         "./scripts/disable-auto-logon.bat",
+        "./scripts/enable-rdp.bat",
         "./scripts/compact.bat"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "rm -rf /tmp/*"
       ]
     }
   ],
