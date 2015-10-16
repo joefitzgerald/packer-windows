@@ -2,25 +2,28 @@
   "builders": [
     {
       "type": "vmware-iso",
+      "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": true,
+      "headless": false,
       "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "6h",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows8srv-64",
       "tools_upload_flavor": "windows",
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
+      "skip_compaction": true,
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1"
+        "./scripts/win-updates.ps1"
       ],
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
@@ -32,22 +35,24 @@
     },
     {
       "type": "virtualbox-iso",
+      "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": true,
+      "headless": false,
       "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "6h",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows2012_64",
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1",
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
@@ -68,12 +73,13 @@
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "remote_path": "/tmp/script.bat",
-      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
-        "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/disable-auto-logon.bat",
@@ -83,10 +89,9 @@
   ],
   "post-processors": [
     {
-      "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "windows_2012_r2_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
+      "type": "compress",
+      "keep_input_artifact": true,
+      "output": "{{.BuildName}}.zip"
     }
   ],
   "variables": {
