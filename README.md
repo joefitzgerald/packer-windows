@@ -69,7 +69,7 @@ Doing so will give you hours back in your day, which is a good thing.
 
 By default, the compress post-processor is used to create an archive of your VM. You can then use this with the [virtualbox-ovf](https://www.packer.io/docs/builders/virtualbox-ovf.html) or [vmware-vmx](https://www.packer.io/docs/builders/vmware-vmx.html) builders to further iterate on your image. This approach is recommended, particularly if you apply all Windows updates in your initial image. It will save you tens or hundreds of hours as you iterate on your project.
 
-If you would like to switch back to the old approach of generating .box files for use with Vagrant, just replace the provisioners section with:
+If you would like to switch back to the old approach of generating .box files for use with Vagrant, just replace the post-processors section with:
 
 ```json
 "post-processors": [
