@@ -133,8 +133,8 @@
   "post-processors": [
     {
       "type": "compress",
-      "keep_input_artifact": true,
-      "output": "{{.BuildName}}.zip"
+      "keep_input_artifact": false,
+      "output": "windows_2012_r2_{{.Provider}}.zip"
     }
   ],
   "variables": {

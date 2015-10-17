@@ -1,0 +1,59 @@
+{
+  "builders": [
+    {
+      "type": "vmware-vmx",
+      "communicator": "winrm",
+      "source_path": "./vmx/packer-vmware-iso.vmx",
+      "headless": false,
+      "boot_wait": "10s",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "skip_compaction": true,
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "2048",
+        "numvcpus": "2",
+        "scsi0.virtualDev": "lsisas1068"
+      }
+    },
+    {
+      "type": "virtualbox-ovf",
+      "communicator": "winrm",
+      "source_path": "./ovf/packer-virtualbox-iso-1444968257.ovf",
+      "headless": false,
+      "boot_wait": "10s",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_additions_mode": "disable",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_2012_r2_{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
+    }
+  ]
+}
