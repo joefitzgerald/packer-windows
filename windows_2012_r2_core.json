@@ -134,7 +134,7 @@
     {
       "type": "compress",
       "keep_input_artifact": false,
-      "output": "windows_2012_r2_{{.Provider}}.zip"
+      "output": "windows_2012_r2_core_{{.Provider}}.zip"
     }
   ],
   "variables": {
