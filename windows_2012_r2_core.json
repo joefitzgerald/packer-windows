@@ -16,7 +16,6 @@
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
-      "skip_compaction": true,
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-winrm.ps1",
