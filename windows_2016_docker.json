@@ -77,6 +77,16 @@
         "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/install-containers.bat",
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "scripts": [
+        "./scripts/install-docker.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ]
@@ -86,7 +96,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "windows_2016_{{.Provider}}.box",
+      "output": "windows_2016_docker_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2016.template"
     }
   ],
