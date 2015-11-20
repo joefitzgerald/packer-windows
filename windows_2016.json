@@ -79,8 +79,8 @@
         "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/install-containers.bat",
+        "./scripts/sleep.bat",
         "./scripts/wait-for-uplink.bat",
-        "./scripts/install-docker.bat",
         "./scripts/install-docker.bat",
         "./scripts/uac-enable.bat"
       ]
