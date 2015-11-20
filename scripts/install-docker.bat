@@ -1,29 +1,10 @@
 rem https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup
-powershell.exe -Command "wget -uri http://aka.ms/setupcontainers -OutFile C:\ContainerSetup.ps1"
+powershell.exe -Command "wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost-1.ps1"
 
-set WIMPATH=http://192.168.254.1:8000/ContainerOSImage.wim
-set LOCALWIMPATH=C:\Users\vagrant\ContainerOSImage.wim
+rem patch the install script, see https://github.com/Microsoft/Virtualization-Documentation/pull/90
+powershell.exe -Command "cat C:\Install-ContainerHost-1.ps1 | %%{$_ -replace 'qfe =','qfe = 0 #'} | Set-Content C:\Install-ContainerHost.ps1"
 
-if "%WIMPATH%x"=="x" (
-  powershell.exe -File "C:\ContainerSetup.ps1"
-) else (
-  powershell.exe -Command "wget -uri %WIMPATH% -OutFile %LOCALWIMPATH%"
-)
-
-:waiting
-if not exist %LOCALWIMPATH% (
-  echo Waiting for WimPath %LOCALWIMPATH%
-  ping 127.0.0.1 -n 5 > nul
-  goto waiting
-  )
-
-if exist %LOCALWIMPATH% (
-    powershell.exe -File "C:\ContainerSetup.ps1" -WimPath %LOCALWIMPATH%
-    del %LOCALWIMPATH%
-  ) else (
-    powershell.exe -File "C:\ContainerSetup.ps1"
-  )
-)
+powershell.exe -File "C:\Install-ContainerHost.ps1" -HyperV
 
 echo Done with %0
 

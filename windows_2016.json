@@ -6,7 +6,8 @@
       "iso_checksum_type": "md5",
       "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
       "headless": false,
-      "boot_wait": "2m",
+      "boot_wait": "6m",
+      "boot_command": [ "<tab><enter>" ],
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "6h",
@@ -27,7 +28,9 @@
         "RemoteDisplay.vnc.port": "5900",
         "memsize": "2048",
         "numvcpus": "2",
-        "scsi0.virtualDev": "lsisas1068"
+        "scsi0.virtualDev": "lsisas1068",
+        "vhv.enable": "TRUE",
+        "hypervisor.cpuid.v0": "FALSE"
       }
     },
     {
@@ -76,6 +79,8 @@
         "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/install-containers.bat",
+        "./scripts/wait-for-uplink.bat",
+        "./scripts/install-docker.bat",
         "./scripts/install-docker.bat",
         "./scripts/uac-enable.bat"
       ]
