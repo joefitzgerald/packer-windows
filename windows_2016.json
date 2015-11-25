@@ -2,26 +2,27 @@
   "builders": [
     {
       "type": "vmware-iso",
+      "communicator": "winrm",
       "iso_url": "https://aka.ms/tp4/serveriso",
       "iso_checksum_type": "md5",
       "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
       "headless": false,
       "boot_wait": "6m",
       "boot_command": [ "<tab><enter>" ],
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "6h",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows8srv-64",
-      "tools_upload_flavor": "windows",
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/2016/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1"
+        "./scripts/win-updates.ps1"
       ],
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
@@ -35,22 +36,26 @@
     },
     {
       "type": "virtualbox-iso",
+      "communicator": "winrm",
       "iso_url": "https://aka.ms/tp4/serveriso",
       "iso_checksum_type": "md5",
       "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
       "headless": false,
-      "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "6h",
+      "boot_wait": "6m",
+      "boot_command": [ "<tab><enter>" ],
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows2012_64",
+      "guest_additions_mode": "disable",
       "disk_size": 61440,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/2016/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1",
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
@@ -71,24 +76,29 @@
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "remote_path": "/tmp/script.bat",
-      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
+        "./scripts/set-winrm-automatic.bat",
         "./scripts/vm-guest-tools.bat",
-        "./scripts/vagrant-ssh.bat",
-        "./scripts/enable-rdp.bat",
-        "./scripts/install-containers.bat",
-        "./scripts/sleep.bat",
+        "./scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
         "./scripts/wait-for-uplink.bat",
-        "./scripts/install-docker.bat",
         "./scripts/uac-enable.bat"
       ]
     },
     {
-      "type": "shell",
-      "inline": [
-        "rm -rf /tmp/*"
+      "type": "powershell",
+      "scripts": [
+        "./scripts/install-docker.ps1"
       ]
     }
   ],
