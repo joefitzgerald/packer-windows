@@ -84,6 +84,5 @@ function Run-Interactive {
 }
 
 Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV"
-Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -h"
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
