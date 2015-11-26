@@ -98,7 +98,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/install-docker.ps1"
+        "./scripts/install-docker.ps1",
+        "./scripts/enable-docker-unsecure.ps1"
       ]
     }
   ],
