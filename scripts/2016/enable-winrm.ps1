@@ -18,8 +18,6 @@ Install-WindowsFeature -Name Hyper-V
 Stop-Service winrm
 . sc.exe config winrm start= delayed-auto
 
-Sleep 30
-
 netsh advfirewall firewall set rule group="Windows Remote Administration" new enable=yes
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new enable=yes action=allow
 
