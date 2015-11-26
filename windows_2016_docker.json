@@ -20,7 +20,7 @@
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
         "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
+        "./scripts/docker/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
@@ -53,7 +53,7 @@
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
         "./scripts/disable-winrm.ps1",
-        "./scripts/2016/enable-winrm.ps1",
+        "./scripts/docker/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/oracle-cert.cer"
@@ -79,9 +79,27 @@
       "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
+        "./scripts/set-winrm-automatic.bat",
         "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/wait-for-uplink.bat",
         "./scripts/uac-enable.bat"
+      ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/install-docker.ps1",
+        "./scripts/enable-docker-unsecure.ps1"
       ]
     }
   ],
@@ -89,7 +107,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "windows_2016_{{.Provider}}.box",
+      "output": "windows_2016_docker_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2016.template"
     }
   ]
