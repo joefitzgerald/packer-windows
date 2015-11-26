@@ -1,14 +1,8 @@
-Set-Service winrm -startuptype "auto"
-
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup
 wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost-1.ps1
 
-# patch the install script, see https://github.com/Microsoft/Virtualization-Documentation/pull/90
-cat C:\Install-ContainerHost-1.ps1 | %{$_ -replace 'qfe =','qfe = 0 #'} | Set-Content C:\Install-ContainerHost.ps1
-
 # create a Task Scheduler task which is also able to run in battery mode due
-# to host notebooks working in battery mode. This complicates the whole script
-# from a one liner to a fat XML - good heaven.
+# to host notebooks working in battery mode.
 
 function Run-Interactive {
   param( [string] $commandline)
