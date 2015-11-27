@@ -19,6 +19,8 @@
       "vnc_port_max": 5980,
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
         "./scripts/fixnetwork.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
@@ -51,6 +53,8 @@
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
         "./scripts/fixnetwork.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
@@ -76,9 +80,6 @@
   ],
   "provisioners": [
     {
-      "type": "windows-restart"
-    },
-    {
       "type": "windows-shell",
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
@@ -95,6 +96,7 @@
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
+        "./scripts/pin-powershell.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/set-winrm-automatic.bat",
         "./scripts/compact.bat"
