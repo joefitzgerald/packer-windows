@@ -123,4 +123,3 @@
 ## v1.1 (December 17, 2013)
 
 * Initial release, including working Windows 2008 R2 configuration
-

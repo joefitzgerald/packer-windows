@@ -2,26 +2,30 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
-      "iso_checksum_type": "sha1",
-      "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
-      "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "2h",
+      "boot_wait": "6m",
+      "boot_command": "{{user `product_key`}}<enter>",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows8srv-64",
-      "tools_upload_flavor": "windows",
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
-        "./answer_files/10/Autounattend.xml",
+        "{{user `autounattend`}}",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
         "./scripts/fixnetwork.ps1",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1"
+        "./scripts/win-updates.ps1"
       ],
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
@@ -33,23 +37,29 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
-      "iso_checksum_type": "sha1",
-      "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
-      "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "2h",
+      "boot_wait": "6m",
+      "boot_command": "<tab>{{user `product_key`}}<enter>",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows81_64",
+      "guest_additions_mode": "disable",
       "disk_size": 61440,
       "floppy_files": [
-        "./answer_files/10/Autounattend.xml",
+        "{{user `autounattend`}}",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
         "./scripts/fixnetwork.ps1",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1",
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
@@ -70,13 +80,25 @@
   ],
   "provisioners": [
     {
-      "type": "shell",
+      "type": "windows-shell",
       "remote_path": "/tmp/script.bat",
-      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
-        "./scripts/vagrant-ssh.bat",
-        "./scripts/enable-rdp.bat",
+        "./scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/pin-powershell.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/set-winrm-automatic.bat",
         "./scripts/compact.bat"
       ]
     }
@@ -88,5 +110,12 @@
       "output": "windows_10_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_10.template"
     }
-  ]
+  ],
+  "variables": {
+    "iso_url": "http://iso.esd.microsoft.com/W10IP/BF15E0F8F8F6B6BFCD0F62892BFBA60756371D21/Windows10_InsiderPreview_x64_EN-US_10565.iso",
+    "iso_checksum_type": "sha1",
+    "iso_checksum": "EA37A740FD0744CAE856D1B12FB4167F6EE88B54",
+    "autounattend": "./answer_files/10/Autounattend.xml",
+    "product_key": "<tab><tab>"
+  }
 }

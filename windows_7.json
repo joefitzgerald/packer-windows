@@ -5,7 +5,7 @@
       "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "1d0d239a252cb53e466d39e752b17c28",
-      "headless": true,
+      "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -36,7 +36,7 @@
       "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "1d0d239a252cb53e466d39e752b17c28",
-      "headless": true,
+      "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -64,6 +64,36 @@
           "{{.Name}}",
           "--cpus",
           "2"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrde",
+          "on"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrdeaddress",
+          "127.0.0.1"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrdeport",
+          "13389"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vcpenabled",
+          "off"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vcpfile",
+          "windows_7.webm"
         ]
       ]
     }
@@ -77,8 +107,9 @@
         "./scripts/vm-guest-tools.bat",
         "./scripts/chef.bat",
         "./scripts/vagrant-ssh.bat",
-        "./scripts/disable-auto-logon.bat",
         "./scripts/enable-rdp.bat",
+        "./scripts/enable-winrm.bat",
+        "./scripts/disable-tasks.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/compact.bat"
       ]

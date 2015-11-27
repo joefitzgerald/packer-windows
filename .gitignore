@@ -9,4 +9,8 @@
 /output-virtualbox-ovf/
 /*.box
 /packer_cache/
-
+*.log
+*~
+/output/
+*.webm
+tmp/
