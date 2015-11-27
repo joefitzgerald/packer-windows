@@ -7,7 +7,8 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
-      "boot_wait": "2m",
+      "boot_wait": "6m",
+      "boot_command": "{{user `product_key`}}<enter>",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "2h",
@@ -39,7 +40,8 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
-      "boot_wait": "2m",
+      "boot_wait": "6m",
+      "boot_command": "<tab>{{user `product_key`}}<enter>",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "2h",
@@ -100,6 +102,7 @@
     "iso_url": "http://iso.esd.microsoft.com/W10IP/BF15E0F8F8F6B6BFCD0F62892BFBA60756371D21/Windows10_InsiderPreview_x64_EN-US_10565.iso",
     "iso_checksum_type": "sha1",
     "iso_checksum": "EA37A740FD0744CAE856D1B12FB4167F6EE88B54",
-    "autounattend": "./answer_files/10/Autounattend.xml"
+    "autounattend": "./answer_files/10/Autounattend.xml",
+    "product_key": "<tab><tab>"
   }
 }
