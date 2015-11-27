@@ -84,8 +84,19 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
-        "./scripts/enable-rdp.bat",
+        "./scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
         "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/set-winrm-automatic.bat",
         "./scripts/compact.bat"
       ]
     }
