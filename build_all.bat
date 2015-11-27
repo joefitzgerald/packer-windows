@@ -1,5 +1,0 @@
-call build_windows_2008_r2_virtualbox.bat
-call build_windows_2012_r2_virtualbox.bat
-call build_windows_7_virtualbox.bat
-call build_windows_81_virtualbox.bat
-

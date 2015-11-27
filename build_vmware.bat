@@ -1,5 +1,0 @@
-call build_windows_2008_r2_vmware.bat
-call build_windows_2012_r2_vmware.bat
-call build_windows_7_vmware.bat
-call build_windows_81_vmware.bat
-
