@@ -3,12 +3,12 @@
     {
       "type": "vmware-iso",
       "communicator": "winrm",
-      "iso_url": "https://aka.ms/tp4/serveriso",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
       "boot_wait": "6m",
-      "boot_command": [ "<tab><enter>" ],
+      "boot_command": [ "{{user `product_key`}}<enter>" ],
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "6h",
@@ -39,12 +39,12 @@
     {
       "type": "virtualbox-iso",
       "communicator": "winrm",
-      "iso_url": "https://aka.ms/tp4/serveriso",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
       "boot_wait": "6m",
-      "boot_command": [ "<tab><enter>" ],
+      "boot_command": [ "{{user `product_key`}}<enter>" ],
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "6h",
@@ -121,5 +121,12 @@
       "output": "windows_2016_docker_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2016_docker.template"
     }
-  ]
+  ],
+  "variables": {
+    "iso_url": "https://aka.ms/tp4/serveriso",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
+    "autounattend": "./answer_files/2016/Autounattend.xml",
+    "product_key": "<tab>"
+  }
 }
