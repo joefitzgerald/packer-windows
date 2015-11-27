@@ -10,7 +10,8 @@ Some of my enhancements are:
 
 * Support of fullscreen Retina display on a MacBook Pro.
 * WinRM, no more OpenSSH
-* PowerShell attached to taskbar
+* PowerShell attached to taskbar with new features enabled
+* German keyboard layout and timezone
 
 ### Packer Version
 
@@ -84,6 +85,15 @@ These boxes use WinRM. There is no OpenSSH installed.
 The generated box files include a Vagrantfile template that is suitable for
 use with Vagrant 1.7.4+, which includes native support for Windows and uses
 WinRM to communicate with the box.
+
+For Vagrant 1.7.4 you should update some Ruby gems with
+
+```
+vagrant plugin install winrm
+vagrant plugin install winrm-fs
+```
+
+Vagrant 1.8+ will have these gems already preinstalled.
 
 ### Contributing
 
