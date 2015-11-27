@@ -33,6 +33,8 @@ Vagrant.configure("2") do |config|
         v.vmx["RemoteDisplay.vnc.enabled"] = "false"
         v.vmx["RemoteDisplay.vnc.port"] = "5900"
         v.vmx["scsi0.virtualDev"] = "lsisas1068"
+        v.vmx["vhv.enable"] = "TRUE"
+        v.vmx["hypervisor.cpuid.v0"] = "FALSE"
         v.enable_vmrun_ip_lookup = false
         v.vmx["gui.fitguestusingnativedisplayresolution"] = "TRUE"
         v.vmx["mks.enable3d"] = "TRUE"
@@ -53,5 +55,7 @@ Vagrant.configure("2") do |config|
         v.vmx["RemoteDisplay.vnc.enabled"] = "false"
         v.vmx["RemoteDisplay.vnc.port"] = "5900"
         v.vmx["scsi0.virtualDev"] = "lsisas1068"
+        v.vmx["vhv.enable"] = "TRUE"
+        v.vmx["hypervisor.cpuid.v0"] = "FALSE"
     end
 end

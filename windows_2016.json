@@ -19,6 +19,8 @@
       "vnc_port_max": 5980,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
@@ -52,6 +54,8 @@
       "disk_size": 61440,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
         "./scripts/2016/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
@@ -81,7 +85,19 @@
       "scripts": [
         "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat"
-        "./scripts/uac-enable.bat"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/pin-powershell.bat",
+        "./scripts/set-winrm-automatic.bat",
+        "./scripts/uac-enable.bat",
+        "./scripts/compact.bat"
       ]
     }
   ],
