@@ -32,9 +32,7 @@
         "RemoteDisplay.vnc.port": "5900",
         "memsize": "2048",
         "numvcpus": "2",
-        "scsi0.virtualDev": "lsisas1068",
-        "vhv.enable": "TRUE",
-        "hypervisor.cpuid.v0": "FALSE"
+        "scsi0.virtualDev": "lsisas1068"
       }
     },
     {

@@ -14,6 +14,7 @@ Write-Host "Install Containers"
 Install-WindowsFeature -Name Containers
 Write-Host "Install Hyper-V"
 Install-WindowsFeature -Name Hyper-V
+Install-WindowsFeature Hyper-V-Tools
 
 Stop-Service winrm
 . sc.exe config winrm start= delayed-auto
