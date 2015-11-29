@@ -17,6 +17,7 @@
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
+      "version": 11,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
         "./floppy/Windows Powershell.lnk",
