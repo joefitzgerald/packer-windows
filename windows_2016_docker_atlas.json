@@ -11,7 +11,7 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
       "boot_wait": "2m",
-      "boot_command": [ "{{user `product_key`}}<enter>" ],
+      "boot_command": [ "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>{{user `product_key`}}<enter>" ],
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "6h",
