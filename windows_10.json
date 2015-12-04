@@ -20,7 +20,7 @@
       "version": 11,
       "floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/Windows Powershell.lnk",
+        "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/fixnetwork.ps1",
         "./scripts/disable-winrm.ps1",
@@ -54,7 +54,7 @@
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/Windows Powershell.lnk",
+        "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/fixnetwork.ps1",
         "./scripts/disable-winrm.ps1",

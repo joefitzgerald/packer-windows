@@ -20,7 +20,7 @@
       "version": 11,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
-        "./floppy/Windows Powershell.lnk",
+        "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
@@ -53,7 +53,7 @@
       "disk_size": 61440,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
-        "./floppy/Windows Powershell.lnk",
+        "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
         "./scripts/2016/enable-winrm.ps1",
