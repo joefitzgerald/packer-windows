@@ -37,6 +37,42 @@
       }
     },
     {
+      "name": "vmware-iso-atlas",
+      "type": "vmware-iso",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "boot_wait": "10m",
+      "boot_command": [ "{{user `product_key`}}<enter>" ],
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "windows8srv-64",
+      "disk_size": 61440,
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "version": 11,
+      "floppy_files": [
+        "./answer_files/2016/Autounattend.xml",
+        "./floppy/Windows Powershell.lnk",
+        "./floppy/PinTo10.exe",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/docker/enable-winrm.ps1",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1"
+      ],
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "2048",
+        "numvcpus": "2",
+        "scsi0.virtualDev": "lsisas1068"
+      }
+    },
+    {
       "type": "virtualbox-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -120,6 +156,16 @@
       "keep_input_artifact": false,
       "output": "windows_2016_docker_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2016_docker.template"
+    },
+    {
+      "type": "atlas",
+      "only": ["vmware-iso-atlas"],
+      "artifact": "StefanScherer/windows_2016_docker",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "vmware_desktop",
+        "version": "0.0.1"
+      }
     }
   ],
   "variables": {
