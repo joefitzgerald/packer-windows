@@ -1,4 +1,7 @@
 {
+  "push": {
+    "name": "StefanScherer/windows_2016_docker"
+  },
   "builders": [
     {
       "type": "vmware-iso",
@@ -6,8 +9,8 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
-      "boot_wait": "6m",
+      "headless": true,
+      "boot_wait": "10m",
       "boot_command": [ "{{user `product_key`}}<enter>" ],
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
@@ -32,50 +35,8 @@
         "RemoteDisplay.vnc.port": "5900",
         "memsize": "2048",
         "numvcpus": "2",
-        "scsi0.virtualDev": "lsisas1068",
-        "vhv.enable": "TRUE"
+        "scsi0.virtualDev": "lsisas1068"
       }
-    },
-    {
-      "type": "virtualbox-iso",
-      "communicator": "winrm",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
-      "boot_wait": "6m",
-      "boot_command": [ "{{user `product_key`}}<enter>" ],
-      "winrm_username": "vagrant",
-      "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows2012_64",
-      "guest_additions_mode": "disable",
-      "disk_size": 61440,
-      "floppy_files": [
-        "./answer_files/2016/Autounattend.xml",
-        "./floppy/Windows Powershell.lnk",
-        "./floppy/PinTo10.exe",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/docker/enable-winrm.ps1",
-        "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
-        "./scripts/oracle-cert.cer"
-      ],
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
-        ]
-      ]
     }
   ],
   "provisioners": [
@@ -120,6 +81,16 @@
       "keep_input_artifact": false,
       "output": "windows_2016_docker_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2016_docker.template"
+    },
+    {
+      "type": "atlas",
+      "only": ["vmware-iso"],
+      "artifact": "StefanScherer/windows_2016_docker",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "vmware_desktop",
+        "version": "0.0.1"
+      }
     }
   ],
   "variables": {
