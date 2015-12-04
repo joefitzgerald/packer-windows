@@ -20,6 +20,7 @@
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
+      "version": 11,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
         "./floppy/WindowsPowershell.lnk",
@@ -32,8 +33,8 @@
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
-        "memsize": "2048",
-        "numvcpus": "2",
+        "memsize": "1536",
+        "numvcpus": "1",
         "scsi0.virtualDev": "lsisas1068"
       }
     }
