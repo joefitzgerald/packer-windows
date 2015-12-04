@@ -18,8 +18,6 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows8srv-64",
       "disk_size": 61440,
-      "vnc_port_min": 5900,
-      "vnc_port_max": 5980,
       "version": 11,
       "floppy_files": [
         "./answer_files/2016/Autounattend.xml",
@@ -31,8 +29,6 @@
         "./scripts/win-updates.ps1"
       ],
       "vmx_data": {
-        "RemoteDisplay.vnc.enabled": "false",
-        "RemoteDisplay.vnc.port": "5900",
         "memsize": "1536",
         "numvcpus": "1",
         "scsi0.virtualDev": "lsisas1068"
