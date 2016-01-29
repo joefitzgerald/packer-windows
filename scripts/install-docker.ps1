@@ -79,6 +79,9 @@ function Run-Interactive {
   & schtasks /Delete /F /TN InstallContainerHost
 }
 
-Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV"
+# Download latest nightly build of docker engine
+$ExeFile = "C:\Users\vagrant\Downloads\docker.exe"
+wget -o $ExeFile https://master.dockerproject.org/windows/amd64/docker.exe
+Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV -DockerPath $ExeFile"
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
