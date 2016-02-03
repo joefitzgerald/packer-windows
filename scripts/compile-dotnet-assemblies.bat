@@ -9,3 +9,5 @@ if exist %windir%\microsoft.net\framework64\v4.0.30319\ngen.exe (
 	%windir%\microsoft.net\framework64\v4.0.30319\ngen.exe update /force /queue
 	%windir%\microsoft.net\framework64\v4.0.30319\ngen.exe executequeueditems
 )
+
+exit /b 0

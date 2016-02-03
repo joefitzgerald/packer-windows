@@ -19,6 +19,7 @@
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/dis-updates.ps1",
+        "./scripts/hotfix-KB3102810.bat",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1"
@@ -47,6 +48,7 @@
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/dis-updates.ps1",
+        "./scripts/hotfix-KB3102810.bat",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
