@@ -8,7 +8,8 @@ if exist "%windir%\microsoft.net\framework\v4.0.30319\ngen.exe" (
   %windir%\microsoft.net\framework\v4.0.30319\ngen.exe executequeueditems
 )
 
-exit /b
+:: continue even if ngen fails
+exit /b 0
 
 :64BIT
 if exist "%windir%\microsoft.net\framework\v4.0.30319\ngen.exe" (
@@ -17,3 +18,6 @@ if exist "%windir%\microsoft.net\framework\v4.0.30319\ngen.exe" (
   %windir%\microsoft.net\framework\v4.0.30319\ngen.exe executequeueditems
   %windir%\microsoft.net\framework64\v4.0.30319\ngen.exe executequeueditems
 )
+
+:: continue even if ngen fails
+exit /b 0
