@@ -244,6 +244,12 @@
                     <Description>Disable password expiration for vagrant user</Description>
                 </SynchronousCommand>
                 {{ if .WindowsUpdates }}
+                <!-- Fix high CPU utilization on Windows7 when installing updates -->
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c a:\hotfix-KB3102810.bat</CommandLine>
+                    <Order>98</Order>
+                    <Description>KB3102810</Description>
+                </SynchronousCommand>
                 <!-- Include non-Windows MS updates -->
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
