@@ -9,4 +9,9 @@
 /output-virtualbox-ovf/
 /*.box
 /packer_cache/
-
+/Vagrantfile
+!/*/Vagrantfile
+/Autounattend.xml
+!/*/Autounattend.xml
+/packer.json
+!/*/packer.json
