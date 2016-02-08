@@ -59,6 +59,7 @@
 			{{ end }}
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "{{.VirtualboxGuestOsType}}",
+      "guest_additions_mode": "attach",
       "disk_size": {{.DiskSize}},
       "floppy_files": [
         "./Autounattend.xml",
