@@ -131,84 +131,6 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm quickconfig -q</CommandLine>
-                    <Description>winrm quickconfig -q</Description>
-                    <Order>5</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm quickconfig -transport:http</CommandLine>
-                    <Description>winrm quickconfig -transport:http</Description>
-                    <Order>6</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config @{MaxTimeoutms="1800000"}</CommandLine>
-                    <Description>Win RM MaxTimoutms</Description>
-                    <Order>7</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/winrs @{MaxMemoryPerShellMB="800"}</CommandLine>
-                    <Description>Win RM MaxMemoryPerShellMB</Description>
-                    <Order>8</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/service @{AllowUnencrypted="true"}</CommandLine>
-                    <Description>Win RM AllowUnencrypted</Description>
-                    <Order>9</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/service/auth @{Basic="true"}</CommandLine>
-                    <Description>Win RM auth Basic</Description>
-                    <Order>10</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/client/auth @{Basic="true"}</CommandLine>
-                    <Description>Win RM client auth Basic</Description>
-                    <Order>11</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"} </CommandLine>
-                    <Description>Win RM listener Address/Port</Description>
-                    <Order>12</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c netsh advfirewall firewall set rule group="remote administration" new enable=yes </CommandLine>
-                    <Description>Win RM adv firewall enable</Description>
-                    <Order>13</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c netsh firewall add portopening TCP 5985 "Port 5985" </CommandLine>
-                    <Description>Win RM port open</Description>
-                    <Order>14</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c net stop winrm </CommandLine>
-                    <Description>Stop Win RM Service </Description>
-                    <Order>15</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c sc config winrm start= auto</CommandLine>
-                    <Description>Win RM Autostart</Description>
-                    <Order>16</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c net start winrm</CommandLine>
-                    <Description>Start Win RM Service</Description>
-                    <Order>17</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v HideFileExt /t REG_DWORD /d 0 /f</CommandLine>
                     <Order>18</Order>
                     <Description>Show file extensions in Explorer</Description>
@@ -256,21 +178,29 @@
                     <Order>99</Order>
                     <Description>Enable Microsoft Updates</Description>
                 </SynchronousCommand>
-                <!-- Install Windows Updates, win-updates.ps1 will start SSH when done -->
+                <!-- Install Windows Updates, win-updates.ps1 will start SSH/WinRM when done -->
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1 -Communicator {{.Communicator}}</CommandLine>
                     <Description>Install Windows Updates</Description>
                     <Order>100</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 {{ else }}
-                <!-- Skipping Windows Updates, directly start SSH -->
+                <!-- Skipping Windows Updates, directly start SSH/WinRM -->
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\winrm.ps1</CommandLine>
+                    <Description>Configure and start WinRM</Description>
+                    <Order>99</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                {{ if eq .Communicator "ssh" }}
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
                     <Description>Install OpenSSH</Description>
                     <Order>100</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
+                {{ end }}
                 {{ end }}
             </FirstLogonCommands>
             <ShowWindowsLive>false</ShowWindowsLive>
