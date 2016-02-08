@@ -7,9 +7,16 @@
       "iso_checksum": "{{.IsoChecksum}}",
       "headless": {{.Headless}},
       "boot_wait": "2m",
-      "ssh_username": "{{.Username}}",
+      {{ if eq .Communicator "ssh" }}
+			"ssh_username": "{{.Username}}",
       "ssh_password": "{{.Password}}",
-      "ssh_wait_timeout": "8h",
+			"ssh_wait_timeout": "8h",
+			{{ else }}
+			"communicator": "winrm",
+			"winrm_username": "{{.Username}}",
+      "winrm_password": "{{.Password}}",
+			"winrm_timeout": "8h",
+			{{ end }}
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "{{.VmwareGuestOsType}}",
       "tools_upload_flavor": "windows",
@@ -22,7 +29,8 @@
         "./scripts/fixnetwork.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1"
+        "./scripts/openssh.ps1",
+        "./scripts/winrm.ps1"
       ],
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
@@ -39,9 +47,16 @@
       "iso_checksum": "{{.IsoChecksum}}",
       "headless": {{.Headless}},
       "boot_wait": "2m",
-      "ssh_username": "{{.Username}}",
+      {{ if eq .Communicator "ssh" }}
+			"ssh_username": "{{.Username}}",
       "ssh_password": "{{.Password}}",
-      "ssh_wait_timeout": "8h",
+			"ssh_wait_timeout": "8h",
+			{{ else }}
+			"communicator": "winrm",
+			"winrm_username": "{{.Username}}",
+      "winrm_password": "{{.Password}}",
+			"winrm_timeout": "8h",
+			{{ end }}
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "{{.VirtualboxGuestOsType}}",
       "disk_size": {{.DiskSize}},
@@ -52,6 +67,7 @@
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1",
+        "./scripts/winrm.ps1",
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
@@ -71,6 +87,7 @@
     }
   ],
   "provisioners": [
+    {{ if eq .Communicator "ssh" }}
     {
       "type": "shell",
       "remote_path": "/tmp/script.bat",
@@ -84,6 +101,18 @@
         "./scripts/compact.bat"
       ]
     }
+    {{ else }}
+    {
+      "type": "windows-shell",
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/disable-auto-logon.bat",
+        "./scripts/enable-rdp.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/compact.bat"
+      ]
+    }
+    {{ end }}
   ],
   "post-processors": [
     {
