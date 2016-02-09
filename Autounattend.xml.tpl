@@ -180,7 +180,7 @@
                 </SynchronousCommand>
                 <!-- Install Windows Updates, win-updates.ps1 will start SSH/WinRM when done -->
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1 -Communicator {{.Communicator}}</CommandLine>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1 -Communicator {{.Communicator}} -MaxUpdatesPerCycle 100 -RestartRequired 1</CommandLine>
                     <Description>Install Windows Updates</Description>
                     <Order>100</Order>
                     <RequiresUserInput>true</RequiresUserInput>
