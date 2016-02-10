@@ -3,41 +3,7 @@
     <servicing/>
     <settings pass="windowsPE">
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-            <DiskConfiguration>
-                <Disk wcm:action="add">
-                    <CreatePartitions>
-                        <CreatePartition wcm:action="add">
-                            <Type>Primary</Type>
-                            <Order>1</Order>
-                            <Size>350</Size>
-                        </CreatePartition>
-                        <CreatePartition wcm:action="add">
-                            <Order>2</Order>
-                            <Type>Primary</Type>
-                            <Extend>true</Extend>
-                        </CreatePartition>
-                    </CreatePartitions>
-                    <ModifyPartitions>
-                        <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
-                            <Label>boot</Label>
-                            <Order>1</Order>
-                            <PartitionID>1</PartitionID>
-                        </ModifyPartition>
-                        <ModifyPartition wcm:action="add">
-                            <Format>NTFS</Format>
-                            <Label>{{.OSName}}</Label>
-                            <Letter>C</Letter>
-                            <Order>2</Order>
-                            <PartitionID>2</PartitionID>
-                        </ModifyPartition>
-                    </ModifyPartitions>
-                    <DiskID>0</DiskID>
-                    <WillWipeDisk>true</WillWipeDisk>
-                </Disk>
-                <WillShowUI>OnError</WillShowUI>
-            </DiskConfiguration>
+            {{template "disks" .}}
             <UserData>
                 <AcceptEula>true</AcceptEula>
                 <FullName>{{.Username}}</FullName>
@@ -49,22 +15,6 @@
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
-            <ImageInstall>
-                <OSImage>
-                    <InstallTo>
-                        <DiskID>0</DiskID>
-                        <PartitionID>2</PartitionID>
-                    </InstallTo>
-                    <WillShowUI>OnError</WillShowUI>
-                    <InstallToAvailablePartition>false</InstallToAvailablePartition>
-                    <InstallFrom>
-                        <MetaData wcm:action="add">
-                            <Key>/IMAGE/NAME</Key>
-                            <Value>{{.WindowsImageName}}</Value>
-                        </MetaData>
-                    </InstallFrom>
-                </OSImage>
-            </ImageInstall>
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <SetupUILanguage>
