@@ -86,5 +86,13 @@
     "windows_image_name": "Windows Server 2016 Technical Preview 4 SERVERDATACENTER",
     "virtualbox_guest_os_type": "Windows2012_64",
     "vmware_guest_os_type": "windows8srv-64"
+  },
+  "nano": {
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/2/5/C257AD1A-45C1-48F9-B31C-5D37D6463123/10586.0.151029-1700.TH2_RELEASE_SERVER_OEMRET_X64FRE_EN-US.ISO",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
+    "windows_image_name": "Windows Server 2016 Technical Preview 4 SERVERDATACENTER",
+    "virtualbox_guest_os_type": "Windows2012_64",
+    "vmware_guest_os_type": "windows8srv-64"
   }
 }
