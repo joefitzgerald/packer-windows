@@ -11,12 +11,8 @@ if not exist "C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe" (
 	cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\ultradefrag.zip -oC:\Windows\Temp"
 )
 
-if not exist "C:\Windows\Temp\SDelete.zip" (
-  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://live.sysinternals.com/sdelete.exe', 'C:\Windows\Temp\SDelete.zip')" <NUL
-)
-
 if not exist "C:\Windows\Temp\sdelete.exe" (
-	cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\SDelete.zip -oC:\Windows\Temp"
+  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://live.sysinternals.com/sdelete.exe', 'C:\Windows\Temp\sdelete.exe')" <NUL
 )
 
 msiexec /qb /x C:\Windows\Temp\7z920-x64.msi
