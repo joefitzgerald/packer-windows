@@ -7,19 +7,30 @@
                 <Disk wcm:action="add">
                     <CreatePartitions>
                         <CreatePartition wcm:action="add">
+                            <Type>Primary</Type>
                             <Order>1</Order>
+                            <Size>350</Size>
+                        </CreatePartition>
+                        <CreatePartition wcm:action="add">
+                            <Order>2</Order>
                             <Type>Primary</Type>
                             <Extend>true</Extend>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
-                            <Extend>false</Extend>
+                            <Active>true</Active>
                             <Format>NTFS</Format>
-                            <Letter>C</Letter>
+                            <Label>boot</Label>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
-                            <Label>Windows 2008R2</Label>
+                        </ModifyPartition>
+                        <ModifyPartition wcm:action="add">
+                            <Format>NTFS</Format>
+                            <Label>{{.OSName}}</Label>
+                            <Letter>C</Letter>
+                            <Order>2</Order>
+                            <PartitionID>2</PartitionID>
                         </ModifyPartition>
                     </ModifyPartitions>
                     <DiskID>0</DiskID>
@@ -29,13 +40,12 @@
             </DiskConfiguration>
             <UserData>
                 <AcceptEula>true</AcceptEula>
-                <FullName>Vagrant Administrator</FullName>
-                <Organization>Vagrant Inc.</Organization>
-                <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
+                <FullName>{{.Username}}</FullName>
+                <Organization></Organization>
                 <ProductKey>
-                    <!-- Do not uncomment the Key element if you are using trial ISOs -->
-                    <!-- You must uncomment the Key element (and optionally insert your own key) if you are using retail or volume license ISOs -->
-                    <!--<Key>YC6KT-GKW9T-YTKYR-T4X34-R7VHC</Key>-->
+                    {{ if .ProductKey }}
+                    <Key>{{.ProductKey}}</Key>
+                    {{ end }}
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
@@ -43,14 +53,14 @@
                 <OSImage>
                     <InstallTo>
                         <DiskID>0</DiskID>
-                        <PartitionID>1</PartitionID>
+                        <PartitionID>2</PartitionID>
                     </InstallTo>
                     <WillShowUI>OnError</WillShowUI>
                     <InstallToAvailablePartition>false</InstallToAvailablePartition>
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows Server 2008 R2 SERVERSTANDARD</Value>
+                            <Value>{{.WindowsImageName}}</Value>
                         </MetaData>
                     </InstallFrom>
                 </OSImage>
@@ -76,19 +86,19 @@
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <UserAccounts>
                 <AdministratorPassword>
-                    <Value>vagrant</Value>
+                    <Value>{{.Password}}</Value>
                     <PlainText>true</PlainText>
                 </AdministratorPassword>
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
                         <Password>
-                            <Value>vagrant</Value>
+                            <Value>{{.Password}}</Value>
                             <PlainText>true</PlainText>
                         </Password>
                         <Description>Vagrant User</Description>
                         <DisplayName>vagrant</DisplayName>
                         <Group>administrators</Group>
-                        <Name>vagrant</Name>
+                        <Name>{{.Username}}</Name>
                     </LocalAccount>
                 </LocalAccounts>
             </UserAccounts>
@@ -96,13 +106,14 @@
                 <HideEULAPage>true</HideEULAPage>
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                 <NetworkLocation>Home</NetworkLocation>
+                <ProtectYourPC>1</ProtectYourPC>
             </OOBE>
             <AutoLogon>
                 <Password>
-                    <Value>vagrant</Value>
+                    <Value>{{.Password}}</Value>
                     <PlainText>true</PlainText>
                 </Password>
-                <Username>vagrant</Username>
+                <Username>{{.Username}}</Username>
                 <Enabled>true</Enabled>
             </AutoLogon>
             <FirstLogonCommands>
@@ -119,169 +130,117 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm quickconfig -q</CommandLine>
-                    <Description>winrm quickconfig -q</Description>
+                    <CommandLine>cmd.exe /c reg add "HKLM\System\CurrentControlSet\Control\Network\NewNetworkWindowOff"</CommandLine>
+                    <Description>Network prompt</Description>
                     <Order>3</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm quickconfig -transport:http</CommandLine>
-                    <Description>winrm quickconfig -transport:http</Description>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\fixnetwork.ps1</CommandLine>
+                    <Description>Fix public network</Description>
                     <Order>4</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config @{MaxTimeoutms="1800000"}</CommandLine>
-                    <Description>Win RM MaxTimoutms</Description>
-                    <Order>5</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/winrs @{MaxMemoryPerShellMB="800"}</CommandLine>
-                    <Description>Win RM MaxMemoryPerShellMB</Description>
-                    <Order>6</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/service @{AllowUnencrypted="true"}</CommandLine>
-                    <Description>Win RM AllowUnencrypted</Description>
-                    <Order>7</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/service/auth @{Basic="true"}</CommandLine>
-                    <Description>Win RM auth Basic</Description>
-                    <Order>8</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/client/auth @{Basic="true"}</CommandLine>
-                    <Description>Win RM client auth Basic</Description>
-                    <Order>9</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"} </CommandLine>
-                    <Description>Win RM listener Address/Port</Description>
-                    <Order>10</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c netsh advfirewall firewall set rule group="remote administration" new enable=yes </CommandLine>
-                    <Description>Win RM adv firewall enable</Description>
-                    <Order>11</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c netsh firewall add portopening TCP 5985 "Port 5985" </CommandLine>
-                    <Description>Win RM port open</Description>
-                    <Order>12</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c net stop winrm </CommandLine>
-                    <Description>Stop Win RM Service </Description>
-                    <Order>13</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c sc config winrm start= auto</CommandLine>
-                    <Description>Win RM Autostart</Description>
-                    <Order>14</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c net start winrm</CommandLine>
-                    <Description>Start Win RM Service</Description>
-                    <Order>15</Order>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v HideFileExt /t REG_DWORD /d 0 /f</CommandLine>
-                    <Order>16</Order>
+                    <Order>18</Order>
                     <Description>Show file extensions in Explorer</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\Console /v QuickEdit /t REG_DWORD /d 1 /f</CommandLine>
-                    <Order>17</Order>
+                    <Order>19</Order>
                     <Description>Enable QuickEdit mode</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v Start_ShowRun /t REG_DWORD /d 1 /f</CommandLine>
-                    <Order>18</Order>
+                    <Order>20</Order>
                     <Description>Show Run command in Start Menu</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v StartMenuAdminTools /t REG_DWORD /d 1 /f</CommandLine>
-                    <Order>19</Order>
+                    <Order>21</Order>
                     <Description>Show Administrative Tools in Start Menu</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateFileSizePercent /t REG_DWORD /d 0 /f</CommandLine>
-                    <Order>20</Order>
+                    <Order>22</Order>
                     <Description>Zero Hibernation File</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateEnabled /t REG_DWORD /d 0 /f</CommandLine>
-                    <Order>21</Order>
+                    <Order>23</Order>
                     <Description>Disable Hibernation Mode</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c wmic useraccount where "name='vagrant'" set PasswordExpires=FALSE</CommandLine>
-                    <Order>22</Order>
+                    <Order>24</Order>
                     <Description>Disable password expiration for vagrant user</Description>
                 </SynchronousCommand>
-                <!-- WITHOUT WINDOWS UPDATES -->
-                <!--
+                {{ if .WindowsUpdates }}
+                <!-- Fix high CPU utilization on Windows7 when installing updates -->
                 <SynchronousCommand wcm:action="add">
-					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
-					<Description>Install OpenSSH</Description>
-					<Order>99</Order>
-					<RequiresUserInput>true</RequiresUserInput>
-				</SynchronousCommand>
-                -->
-                <!-- END WITHOUT WINDOWS UPDATES -->
-                <!-- WITH WINDOWS UPDATES -->
+                    <CommandLine>cmd.exe /c a:\hotfix-KB3102810.bat</CommandLine>
+                    <Order>98</Order>
+                    <Description>KB3102810</Description>
+                </SynchronousCommand>
+                <!-- Include non-Windows MS updates -->
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
-                    <Order>98</Order>
+                    <Order>99</Order>
                     <Description>Enable Microsoft Updates</Description>
                 </SynchronousCommand>
+                <!-- Install Windows Updates, win-updates.ps1 will start SSH/WinRM when done -->
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1 -MaxUpdatesPerCycle 30</CommandLine>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1 -Communicator {{.Communicator}} -MaxUpdatesPerCycle 100 -RestartRequired 1</CommandLine>
                     <Description>Install Windows Updates</Description>
                     <Order>100</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
-                <!-- END WITH WINDOWS UPDATES -->
+                {{ else }}
+                <!-- Skipping Windows Updates, directly start SSH/WinRM -->
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\winrm.ps1</CommandLine>
+                    <Description>Configure and start WinRM</Description>
+                    <Order>99</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                {{ if eq .Communicator "ssh" }}
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
+                    <Description>Install OpenSSH</Description>
+                    <Order>100</Order>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                {{ end }}
+                {{ end }}
             </FirstLogonCommands>
             <ShowWindowsLive>false</ShowWindowsLive>
         </component>
     </settings>
     <settings pass="specialize">
-        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+        <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <OEMInformation>
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
-            <!-- Rename computer here. -->
-            <ComputerName>vagrant-2008R2</ComputerName>
+            <ComputerName>{{ SafeComputerName ( printf "vagrant-%s" ( Replace .OSName "windows" "win" -1 )) }}</ComputerName>
             <TimeZone>Pacific Standard Time</TimeZone>
             <RegisteredOwner/>
         </component>
+        <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+            <SkipAutoActivation>true</SkipAutoActivation>
+        </component>
+        {{ if Contains .OSName "windows20" }}
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <DoNotOpenServerManagerAtLogon>true</DoNotOpenServerManagerAtLogon>
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-IE-ESC" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-            <!--  Disable IE ESC.  -->
             <IEHardenAdmin>false</IEHardenAdmin>
             <IEHardenUser>false</IEHardenUser>
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-OutOfBoxExperience" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <DoNotOpenInitialConfigurationTasksAtLogon>true</DoNotOpenInitialConfigurationTasksAtLogon>
         </component>
-        <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-            <SkipAutoActivation>true</SkipAutoActivation>
-        </component>
+        {{ end }}
     </settings>
-    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows server 2008 r2 serverdatacenter.clg"/>
+    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows 7 ENTERPRISE.clg"/>
 </unattend>
