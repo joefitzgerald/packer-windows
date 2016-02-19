@@ -80,8 +80,13 @@ function Run-Interactive {
 }
 
 # Download latest nightly build of docker engine
-$ExeFile = "C:\Users\vagrant\Downloads\docker.exe"
-wget -o $ExeFile https://master.dockerproject.org/windows/amd64/docker.exe
-Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV -DockerPath $ExeFile"
+$wantNightlyDocker = $false
+if ($wantNightlyDocker) {
+  $ExeFile = "C:\Users\vagrant\Downloads\docker.exe"
+  wget -o $ExeFile https://master.dockerproject.org/windows/amd64/docker.exe
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV -DockerPath $ExeFile"
+} else {
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV"
+}
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
