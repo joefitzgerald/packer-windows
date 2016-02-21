@@ -12,9 +12,13 @@ winrm set winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
 
 Write-Host "Install Containers"
 Install-WindowsFeature -Name Containers
-Write-Host "Install Hyper-V"
-Install-WindowsFeature -Name Hyper-V
-Install-WindowsFeature Hyper-V-Tools
+if (Test-Path a:\oracle-cert.cer) {
+  Write-Host "Skipping installation of Hyper-V in VirtualBox basebox"
+} else {
+  Write-Host "Install Hyper-V"
+  Install-WindowsFeature -Name Hyper-V
+  Install-WindowsFeature Hyper-V-Tools
+}
 
 Stop-Service winrm
 . sc.exe config winrm start= delayed-auto

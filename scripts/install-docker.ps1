@@ -79,14 +79,22 @@ function Run-Interactive {
   & schtasks /Delete /F /TN InstallContainerHost
 }
 
+if (Test-Path a:\oracle-cert.cer) {
+  Write-Host "Skip installation of Hyper-V on VirtualBox Container Host"
+  $installOptions = ""
+} else {
+  Write-Host "Add installation of Hyper-V on Container Host"
+  $installOptions = "-HyperV"
+}
+
 # Download latest nightly build of docker engine
 $wantNightlyDocker = $false
 if ($wantNightlyDocker) {
   $ExeFile = "C:\Users\vagrant\Downloads\docker.exe"
   wget -o $ExeFile https://master.dockerproject.org/windows/amd64/docker.exe
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV -DockerPath $ExeFile"
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions -DockerPath $ExeFile"
 } else {
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV"
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions"
 }
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
