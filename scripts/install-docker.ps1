@@ -1,7 +1,8 @@
 Sleep 2
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup
-wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
+# wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
+wget -uri https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/84531c51640b27961f4a8789b5b538cb276ae343/windows-server-container-tools/Install-ContainerHost/Install-ContainerHost.ps1 -OutFile C:\Install-ContainerHost.ps1
 
 # create a Task Scheduler task which is also able to run in battery mode due
 # to host notebooks working in battery mode.
