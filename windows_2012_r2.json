@@ -11,7 +11,7 @@
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /generalize /oobe /quiet /shutdown /unattend:a:/unattend.xml",
       "guest_os_type": "windows8srv-64",
       "disk_size": 61440,
       "vnc_port_min": 5900,
@@ -22,6 +22,7 @@
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
+        "./scripts/unattend.xml",
         "./scripts/win-updates.ps1"
       ],
       "vmx_data": {
@@ -43,7 +44,7 @@
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /generalize /oobe /quiet /shutdown /unattend:a:/unattend.xml",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
       "disk_size": 61440,
@@ -52,6 +53,7 @@
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
+        "./scripts/unattend.xml",
         "./scripts/win-updates.ps1",
         "./scripts/oracle-cert.cer"
       ],

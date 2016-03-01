@@ -5,11 +5,11 @@
             <SetupUILanguage>
                 <UILanguage>en-US</UILanguage>
             </SetupUILanguage>
-            <InputLocale>de-DE</InputLocale>
-            <SystemLocale>de-DE</SystemLocale>
+            <InputLocale>en-US</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
             <UILanguage>en-US</UILanguage>
             <UILanguageFallback>en-US</UILanguageFallback>
-            <UserLocale>de-DE</UserLocale>
+            <UserLocale>en-US</UserLocale>
         </component>
         <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <DiskConfiguration>
@@ -80,7 +80,7 @@
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
             <ComputerName>vagrant-2016</ComputerName>
-            <TimeZone>W. Europe Standard Time</TimeZone>
+            <TimeZone>Pacific Standard Time</TimeZone>
             <RegisteredOwner/>
         </component>
         <component name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">

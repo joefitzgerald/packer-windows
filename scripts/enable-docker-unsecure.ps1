@@ -6,9 +6,15 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "DockerUnsecure2375"})) {
 }
 
 Write-Host "Enabling Docker to listen on unsecure port 2375"
-cp C:\programdata\docker\runDockerDaemon.cmd C:\programdata\docker\runDockerDaemon.cmd.bak
-cat C:\programdata\docker\runDockerDaemon.cmd.bak | %{$_ -replace '^docker daemon -D -b "Virtual Switch"$','docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2375'} | Set-Content C:\programdata\docker\runDockerDaemon.cmd
+cp C:\ProgramData\docker\runDockerDaemon.cmd C:\ProgramData\docker\runDockerDaemon.cmd.bak
+cat C:\ProgramData\docker\runDockerDaemon.cmd.bak | %{$_ -replace '^docker daemon -D -b "Virtual Switch"$','docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2375'} | Set-Content C:\ProgramData\docker\runDockerDaemon.cmd
 
-Write-Host "Restarting Docker"
+Write-Host "Stopping Docker"
 Stop-Service docker
-Start-Service docker
+
+# Do not restart Docker as it creates the key.json with an unique ID
+# This should not exist in the Vagrant basebox so you can spin up
+# multiple Vagrant boxes for a Docker swarm etc.
+
+Write-Host "Removing key.json to recreate key.json on first vagrant up"
+rm C:\ProgramData\docker\config\key.json
