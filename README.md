@@ -42,6 +42,8 @@ directory which you can then `vagrant add` and `vagrant up`.
 The following Windows versions are known to work (built with VMware Fusion 6.0.4
 and VirtualBox 5.0.12):
 
+ * Windows Nano
+ * Windows 2016
  * Windows 2012 R2
  * Windows 2012 R2 Core
  * Windows 2012
@@ -59,6 +61,12 @@ of this repo directory with no arguments, i.e. `inductor`.
 All Windows Server versions are defaulted to the Server Standard edition. You
 can modify this by editing the osregistry.json file, changing the
 `windows_image_name` value (e.g. to Windows Server 2012 R2 SERVERDATACENTER).
+
+#### Windows Nano
+
+We support building a Nano Vagrant box, however there are some caveats and
+interesting workarounds in the automation. For a primer of the issues you
+should read [A Packer template for Windows Nano server weighing 300MB](http://www.hurryupandwait.io/blog/a-packer-template-for-windows-nano-server-weighing-300mb).
 
 ### Product Keys
 
@@ -145,9 +153,3 @@ packer build packer.json
 ### Contributing
 
 Pull requests welcomed.
-
-### Acknowledgements
-
-[CloudBees](http://www.cloudbees.com) is providing a hosted [Jenkins](http://jenkins-ci.org/) master through their CloudBees FOSS program. We also use their [On-Premise Executor](https://developer.cloudbees.com/bin/view/DEV/On-Premise+Executors) feature to connect a physical [Mac Mini Server](http://www.apple.com/mac-mini/server/) running VMware Fusion.
-
-![Powered By CloudBees](http://www.cloudbees.com/sites/default/files/Button-Powered-by-CB.png "Powered By CloudBees")![Built On DEV@Cloud](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png "Built On DEV@Cloud")

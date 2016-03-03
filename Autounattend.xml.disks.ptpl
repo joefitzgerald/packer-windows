@@ -1,4 +1,3 @@
-{{define "disks"}}
 <DiskConfiguration>
     <Disk wcm:action="add">
         <CreatePartitions>
@@ -9,11 +8,6 @@
             </CreatePartition>
             <CreatePartition wcm:action="add">
                 <Order>2</Order>
-                <Type>Primary</Type>
-                <Size>15360</Size>
-            </CreatePartition>
-            <CreatePartition wcm:action="add">
-                <Order>3</Order>
                 <Type>Primary</Type>
                 <Extend>true</Extend>
             </CreatePartition>
@@ -28,35 +22,30 @@
             </ModifyPartition>
             <ModifyPartition wcm:action="add">
                 <Format>NTFS</Format>
-                <Label>nano</Label>
-                <Letter>E</Letter>
+                <Label>{{.OSName}}</Label>
+                <Letter>C</Letter>
                 <Order>2</Order>
                 <PartitionID>2</PartitionID>
-            </ModifyPartition>
-            <ModifyPartition wcm:action="add">
-                <Format>NTFS</Format>
-                <Label>2016</Label>
-                <Letter>C</Letter>
-                <Order>3</Order>
-                <PartitionID>3</PartitionID>
             </ModifyPartition>
         </ModifyPartitions>
         <DiskID>0</DiskID>
         <WillWipeDisk>true</WillWipeDisk>
     </Disk>
+    <WillShowUI>OnError</WillShowUI>
 </DiskConfiguration>
 <ImageInstall>
     <OSImage>
+        <InstallTo>
+            <DiskID>0</DiskID>
+            <PartitionID>2</PartitionID>
+        </InstallTo>
+        <WillShowUI>OnError</WillShowUI>
+        <InstallToAvailablePartition>false</InstallToAvailablePartition>
         <InstallFrom>
             <MetaData wcm:action="add">
-                <Key>/IMAGE/NAME </Key>
+                <Key>/IMAGE/NAME</Key>
                 <Value>{{.WindowsImageName}}</Value>
             </MetaData>
         </InstallFrom>
-        <InstallTo>
-            <DiskID>0</DiskID>
-            <PartitionID>3</PartitionID>
-        </InstallTo>
     </OSImage>
 </ImageInstall>
-{{end}}
