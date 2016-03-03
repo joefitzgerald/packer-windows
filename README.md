@@ -11,7 +11,6 @@ Some of my enhancements are:
 * Support of fullscreen Retina display on a MacBook Pro.
 * WinRM, no more OpenSSH
 * PowerShell attached to taskbar with new features enabled
-* German keyboard layout and timezone
 
 ### Packer Version
 
