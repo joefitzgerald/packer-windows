@@ -51,7 +51,7 @@ function Run-Interactive {
   <Actions Context="Author">
     <Exec>
       <Command>powershell.exe</Command>
-      <Arguments>-Command $commandline</Arguments>
+      <Arguments>-Command $commandline ; sleep 15</Arguments>
     </Exec>
   </Actions>
 </Task>
@@ -76,6 +76,16 @@ function Run-Interactive {
     Write-Host "Scheduled Task InstallContainerHost '$commandline' finished"
   }
 
+  cat C:\progress.txt
+
+  $halt = 0
+  if ($halt) {
+    Write-Host "Delete me to continue" | Out-File -FilePath $env:USERPROFILE\Desktop\deleteme.txt
+    Write-Host "Pausing until $env:USERPROFILE\Desktop\deleteme.txt gets deleted"
+    do {
+      Start-Sleep -Seconds 5
+    } while (Test-Path $env:USERPROFILE\Desktop\deleteme.txt)
+  }
   & schtasks /Delete /F /TN InstallContainerHost
 }
 
@@ -92,9 +102,9 @@ $wantNightlyDocker = $false
 if ($wantNightlyDocker) {
   $ExeFile = "C:\Users\vagrant\Downloads\docker.exe"
   wget -o $ExeFile https://master.dockerproject.org/windows/amd64/docker.exe
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions -DockerPath $ExeFile"
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions -DockerPath $ExeFile | Tee-Object -FilePath C:\progress.txt"
 } else {
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions"
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions | Tee-Object -FilePath C:\progress.txt"
 }
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
