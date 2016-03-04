@@ -111,4 +111,14 @@ if ($installOptions) {
   Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -SkipDocker | Tee-Object -FilePath C:\progress.txt"
 }
 
+# tag the base images to latest if the tag got lost
+if ("$(docker images windowsservercore:latest | wc -l)" -eq "1") {
+  docker tag windowsservercore:10.0.10586.0 windowsservercore:latest
+}
+if ($installOptions) {
+  if ("$(docker images nanoserver:latest | wc -l)" -eq "1") {
+    docker tag nanoserver:10.0.10586.0 nanoserver:latest
+  }
+}
+
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
