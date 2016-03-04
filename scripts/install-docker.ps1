@@ -106,5 +106,9 @@ if ($wantNightlyDocker) {
 } else {
   Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions | Tee-Object -FilePath C:\progress.txt"
 }
+if ($installOptions) {
+  # install the windowsservercore image as well (w/o the -HyperV switch)
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -SkipDocker | Tee-Object -FilePath C:\progress.txt"
+}
 
 # https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
