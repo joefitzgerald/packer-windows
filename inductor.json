@@ -3,7 +3,12 @@
     "gui": true,
     "windows_updates": true,
     "communicator": "winrm",
-    "out_dir": "./out"
+    "out_dir": "./out",
+    "username": "vagrant",
+    "password": "vagrant",
+    "ram": 2048,
+    "cpu": 2,
+    "disk_size": 61400
   },
   "operating_systems": {
     "windows10": {
