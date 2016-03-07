@@ -6,18 +6,18 @@ This repository contains Windows templates that can be used to create boxes for
 Vagrant using Packer ([Website](http://www.packer.io))
 ([Github](http://github.com/mitchellh/packer)).
 
-This repo began by borrowing bits from the VeeWee Windows templates (https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were
+This repo began by borrowing bits from the [VeeWee Windows templates](https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were
 made to work with Packer and the VMware Fusion / VirtualBox providers for Packer
 and Vagrant.
 
 ### Quick Start
 
 This repository contains the required meta-data and scripts for you to
-successfully build a new Windows VM from an ISO. Before beginning lets ensure
+successfully build a new Windows VM from an ISO. Before beginning ensure
 you have the required tools installed on your workstation:
 
 1. [VirtualBox 5.0.12+](https://www.virtualbox.org/wiki/Downloads) (or VMWare)
-2. [Golang runtime](https://golang.org/dl/)
+2. [Golang 1.6+](https://golang.org/dl/)
 3. [Packer 0.8.6+](https://www.packer.io/downloads.html)
 4. [Inductor latest](https://github.com/joefitzgerald/inductor)
 
@@ -27,14 +27,15 @@ now.
 Lets actually run a build which involves two command line tools: inductor
 and packer. Inductor is a tool which works with the metadata in this repository
 to build the proper packer.json, Autounattend.xml, and Vagrantfile for Packer.
-These files feed into Packer to produce a fully functioning Windows Vagrant box.
+All output produced is placed in the ./out directory. These files feed into
+Packer to produce a fully functioning Windows Vagrant box.
 
 1. Clone this repository to your workstation
 2. cd to packer-windows
-3. Run inductor with the OS you want, e.g. `inductor windows10`
-4. Run packer: `packer build -only=virtualbox-iso packer.json`
+3. Run inductor with the Windows version you want, e.g. `inductor windows10`
+4. Run packer: `cd out && packer build -only=virtualbox-iso packer.json`
 
-Once Packer completes you should have a new Vagrant box file in the current
+Once Packer completes you will have a new Vagrant box file in the ./out
 directory which you can then `vagrant add` and `vagrant up`.
 
 ### Windows Versions
@@ -59,7 +60,7 @@ of this repo directory with no arguments, i.e. `inductor`.
 ### Windows Editions
 
 All Windows Server versions are defaulted to the Server Standard edition. You
-can modify this by editing the osregistry.json file, changing the
+can modify this by editing the inductor.json file, changing the
 `windows_image_name` value (e.g. to Windows Server 2012 R2 SERVERDATACENTER).
 
 #### Windows Nano
@@ -70,15 +71,15 @@ should read [A Packer template for Windows Nano server weighing 300MB](http://ww
 
 ### Product Keys
 
-The Autounattned.xml.tpl is configured to work correctly with trial ISOs (which
-will be automatically downloaded and cached for you the first time you perform
-a `packer build`). If you would like to use retail or volume license ISOs, there
-are a few ways to do that.
+The Autounattned.xml.template is configured to work correctly with trial ISOs
+which will be automatically downloaded and cached for you the first time you
+perform a `packer build`. If you would like to use retail or volume license
+ISOs, there are a few ways to do that.
 
-1. Create your own OS registry.json file providing the proper ISO URL, checksum,
-etc. This is currently the recommended approach.
+1. Create your own OS inductor.json configuration file providing the proper
+ISO URL, checksum, etc.
 2. Use the inductor command line `--productkey` flag.
-3. Create your own Autounattend.xml.tpl and hardcode the values.
+3. Create your own Autounattend.xml.template and hardcode the values.
 
 If you are going to configure your VM as a KMS client, you can use the product
 keys at http://technet.microsoft.com/en-us/library/jj612867.aspx.
@@ -112,7 +113,7 @@ The generated box files include a Vagrantfile template that is suitable for
 use with Vagrant 1.6.2+, which includes native support for Windows and uses
 WinRM to communicate with the box.
 
-### Getting Started
+### Customization
 
 Trial versions of Windows 2008 R2 / 2012 / 2012 R2 are used by default. These
 images can be used for 180 days without activation.
@@ -120,7 +121,7 @@ images can be used for 180 days without activation.
 Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or
 [TechNet](http://technet.microsoft.com/) – you can download retail or volume
 license ISO images and place them in the `iso` directory. If you do, you need
-to edit the osregistry.json file with `iso_url` (e.g. `./iso/<path to your iso>.iso`)
+to edit the inductor.json file with `iso_url` (e.g. `./iso/<path to your iso>.iso`)
 and `iso_checksum` (e.g. `<the md5 of your iso>`) to the Packer command. For
 example, to use the Windows 2008 R2 (With SP1) retail ISO:
 
@@ -130,24 +131,27 @@ MD5 hash of `8dcde01d0da526100869e2457aafb7ca` (Microsoft lists a SHA1 hash of
 `d3fd7bf85ee1d5bdd72de5b2c69a7b470733cd0a`, which is equivalent).
 3. Clone this repo to a local directory
 4. Move `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` to the `iso` directory
-5. Add thw following entry to the osregistry.json:
+5. Add thw following entry to the inductor.json:
 
 ```json
 "windows2008r2sp1": {
   "iso_url": "./iso/en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso",
   "iso_checksum_type": "sha1",
   "iso_checksum": "8dcde01d0da526100869e2457aafb7ca",
-  "windows_image_name": "Windows Server 2008 R2 SERVERSTANDARD",
   "virtualbox_guest_os_type": "Windows2008_64",
-  "vmware_guest_os_type": "windows7srv-64"
+  "vmware_guest_os_type": "windows7srv-64",
+  "editions": {
+    "enterprise": {
+      "windows_image_name": "Windows Server 2008 R2 SERVERSTANDARD"
+    }
+  }
 },
 ```
 
-Execute inductor to product the updated Packer input files and execute Packer:
+Execute inductor to produce the updated Packer input files and execute Packer:
 
 ```
-inductor windows2008r2sp1
-packer build packer.json
+$ inductor windows2008r2sp1 && (cd out && packer build packer.json)
 ```
 
 ### Contributing
