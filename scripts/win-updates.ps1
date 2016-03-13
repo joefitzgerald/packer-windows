@@ -1,7 +1,8 @@
 param($global:RestartRequired=0,
         $global:MoreUpdates=0,
         $global:MaxCycles=5,
-        $MaxUpdatesPerCycle=500)
+        $MaxUpdatesPerCycle=500,
+        $Communicator='winrm')
 
 $Logfile = "C:\Windows\Temp\win-updates.log"
 
@@ -10,6 +11,14 @@ function LogWrite {
    $now = Get-Date -format s
    Add-Content $Logfile -value "$now $logstring"
    Write-Host $logstring
+}
+
+function StartCommunicator {
+    # We always configure WinRM, but we only start SSH if Packer uses it
+    Invoke-Expression "a:\winrm.ps1"
+    if ($Communicator -eq 'ssh') {
+        Invoke-Expression "a:\openssh.ps1 -AutoStart"
+    }
 }
 
 function Check-ContinueRestartOrEnd() {
@@ -30,17 +39,17 @@ function Check-ContinueRestartOrEnd() {
                 Install-WindowsUpdates
             } elseif ($script:Cycles -gt $global:MaxCycles) {
                 LogWrite "Exceeded Cycle Count - Stopping"
-                Invoke-Expression "a:\openssh.ps1 -AutoStart"
+                StartCommunicator
             } else {
                 LogWrite "Done Installing Windows Updates"
-                Invoke-Expression "a:\openssh.ps1 -AutoStart"
+                StartCommunicator
             }
         }
         1 {
             $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
             if (-not $prop) {
                 LogWrite "Restart Registry Entry Does Not Exist - Creating It"
-                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File $($script:ScriptPath) -MaxUpdatesPerCycle $($MaxUpdatesPerCycle)"
+                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File $($script:ScriptPath) -MaxUpdatesPerCycle $($MaxUpdatesPerCycle) -Communicator $($Communicator)"
             } else {
                 LogWrite "Restart Registry Entry Exists Already"
             }
@@ -125,7 +134,7 @@ function Install-WindowsUpdates() {
         LogWrite 'No updates available to install...'
         $global:MoreUpdates=0
         $global:RestartRequired=0
-        Invoke-Expression "a:\openssh.ps1 -AutoStart"
+        StartCommunicator
         break
     }
 
@@ -230,4 +239,3 @@ if ($global:MoreUpdates -eq 1) {
 } else {
     Check-ContinueRestartOrEnd
 }
-

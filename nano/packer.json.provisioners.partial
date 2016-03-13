@@ -1,0 +1,18 @@
+{
+  "type": "file",
+  "source": "./scripts/nano/SetupComplete.cmd",
+  "destination": "E:/Windows/setup/scripts/SetupComplete.cmd"
+},
+{
+  "type": "file",
+  "source": "./scripts/nano/cleanup.ps1",
+  "destination": "E:/Windows/setup/scripts/cleanup.ps1"
+},
+{
+  "type": "powershell",
+  "script": "./scripts/nano/create.ps1"
+},
+{
+  "type": "windows-restart",
+  "restart_check_command": "echo 'Computer has restarted'"
+}

@@ -1,4 +1,8 @@
 ## Unreleased
+* Replaced OS specific configs with [inductor](https://github.com/joefitzgerald/inductor)
+* Default Packer communicator to WinRM
+* Build of Win7 fails because it's unable to build .NET assemblies (#150)
+* Added a script for downloading and installing KB3102810 for Windows 7 (#194)
 
 ## v1.25 (August 13th, 2015)
 
