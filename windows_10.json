@@ -59,6 +59,7 @@
         "./scripts/fixnetwork.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
+        "./scripts/set-powerplan.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/oracle-cert.cer"
