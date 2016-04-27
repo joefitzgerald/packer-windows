@@ -123,9 +123,9 @@
     }
   ],
   "variables": {
-    "iso_url": "https://aka.ms/tp4/serveriso",
+    "iso_url": "https://aka.ms/tp5/serveriso",
     "iso_checksum_type": "md5",
-    "iso_checksum": "935ba77651210bd1bd71a114c92b0caa",
+    "iso_checksum": "6417ba460f95bd91ded05dfacd553783",
     "autounattend": "./answer_files/2016/Autounattend.xml",
     "product_key": "<tab>"
   }
