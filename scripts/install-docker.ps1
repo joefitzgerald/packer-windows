@@ -1,7 +1,10 @@
 Sleep 2
 
-# https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup
-wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
+# https://msdn.microsoft.com/virtualization/windowscontainers/deployment/deployment
+wget https://aka.ms/tp5/Update-Container-Host -OutFile c:\update-containerhost.ps1 -UseBasicParsing
+
+Install-PackageProvider ContainerImage -Force
+
 
 # create a Task Scheduler task which is also able to run in battery mode due
 # to host notebooks working in battery mode.
@@ -97,28 +100,13 @@ if (Test-Path a:\oracle-cert.cer) {
   $installOptions = "-HyperV"
 }
 
-# Download latest nightly build of docker engine
-$wantNightlyDocker = $false
-if ($wantNightlyDocker) {
-  $ExeFile = "C:\Users\vagrant\Downloads\docker.exe"
-  wget -o $ExeFile https://master.dockerproject.org/windows/amd64/docker.exe
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions -DockerPath $ExeFile | Tee-Object -FilePath C:\progress.txt"
+Run-Interactive -commandline "C:\update-containerhost.ps1 | Tee-Object -FilePath C:\progress.txt"
+
+Run-Interactive -commandline "Install-ContainerImage -Name WindowsServerCore | Tee-Object -FilePath C:\progress.txt"
+if (Test-Path a:\oracle-cert.cer) {
+  Write-Host "Skipping NanoServer container image"
 } else {
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 $installOptions | Tee-Object -FilePath C:\progress.txt"
-}
-if ($installOptions) {
-  # install the windowsservercore image as well (w/o the -HyperV switch)
-  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -SkipDocker | Tee-Object -FilePath C:\progress.txt"
+  Run-Interactive -commandline "Install-ContainerImage -Name NanoServer | Tee-Object -FilePath C:\progress.txt"
 }
 
-# tag the base images to latest if the tag got lost
-if ("$(docker images windowsservercore:latest | wc -l)" -eq "1") {
-  docker tag windowsservercore:10.0.10586.0 windowsservercore:latest
-}
-if ($installOptions) {
-  if ("$(docker images nanoserver:latest | wc -l)" -eq "1") {
-    docker tag nanoserver:10.0.10586.0 nanoserver:latest
-  }
-}
-
-# https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
+restart-service docker
