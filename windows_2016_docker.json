@@ -102,6 +102,7 @@
       "type": "powershell",
       "scripts": [
         "./scripts/install-docker.ps1",
+        "./scripts/patch-boot-time-for-containers.ps1",
         "./scripts/enable-docker-insecure.ps1"
       ]
     },
