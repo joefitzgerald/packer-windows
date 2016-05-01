@@ -14,7 +14,7 @@ Some of my enhancements are:
 
 ### Packer Version
 
-[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.8.6` or greater is required.
+[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.10.0` or greater is required.
 
 ### Windows Versions
 
