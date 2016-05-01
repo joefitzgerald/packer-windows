@@ -101,9 +101,11 @@
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/install-docker.ps1",
-        "./scripts/patch-boot-time-for-containers.ps1",
-        "./scripts/enable-docker-insecure.ps1"
+        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/patch-boot-time-for-containers.ps1",
+        "./scripts/docker/enable-docker-insecure.ps1",
+        "./scripts/docker/add-docker-group.ps1",
+        "./scripts/docker/remove-docker-key-json.ps1"
       ]
     },
     {

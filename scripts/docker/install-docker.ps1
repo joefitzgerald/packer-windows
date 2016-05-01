@@ -5,7 +5,6 @@ wget https://aka.ms/tp5/Update-Container-Host -OutFile c:\update-containerhost.p
 
 Install-PackageProvider ContainerImage -Force
 
-
 # create a Task Scheduler task which is also able to run in battery mode due
 # to host notebooks working in battery mode.
 
