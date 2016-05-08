@@ -1,7 +1,5 @@
-Sleep 2
-
 # https://msdn.microsoft.com/virtualization/windowscontainers/deployment/deployment
-wget https://aka.ms/tp5/Update-Container-Host -OutFile c:\update-containerhost.ps1 -UseBasicParsing
+wget https://aka.ms/tp5/Install-ContainerHost -OutFile c:\Install-ContainerHost.ps1 -UseBasicParsing
 
 Install-PackageProvider ContainerImage -Force
 
@@ -99,13 +97,12 @@ if (Test-Path a:\oracle-cert.cer) {
   $installOptions = "-HyperV"
 }
 
-Run-Interactive -commandline "C:\update-containerhost.ps1 | Tee-Object -FilePath C:\progress.txt"
-
-Run-Interactive -commandline "Install-ContainerImage -Name WindowsServerCore | Tee-Object -FilePath C:\progress.txt"
 if (Test-Path a:\oracle-cert.cer) {
   Write-Host "Skipping NanoServer container image"
 } else {
-  Run-Interactive -commandline "Install-ContainerImage -Name NanoServer | Tee-Object -FilePath C:\progress.txt"
+  Run-Interactive -commandline "C:\Install-ContainerHost.ps1 -HyperV | Tee-Object -FilePath C:\progress.txt"
 }
+
+Run-Interactive -commandline "C:\Install-ContainerHost.ps1 | Tee-Object -FilePath C:\progress.txt"
 
 restart-service docker
