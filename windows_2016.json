@@ -54,7 +54,7 @@
         "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
-        "./scripts/2016/enable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/oracle-cert.cer"
