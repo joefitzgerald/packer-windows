@@ -111,6 +111,7 @@
       "scripts": [
         "./scripts/set-winrm-automatic.bat",
         "./scripts/uac-enable.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/compact.bat"
       ]
     }
