@@ -1,6 +1,34 @@
 {
   "builders": [
     {
+      "vm_name":"WindowsServer2016TP5",
+      "type": "hyperv-iso",
+      "disk_size": 41440,
+      "floppy_files": [],
+      "http_directory": "./windows/common/http/",
+      "boot_wait": "0s",
+      "boot_command": [
+        "a<enter><wait>a<enter><wait>a<enter><wait>a<enter>"
+      ],
+      "headless": false,
+      "guest_additions_mode":"disable",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "secondary_iso_images": [ 
+         "./windowsserver2016answer.iso"
+      ], 
+      "communicator":"winrm",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout" : "4h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",  
+      "ram_size_mb": 2048,
+      "cpu": 2,
+      "switch_name":"{{user `hyperv_switchname`}}",
+      "enable_secure_boot":true
+    },
+    {
       "type": "vmware-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -110,6 +138,7 @@
     "iso_url": "https://aka.ms/tp5/serveriso",
     "iso_checksum_type": "md5",
     "iso_checksum": "6417ba460f95bd91ded05dfacd553783",
-    "autounattend": "./answer_files/2016/Autounattend.xml"
+    "autounattend": "./answer_files/2016/Autounattend.xml",
+    "hyperv_switchname": "{{env `hyperv_switchname`}}"
   }
 }
