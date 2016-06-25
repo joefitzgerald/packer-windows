@@ -39,6 +39,15 @@ The `Autounattend.xml` files are configured to work correctly with trial ISOs (w
 
 If you are going to configure your VM as a KMS client, you can use the product keys at http://technet.microsoft.com/en-us/library/jj612867.aspx. These are the default values used in the `Key` element.
 
+### Using existing ISOs
+If you have already downloaded the ISOs or would like to override them, set these additional variables:
+- iso_url - path to existing ISO
+- iso_checksum - md5sum of existing ISO (if different)
+
+```
+packer build -var 'iso_url=./server2016tp5.iso' .\windows_2016.json
+```
+
 ### Windows Updates
 
 The scripts in this repo will install all Windows updates – by default – during Windows Setup. This is a _very_ time consuming process, depending on the age of the OS and the quantity of updates released since the last service pack. You might want to do yourself a favor during development and disable this functionality, by commenting out the `WITH WINDOWS UPDATES` section and uncommenting the `WITHOUT WINDOWS UPDATES` section in `Autounattend.xml`:
@@ -97,6 +106,8 @@ Then run Packer:
 packer build -var 'hyperv_switchname=Wifi' .\windows_2016.json
 ```
 Be sure to set hyperv_switchname to an external Hyper-V switch
+
+
 
 
 ### Using .box Files With Vagrant
