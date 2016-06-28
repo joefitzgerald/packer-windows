@@ -134,7 +134,6 @@
       "type": "powershell",
       "scripts": [
         "./scripts/docker/install-docker.ps1",
-        "./scripts/docker/patch-boot-time-for-containers.ps1",
         "./scripts/docker/enable-docker-insecure.ps1",
         "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/remove-docker-key-json.ps1"
@@ -143,7 +142,6 @@
     {
       "type": "windows-shell",
       "scripts": [
-        "./scripts/set-winrm-automatic.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/compact.bat"
