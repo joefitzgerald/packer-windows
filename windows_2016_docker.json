@@ -134,9 +134,9 @@
       "type": "powershell",
       "execute_command": "powershell \"& { {{.Vars}}{{.Path}}; exit $LastExitCode}\"",
       "scripts": [
+        "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/install-docker.ps1",
         "./scripts/docker/enable-docker-insecure.ps1",
-        "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/remove-docker-key-json.ps1"
       ]
     },
