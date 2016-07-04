@@ -13,13 +13,12 @@ winrm set winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
 Write-Host "Install Containers"
 Install-WindowsFeature -Name Containers
 
-# TODO: Better option - use msinfo32 or coreinfo to see if virtualization instructions are supported
-if (Test-Path a:\oracle-cert.cer) {
-  Write-Host "Skipping installation of Hyper-V in VirtualBox basebox"
-} else {
+if ((GWMI Win32_Processor).VirtualizationFirmwareEnabled[0] -and (GWMI Win32_Processor).SecondLevelAddressTranslationExtensions[0]) {
   Write-Host "Install Hyper-V"
   Install-WindowsFeature -Name Hyper-V
   Install-WindowsFeature Hyper-V-Tools
+} else {
+  Write-Host "Skipping installation of Hyper-V"
 }
 
 Stop-Service winrm
