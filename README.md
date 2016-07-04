@@ -96,11 +96,6 @@ If you are running Windows 10 Insider Preview, then you can also use these packe
 
 This requires @taliesens [fork of Packer](https://github.com/mitchellh/packer/pull/2576) with Hyper-V support. The linked PR also has binaries available ex: https://dl.bintray.com/taliesins/Packer/Packer.1.0.0.104-HyperV.nupkg
 
-To use these, first build the ISOs:
-```
-.\build_hyperv_isos.ps1
-```
-
 Then run Packer:
 ```
 packer build -var 'hyperv_switchname=Wifi' .\windows_2016.json
