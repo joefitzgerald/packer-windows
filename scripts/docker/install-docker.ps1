@@ -86,7 +86,7 @@ function Run-Interactive {
 Write-Host "Installing WindowsServerCore container image..."
 Run-Interactive -commandline "Install-ContainerImage -Name WindowsServerCore"
 
-if ((get-windowsfeature Hyper-V | where installed).count)
+if ((get-windowsfeature Hyper-V | where installed).count) {
   Write-Host "Installing NanoServer container image..."
   Run-Interactive -commandline "Install-ContainerImage -Name NanoServer"
 } else {
