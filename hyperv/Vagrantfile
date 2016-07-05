@@ -1,0 +1,48 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "windows_10"
+  config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
+
+  config.vm.communicator = "winrm"
+
+  config.winrm.username = "vagrant"
+  config.winrm.password = "vagrant"
+
+  config.vm.guest = :windows
+  config.windows.halt_timeout = 15
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "..", "/vagrant"
+
+  config.vm.provision "shell", path: "scripts/install-chocolatey.ps1", privileged: false
+  config.vm.provision "shell", path: "scripts/install-hyperv.ps1", privileged: false
+  config.vm.provision "reload"
+  config.vm.provision "shell", path: "scripts/install-packer.ps1", privileged: false
+  config.vm.provision "shell", path: "scripts/install-vagrant.ps1", privileged: false
+
+  ["vmware_fusion", "vmware_workstation"].each do |provider|
+    config.vm.provider provider do |v, override|
+      v.gui = true
+    end
+  end
+
+  config.vm.provider "vmware_fusion" do |v|
+    v.vmx["gui.fitguestusingnativedisplayresolution"] = "TRUE"
+    v.vmx["mks.enable3d"] = "TRUE"
+    v.vmx["mks.forceDiscreteGPU"] = "TRUE"
+    v.vmx["gui.fullscreenatpoweron"] = "TRUE"
+    v.vmx["gui.viewmodeatpoweron"] = "fullscreen"
+    v.vmx["gui.lastPoweredViewMode"] = "fullscreen"
+    v.vmx["sound.startconnected"] = "TRUE"
+    v.vmx["sound.present"] = "TRUE"
+    v.vmx["sound.autodetect"] = "TRUE"
+    v.enable_vmrun_ip_lookup = false
+    v.vmx["memsize"] = "6048"
+    v.vmx["numvcpus"] = "2"
+    v.vmx["vhv.enable"] = "TRUE"
+  end
+end
