@@ -94,3 +94,9 @@ if ((get-windowsfeature Hyper-V | where installed).count) {
 }
 
 Start-Service Docker
+
+& "C:\Program Files\docker\docker.exe" tag windowsservercore:10.0.14300.1000 windowsservercore:latest
+
+if ((get-windowsfeature Hyper-V | where installed).count) {
+  & "C:\Program Files\docker\docker.exe" tag nanoserver:10.0.14300.1016 nanoserver:latest
+}
