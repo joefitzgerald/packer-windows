@@ -120,6 +120,20 @@ vagrant plugin install winrm-fs
 
 Vagrant 1.8+ will have these gems already preinstalled.
 
+Example Steps:
+```
+vagrant init
+vagrant box add windows_2016_docker_hyperv.box --name Windows2016Docker
+```
+Edit Vagrantfile to refer to it
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "Windows2016Docker"
+
+```
+vagrant up 
+
+
 ### Contributing
 
 Pull requests welcomed, but normally should go to Joe's repo.
