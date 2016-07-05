@@ -14,7 +14,7 @@
       "winrm_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows8srv-64",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "version": 11,
@@ -51,7 +51,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows81_64",
       "guest_additions_mode": "disable",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
@@ -118,6 +118,7 @@
     "iso_checksum_type": "sha1",
     "iso_checksum": "EA37A740FD0744CAE856D1B12FB4167F6EE88B54",
     "autounattend": "./answer_files/10/Autounattend.xml",
+    "disk_size": "61440",
     "product_key": "<tab><tab>"
   }
 }
