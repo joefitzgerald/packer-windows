@@ -2,12 +2,12 @@
 
 This Vagrant environment can be used to spin up a Windows 10 VM to create the 2016 Hyper-V Vagrant boxes.
 The VM needs about 6GByte RAM and 100 GByte disk.
-Tested with VMware Fusion.
+Tested with VMware Fusion 8 and VMware Workstation 12.
 
-## On your OSX host
+## On your OSX/Windows host
 ### Build the Windows 10 VMware base box
 
-Build the Windows 10 base box for VMware Fusion with 100GByte disk size.
+Build the Windows 10 base box for VMware Fusion/Workstation with 100GByte disk size.
 
 ```bash
 cd ..
@@ -27,16 +27,18 @@ vagrant up --provider vmware_fusion
 ## In the Windows 10 VM
 ### Build the Windows Server 2016 TP5 Hyper-V base box
 
-Now inside the Windows 10 VM run packer with this command
+Now inside the Windows 10 VM create a Hyper-V external switch and then run
+packer with this command
 
 ```powershell
 cd C:\vagrant
 packer build --only=hyperv-iso -var 'hyperv_switchname=Wifi' windows_2016_docker.iso
 ```
 
-### Run the Hyper-V VM in Windows 10
+You probably have to copy the C:\vagrant folder into the VM as packer would work
+on a shared folder of the host.
 
-If using Vagrant 1.8.4 make sure you have patched it to make it work with Hyper-V as described in https://github.com/PatrickLang/packer-windows/issues/1#issuecomment-230151622
+### Run the Hyper-V VM in Windows 10
 
 ```powershell
 vagrant box add windows_2016_tp5_docker windows_2016_docker_hyperv.box

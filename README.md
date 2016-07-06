@@ -90,9 +90,8 @@ Doing so will give you hours back in your day, which is a good thing.
 
 These boxes use WinRM. There is no OpenSSH installed.
 
-
-### (Experimental) Hyper-V Support
-If you are running Windows 10 Insider Preview, then you can also use these packerfiles to build a Hyper-V virtual machine:
+### Hyper-V Support
+If you are running Windows 10, then you can also use these packerfiles to build a Hyper-V virtual machine:
 
 This requires @taliesens [fork of Packer](https://github.com/mitchellh/packer/pull/2576) with Hyper-V support. The linked PR also has binaries available ex: https://dl.bintray.com/taliesins/Packer/Packer.1.0.0.104-HyperV.nupkg
 
@@ -100,10 +99,11 @@ Then run Packer:
 ```
 packer build -var 'hyperv_switchname=Wifi' .\windows_2016.json
 ```
-Be sure to set hyperv_switchname to an external Hyper-V switch
+Be sure to set hyperv_switchname to an external Hyper-V switch.
 
-
-
+You then can use this box with Vagrant to spin up a Hyper-V VM. Vagrant currently
+needs some patches as well, see the script [install-vagrant.ps1](hyperv/scripts/install-vagrant.ps1)
+how to patch Vagrant 1.8.4 to fix these issues.
 
 ### Using .box Files With Vagrant
 
