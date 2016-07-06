@@ -100,8 +100,7 @@
       "scripts": [
         "./scripts/pin-powershell.bat",
         "./scripts/compile-dotnet-assemblies.bat",
-        "./scripts/set-winrm-automatic.bat",
-        "./scripts/compact.bat"
+        "./scripts/set-winrm-automatic.bat"
       ]
     }
   ],
