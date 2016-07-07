@@ -27,6 +27,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ["vmware_fusion", "vmware_workstation"].each do |provider|
     config.vm.provider provider do |v, override|
       v.gui = true
+      v.enable_vmrun_ip_lookup = false
+      v.vmx["memsize"] = "6048"
+      v.vmx["numvcpus"] = "2"
+      v.vmx["vhv.enable"] = "TRUE"
     end
   end
 
@@ -40,9 +44,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.vmx["sound.startconnected"] = "TRUE"
     v.vmx["sound.present"] = "TRUE"
     v.vmx["sound.autodetect"] = "TRUE"
-    v.enable_vmrun_ip_lookup = false
-    v.vmx["memsize"] = "6048"
-    v.vmx["numvcpus"] = "2"
-    v.vmx["vhv.enable"] = "TRUE"
   end
 end
