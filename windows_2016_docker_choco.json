@@ -1,0 +1,55 @@
+{
+  "builders": [
+    {
+      "type": "vmware-vmx",
+      "source_path": "{{user `home`}}/.vagrant.d/boxes/windows_2016_tp5_docker/0/vmware_desktop/packer-vmware-iso.vmx",
+      "communicator": "winrm",
+      "headless": false,
+      "boot_wait": "0",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
+      "floppy_files": [
+        "./scripts/unattend.xml"
+      ],
+      "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /generalize /oobe /quiet /shutdown /unattend:a:/unattend.xml",
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "2048",
+        "numvcpus": "2",
+        "scsi0.virtualDev": "lsisas1068",
+        "vhv.enable": "TRUE"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/chocolatey.bat"
+      ]
+    },
+    {
+      "type": "powershell",
+      "execute_command": "powershell \"& { {{.Vars}}{{.Path}}; exit $LastExitCode}\"",
+      "scripts": [
+        "./scripts/docker/remove-docker-key-json.ps1"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_2016_docker_{{.Provider}}_choco.box",
+      "vagrantfile_template": "vagrantfile-windows_2016_docker.template"
+    }
+  ],
+  "variables": {
+    "home": "{{env `HOME`}}"
+  }
+}
