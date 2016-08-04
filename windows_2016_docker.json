@@ -141,7 +141,8 @@
       "type": "windows-shell",
       "scripts": [
         "./scripts/uac-enable.bat",
-        "./scripts/compile-dotnet-assemblies.bat"
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/compact.bat"
       ]
     }
   ],
