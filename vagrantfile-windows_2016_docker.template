@@ -58,4 +58,10 @@ Vagrant.configure("2") do |config|
         v.vmx["vhv.enable"] = "TRUE"
         v.vmx["hypervisor.cpuid.v0"] = "FALSE"
     end
+
+    config.vm.provider "hyperv" do |v|
+      v.cpus = 2
+      v.maxmemory = 2048
+      v.differencing_disk = true
+    end
 end
