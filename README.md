@@ -122,39 +122,18 @@ The generated box files include a Vagrantfile template that is suitable for
 use with Vagrant 1.7.4+, which includes native support for Windows and uses
 WinRM to communicate with the box.
 
-For Vagrant 1.7.4 you should update some Ruby gems with
-
-```
-vagrant plugin install winrm
-vagrant plugin install winrm-fs
-```
-
-Vagrant 1.8+ will have these gems already preinstalled.
-
 Vagrant 1.8.4 does need some workarounds though:
 - There is a bug in get_vm_status.ps1
 - winrm-fs needs an update as well
 See: https://github.com/PatrickLang/packer-windows/issues/1#issuecomment-230151622 
+These are fixed in 1.8.5, so upgrading is easiest.
 
-
-Example Steps:
+Example Steps for Hyper-V:
 ```
-vagrant init
 vagrant box add windows_2016_tp5_docker windows_2016_docker_hyperv.box
+vagrant init windows_2016_tp5_docker
+vagrant up --provider hyperv
 ```
-
-Edit Vagrantfile, and add a configuration for the new box:
-
-```
-  config.vm.box = "windows_2016_tp5_docker"
-  config.vm.provider "hyperv" do |v|
-    v.cpus = 2
-    v.maxmemory = 2048
-    v.differencing_disk = true
-  end 
-```
-
-Now, start it with `vagrant up` 
 
 
 ### Contributing
