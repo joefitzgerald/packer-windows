@@ -15,8 +15,7 @@ Install-WindowsFeature -Name Containers
 
 if ((GWMI Win32_Processor).VirtualizationFirmwareEnabled[0] -and (GWMI Win32_Processor).SecondLevelAddressTranslationExtensions[0]) {
   Write-Host "Install Hyper-V"
-  Install-WindowsFeature -Name Hyper-V
-  Install-WindowsFeature Hyper-V-Tools
+  Install-WindowsFeature -Name Hyper-V -IncludeManagementTools
 } else {
   Write-Host "Skipping installation of Hyper-V"
 }
