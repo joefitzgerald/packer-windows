@@ -12,10 +12,12 @@ Start-Service Docker
 
 Write-Host "Installing WindowsServerCore docker image..."
 docker pull microsoft/windowsservercore:10.0.14300.1030
+docker pull microsoft/windowsservercore
 
 if ((get-windowsfeature Hyper-V | where installed).count) {
   Write-Host "Installing NanoServer docker image..."
   docker pull microsoft/nanoserver:10.0.14300.1030
+  docker pull microsoft/nanoserver
 } else {
   Write-Host "Skipping NanoServer docker image"
 }
