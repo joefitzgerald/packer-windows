@@ -7,12 +7,12 @@ Start-Service Docker
 
 Write-Host "Installing WindowsServerCore container image..."
 & "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore:10.0.14300.1030
-& "C:\Program Files\docker\docker.exe" tag microsoft/windowsservercore:10.0.14300.1030 microsoft/windowsservercore:latest
+& "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore:latest
 
 if ((get-windowsfeature Hyper-V | where installed).count) {
   Write-Host "Installing NanoServer container image..."
   & "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver:10.0.14300.1030
-  & "C:\Program Files\docker\docker.exe" tag microsoft/nanoserver:10.0.14300.1030 microsoft/windowsservercore:latest
+  & "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver:latest
 
 } else {
   Write-Host "Skipping NanoServer container image"
