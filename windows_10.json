@@ -96,7 +96,7 @@
       "type": "powershell",
       "execute_command": "powershell \"& { {{.Vars}}{{.Path}}; exit $LastExitCode}\"",
       "scripts": [
-        "./scripts/set-powerplan.ps1",
+        "./scripts/set-powerplan.ps1"
       ]
     },
     {
