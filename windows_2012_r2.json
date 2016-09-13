@@ -2,6 +2,7 @@
   "builders": [
     {
       "type": "vmware-iso",
+      "vm_name":"windows_2012_r2",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -35,6 +36,7 @@
     },
     {
       "type": "virtualbox-iso",
+      "vm_name":"windows_2012_r2",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
