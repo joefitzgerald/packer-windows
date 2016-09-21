@@ -99,18 +99,12 @@ Then run Packer:
 ```
 packer build -var 'hyperv_switchname=Wifi' .\windows_2016.json
 ```
-<<<<<<< f5e7200f53fd751beb798b3b4c02af1caa6f41dc
 Be sure to set hyperv_switchname to an external Hyper-V switch.
-=======
-Be sure to set hyperv_switchname to an external Hyper-V switch
-
 
 I have the ISO already downloaded to save time, and only have Hyper-V installed on my laptop, so I run:
 ```
 packer build --only hyperv-iso -var 'hyperv_switchname=Ethernet' -var 'iso_url=./server2016tp5.iso' .\windows_2016_docker.json
 ```
-
->>>>>>> Update Vagrant instructions
 
 You then can use this box with Vagrant to spin up a Hyper-V VM. Vagrant currently
 needs some patches as well, see the script [install-vagrant.ps1](hyperv/scripts/install-vagrant.ps1)
