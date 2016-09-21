@@ -101,6 +101,11 @@ packer build -var 'hyperv_switchname=Wifi' .\windows_2016.json
 ```
 Be sure to set hyperv_switchname to an external Hyper-V switch.
 
+I have the ISO already downloaded to save time, and only have Hyper-V installed on my laptop, so I run:
+```
+packer build --only hyperv-iso -var 'hyperv_switchname=Ethernet' -var 'iso_url=./server2016tp5.iso' .\windows_2016_docker.json
+```
+
 You then can use this box with Vagrant to spin up a Hyper-V VM. Vagrant currently
 needs some patches as well, see the script [install-vagrant.ps1](hyperv/scripts/install-vagrant.ps1)
 how to patch Vagrant 1.8.4 to fix these issues.
@@ -111,14 +116,19 @@ The generated box files include a Vagrantfile template that is suitable for
 use with Vagrant 1.7.4+, which includes native support for Windows and uses
 WinRM to communicate with the box.
 
-For Vagrant 1.7.4 you should update some Ruby gems with
+Vagrant 1.8.4 does need some workarounds though:
+- There is a bug in get_vm_status.ps1
+- winrm-fs needs an update as well
+See: https://github.com/PatrickLang/packer-windows/issues/1#issuecomment-230151622 
+These are fixed in 1.8.5, so upgrading is easiest.
 
+Example Steps for Hyper-V:
 ```
-vagrant plugin install winrm
-vagrant plugin install winrm-fs
+vagrant box add windows_2016_tp5_docker windows_2016_docker_hyperv.box
+vagrant init windows_2016_tp5_docker
+vagrant up --provider hyperv
 ```
 
-Vagrant 1.8+ will have these gems already preinstalled.
 
 ### Contributing
 
