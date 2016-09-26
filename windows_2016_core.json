@@ -1,7 +1,7 @@
 {
   "builders": [
     {
-      "vm_name":"WindowsServer2016TP5Core",
+      "vm_name":"WindowsServer2016Core",
       "type": "hyperv-iso",
       "disk_size": 41440,
       "boot_wait": "0s",

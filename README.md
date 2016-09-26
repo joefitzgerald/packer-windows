@@ -21,8 +21,8 @@ Some of my enhancements are:
 The following Windows versions are known to work (built with VMware Fusion Pro 8.1.1):
 
  * Windows 10
- * Windows Server 2016 TP5
- * Windows Server 2016 TP5 with Hyper-V and Docker -> see [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) for an use case
+ * Windows Server 2016
+ * Windows Server 2016 with Hyper-V and Docker -> see [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) for an use case
 
 You may find other packer template files, but older versions of Windows doesn't work so nice with a Retina display.
 
@@ -45,7 +45,7 @@ If you have already downloaded the ISOs or would like to override them, set thes
 - iso_checksum - md5sum of existing ISO (if different)
 
 ```
-packer build -var 'iso_url=./server2016tp5.iso' .\windows_2016.json
+packer build -var 'iso_url=./server2016.iso' .\windows_2016.json
 ```
 
 ### Windows Updates
@@ -103,7 +103,7 @@ Be sure to set hyperv_switchname to an external Hyper-V switch.
 
 I have the ISO already downloaded to save time, and only have Hyper-V installed on my laptop, so I run:
 ```
-packer build --only hyperv-iso -var 'hyperv_switchname=Ethernet' -var 'iso_url=./server2016tp5.iso' .\windows_2016_docker.json
+packer build --only hyperv-iso -var 'hyperv_switchname=Ethernet' -var 'iso_url=./server2016.iso' .\windows_2016_docker.json
 ```
 
 You then can use this box with Vagrant to spin up a Hyper-V VM. Vagrant currently
@@ -119,13 +119,13 @@ WinRM to communicate with the box.
 Vagrant 1.8.4 does need some workarounds though:
 - There is a bug in get_vm_status.ps1
 - winrm-fs needs an update as well
-See: https://github.com/PatrickLang/packer-windows/issues/1#issuecomment-230151622 
+See: https://github.com/PatrickLang/packer-windows/issues/1#issuecomment-230151622
 These are fixed in 1.8.5, so upgrading is easiest.
 
 Example Steps for Hyper-V:
 ```
-vagrant box add windows_2016_tp5_docker windows_2016_docker_hyperv.box
-vagrant init windows_2016_tp5_docker
+vagrant box add windows_2016_docker windows_2016_docker_hyperv.box
+vagrant init windows_2016_docker
 vagrant up --provider hyperv
 ```
 

@@ -25,7 +25,7 @@ vagrant up --provider vmware_fusion
 ```
 
 ## In the Windows 10 VM
-### Build the Windows Server 2016 TP5 Hyper-V base box
+### Build the Windows Server 2016 Hyper-V base box
 
 Now inside the Windows 10 VM create a Hyper-V external switch and then run
 packer with this command
@@ -41,7 +41,7 @@ on a shared folder of the host.
 ### Run the Hyper-V VM in Windows 10
 
 ```powershell
-vagrant box add windows_2016_tp5_docker windows_2016_docker_hyperv.box
+vagrant box add windows_2016_docker windows_2016_docker_hyperv.box
 cd C:\Users\vagrant
 git clone https://github.com/StefanScherer/docker-windows-box
 cd docker-windows-box

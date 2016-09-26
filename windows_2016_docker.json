@@ -1,7 +1,7 @@
 {
   "builders": [
     {
-      "vm_name":"WindowsServer2016TP5Docker",
+      "vm_name":"WindowsServer2016Docker",
       "type": "hyperv-iso",
       "disk_size": 41440,
       "boot_wait": "0s",
@@ -31,7 +31,7 @@
       "enable_virtualization_extensions":true
     },
     {
-      "vm_name":"WindowsServer2016TP5Docker",
+      "vm_name":"WindowsServer2016Docker",
       "type": "vmware-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -67,7 +67,7 @@
       }
     },
     {
-      "vm_name":"WindowsServer2016TP5Docker",
+      "vm_name":"WindowsServer2016Docker",
       "type": "virtualbox-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
