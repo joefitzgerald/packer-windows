@@ -1,9 +1,9 @@
 Set-ExecutionPolicy Bypass -scope Process
 New-Item -Type Directory -Path "$($env:ProgramFiles)\docker"
-wget -outfile $env:TEMP\docker-1.13.0-dev.zip "https://master.dockerproject.com/windows/amd64/docker-1.13.0-dev.zip"
-Expand-Archive -Path $env:TEMP\docker-1.13.0-dev.zip -DestinationPath $env:TEMP -Force
+wget -outfile $env:TEMP\docker-cs-1.12.zip "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip"
+Expand-Archive -Path $env:TEMP\docker-cs-1.12.zip -DestinationPath $env:TEMP -Force
 copy $env:TEMP\docker\*.exe $env:ProgramFiles\docker
-Remove-Item $env:TEMP\docker-1.13.0-dev.zip
+Remove-Item $env:TEMP\docker-cs-1.12.zip
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$($env:ProgramFiles)\docker", [EnvironmentVariableTarget]::Machine)
 $env:Path = $env:Path + ";$($env:ProgramFiles)\docker"
 . dockerd --register-service -H npipe:// -H 0.0.0.0:2375 -G docker
