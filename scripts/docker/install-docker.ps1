@@ -11,13 +11,13 @@ $env:Path = $env:Path + ";$($env:ProgramFiles)\docker"
 Start-Service Docker
 
 Write-Host "Installing WindowsServerCore container image..."
-& "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore:10.0.14393.206
-& "C:\Program Files\docker\docker.exe" tag microsoft/windowsservercore:10.0.14393.206 microsoft/windowsservercore:latest
+& "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore:10.0.14393.321
+& "C:\Program Files\docker\docker.exe" tag microsoft/windowsservercore:10.0.14393.321 microsoft/windowsservercore:latest
 
 if ((get-windowsfeature Hyper-V | where installed).count) {
   Write-Host "Installing NanoServer container image..."
-  & "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver:10.0.14393.206
-  & "C:\Program Files\docker\docker.exe" tag microsoft/nanoserver:10.0.14393.206 microsoft/nanoserver:latest
+  & "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver:10.0.14393.321
+  & "C:\Program Files\docker\docker.exe" tag microsoft/nanoserver:10.0.14393.321 microsoft/nanoserver:latest
 } else {
   Write-Host "Skipping NanoServer container image"
 }
