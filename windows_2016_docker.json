@@ -11,7 +11,7 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "floppy_files": [
-        "./answer_files/2016/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
@@ -49,7 +49,7 @@
       "vnc_port_max": 5980,
       "version": 11,
       "floppy_files": [
-        "./answer_files/2016/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
@@ -83,7 +83,7 @@
       "guest_additions_mode": "disable",
       "disk_size": 61440,
       "floppy_files": [
-        "./answer_files/2016/Autounattend.xml",
+        "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
         "./floppy/PinTo10.exe",
         "./scripts/disable-winrm.ps1",
