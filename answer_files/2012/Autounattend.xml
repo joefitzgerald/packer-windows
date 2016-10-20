@@ -178,7 +178,7 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c netsh firewall add portopening TCP 5985 "Port 5985" </CommandLine>
+                    <CommandLine>cmd.exe /c netsh advfirewall firewall add rule name="Port 5985" profile=any localport=5985 enable=yes action=allow dir=in protocol=tcp</CommandLine>
                     <Description>Win RM port open</Description>
                     <Order>12</Order>
                     <RequiresUserInput>true</RequiresUserInput>
