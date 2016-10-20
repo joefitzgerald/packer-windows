@@ -18,6 +18,15 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
     config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", auto_correct: true
 
+    config.vm.provider :libvirt do |v, override|
+        #v.gui = true
+        v.memory = 2048
+        v.cpus = 2
+        v.nic_model_type = "e1000"
+        v.disk_bus = "ide"
+        v.input :type => "tablet", :bus => "usb"
+    end
+
     config.vm.provider :virtualbox do |v, override|
         #v.gui = true
         v.customize ["modifyvm", :id, "--memory", 2048]
