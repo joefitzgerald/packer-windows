@@ -8,6 +8,10 @@ Remove-Item $env:TEMP\docker-cs-1.12.zip
 $env:Path = $env:Path + ";$($env:ProgramFiles)\docker"
 . dockerd --register-service -H npipe:// -H 0.0.0.0:2375 -G docker
 
+Write-Host "Fix --restart=always for reboot ..."
+# see https://github.com/docker/docker/issues/27544
+& sc config Docker depend=LanmanWorkstation
+
 Start-Service Docker
 
 Write-Host "Installing WindowsServerCore container image..."
