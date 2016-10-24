@@ -10,7 +10,7 @@ $env:Path = $env:Path + ";$($env:ProgramFiles)\docker"
 
 Write-Host "Fix --restart=always for reboot ..."
 # see https://github.com/docker/docker/issues/27544
-& sc config Docker depend=LanmanWorkstation
+& sc.exe config Docker depend= LanmanWorkstation
 
 Start-Service Docker
 
