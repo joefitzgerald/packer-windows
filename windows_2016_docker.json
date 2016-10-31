@@ -63,7 +63,7 @@
         "memsize": "2048",
         "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068",
-        "vhv.enable": "TRUE"
+        "vhv.enable": "FALSE"
       }
     },
     {
