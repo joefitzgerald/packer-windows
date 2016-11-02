@@ -41,8 +41,8 @@ Vagrant.configure("2") do |config|
         v.vmx["gui.fullscreenatpoweron"] = "TRUE"
         v.vmx["gui.viewmodeatpoweron"] = "fullscreen"
         v.vmx["gui.lastPoweredViewMode"] = "fullscreen"
-        v.vmx["sound.startconnected"] = "TRUE"
-        v.vmx["sound.present"] = "TRUE"
+        v.vmx["sound.startconnected"] = "FALSE"
+        v.vmx["sound.present"] = "FALSE"
         v.vmx["sound.autodetect"] = "TRUE"
         v.vms["virtualhw.version"] = "11"
     end
