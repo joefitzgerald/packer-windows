@@ -64,6 +64,49 @@
           "2"
         ]
       ]
+    },
+    {
+      "type": "parallels-iso",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "win-8.1",
+      "parallels_tools_flavor": "win",
+      "disk_size": 61440,
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+        "./scripts/openssh.ps1",
+        "./scripts/oracle-cert.cer"
+      ],
+      "prlctl": [
+        [
+          "set", "{{.Name}}",
+          "--memsize", "2048"
+        ],
+        [
+          "set", "{{.Name}}",
+          "--cpus", "2"
+        ],
+        [
+          "set", "{{.Name}}",
+          "--winsystray-in-macmenu", "off"
+        ],
+        [
+          "set", "{{.Name}}",
+          "--startup-view", "window"
+        ],
+        [
+          "set", "{{.Name}}",
+          "--efi-boot", "off"
+        ]
+      ]
     }
   ],
   "provisioners": [
