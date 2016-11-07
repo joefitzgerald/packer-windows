@@ -12,6 +12,7 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
@@ -45,6 +46,7 @@
       "vnc_port_max": 5980,
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
@@ -75,6 +77,7 @@
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
+        "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
