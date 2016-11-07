@@ -106,6 +106,17 @@
       "scripts": [
         "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat",
+      ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/debloat-windows.ps1"
+      ]
+    },
+    {
+      "type": "windows-shell",
+      "scripts": [
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
