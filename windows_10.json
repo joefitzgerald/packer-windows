@@ -96,7 +96,8 @@
       "type": "powershell",
       "execute_command": "powershell \"& { {{.Vars}}{{.Path}}; exit $LastExitCode}\"",
       "scripts": [
-        "./scripts/set-powerplan.ps1"
+        "./scripts/set-powerplan.ps1",
+        "./scripts/docker/disable-windows-defender.ps1"
       ]
     },
     {
@@ -106,7 +107,8 @@
       "scripts": [
         "./scripts/pin-powershell.bat",
         "./scripts/compile-dotnet-assemblies.bat",
-        "./scripts/set-winrm-automatic.bat"
+        "./scripts/set-winrm-automatic.bat",
+        "./scripts/compact.bat"
       ]
     }
   ],

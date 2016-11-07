@@ -135,7 +135,6 @@
         "./scripts/docker/install-docker.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
-        "./scripts/dis-updates.ps1",
         "./scripts/docker/disable-windows-defender.ps1"
       ]
     },
@@ -144,7 +143,8 @@
       "scripts": [
         "./scripts/uac-enable.bat",
         "./scripts/set-winrm-automatic.bat",
-        "./scripts/compile-dotnet-assemblies.bat"
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/compact.bat"
       ]
     }
   ],
