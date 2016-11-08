@@ -11,10 +11,10 @@ Write-Host Disable services
 . $env:TEMP\Debloat-Windows-10-master\scripts\disable-services.ps1
 Write-host Disable Windows Defender
 . $env:TEMP\Debloat-Windows-10-master\scripts\disable-windows-defender.ps1
+Uninstall-WindowsFeature Windows-Defender-Features
 Write-host Optimize Windows Update
 . $env:TEMP\Debloat-Windows-10-master\scripts\optimize-windows-update.ps1
 Write-host Disable Windows Update
-set-service wuauserv -startuptype disabled
-set-service trustedinstaller -startuptype disabled
+Set-Service wuauserv -StartupType Disabled
 Write-Host Remove OneDrive
 . $env:TEMP\Debloat-Windows-10-master\scripts\remove-onedrive.ps1
