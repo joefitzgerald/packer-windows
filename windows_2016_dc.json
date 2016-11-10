@@ -112,12 +112,6 @@
     },
     {
       "type": "powershell",
-      "scripts": [
-        "./scripts/debloat-windows.ps1"
-      ]
-    },
-    {
-      "type": "powershell",
       "inline": [
         "Install-WindowsFeature AD-Domain-Services",
         "Import-Module ADDSDeployment",
@@ -131,6 +125,15 @@
         "  -SafeModeAdministratorPassword (ConvertTo-SecureString `",
         "    -String \"{{user `SafeModeAdministratorPassword`}}\" `",
         "    -AsPlainText -Force) -Force:$true"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/debloat-windows.ps1"
       ]
     },
     {

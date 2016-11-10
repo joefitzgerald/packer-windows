@@ -92,6 +92,12 @@
       ]
     },
     {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/debloat-windows.ps1"
+      ]
+    },
+    {
       "type": "windows-restart"
     },
     {
