@@ -5,7 +5,6 @@
       "type": "hyperv-iso",
       "disk_size": 41440,
       "boot_wait": "0s",
-      "headless": false,
       "guest_additions_mode":"disable",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -25,7 +24,7 @@
       "winrm_password": "vagrant",
       "winrm_timeout" : "4h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "ram_size_mb": 2048,
+      "ram_size": 2048,
       "cpu": 2,
       "switch_name":"{{user `hyperv_switchname`}}",
       "enable_secure_boot":true
