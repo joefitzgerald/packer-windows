@@ -1,12 +1,11 @@
-cd $env:TEMP
 $ProgressPreference = 'SilentlyContinue'
-if (Test-Path packer.zip) {
-  rm -force packer.zip
+if (Test-Path $env:TEMP\packer.zip) {
+  rm -force $env:TEMP\packer.zip
 }
-if (Test-Path packer) {
-  rm -recurse -force packer
+if (Test-Path $env:TEMP\packer) {
+  rm -recurse -force $env:TEMP\packer
 }
-wget -outfile packer.zip -uri https://dl.bintray.com/taliesins/Packer/Packer.1.0.0.145-HyperV.nupkg -UseBasicParsing
-Expand-Archive packer.zip
-copy packer\packer.exe $env:ChocolateyInstall\bin\packer.exe
-rm -force packer.zip
+wget -outfile $env:TEMP\packer.zip -uri https://dl.bintray.com/taliesins/Packer/Packer.1.0.0.145-HyperV.nupkg -UseBasicParsing
+Expand-Archive $env:TEMP\packer.zip -DestinationPath $env:TEMP
+copy $env:TEMP\packer\packer.exe $env:ChocolateyInstall\bin\packer.exe
+rm -force $env:TEMP\packer.zip
