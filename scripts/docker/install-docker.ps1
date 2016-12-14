@@ -16,9 +16,7 @@ Write-Host "Fix --restart=always for reboot ..."
 Start-Service Docker
 
 Write-Host "Installing WindowsServerCore container image..."
-& "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore:10.0.14393.447
-& "C:\Program Files\docker\docker.exe" tag microsoft/windowsservercore:10.0.14393.447 microsoft/windowsservercore:latest
+& "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore
 
 Write-Host "Installing NanoServer container image..."
-& "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver:10.0.14393.447
-& "C:\Program Files\docker\docker.exe" tag microsoft/nanoserver:10.0.14393.447 microsoft/nanoserver:latest
+& "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver
