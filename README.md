@@ -2,17 +2,15 @@
 
 ### Introduction
 
-This repository contains Windows templates that can be used to create boxes for Vagrant using Packer ([Website](http://www.packer.io)) ([Github](http://github.com/mitchellh/packer)).
-
-This repo began by borrowing bits from the VeeWee Windows templates (https://github.com/jedi4ever/veewee/tree/master/templates). Modifications were made to work with Packer and the VMware Fusion / VirtualBox providers for Packer and Vagrant.
+This repository contains Windows templates that can be used to create machine images with Packer ([Website](http://www.packer.io)) ([Github](http://github.com/mitchellh/packer)).
 
 ### Packer Version
 
-[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.5.1` or greater is required.
+[Packer](https://github.com/mitchellh/packer) `0.8.6` or greater is required.
 
 ### Windows Versions
 
-The following Windows versions are known to work (built with VMware Fusion 6.0.4 and VirtualBox 4.3.12):
+The following Windows versions are known to work (built with VMware Fusion 8.0.1 and VirtualBox 5.0.6):
 
  * Windows 2012 R2
  * Windows 2012 R2 Core
@@ -43,10 +41,9 @@ The scripts in this repo will install all Windows updates – by default – dur
 ```xml
 <!-- WITHOUT WINDOWS UPDATES -->
 <SynchronousCommand wcm:action="add">
-    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
-    <Description>Install OpenSSH</Description>
+    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\enable-winrm.ps1</CommandLine>
+    <Description>Enable WinRM</Description>
     <Order>99</Order>
-    <RequiresUserInput>true</RequiresUserInput>
 </SynchronousCommand>
 <!-- END WITHOUT WINDOWS UPDATES -->
 <!-- WITH WINDOWS UPDATES -->
@@ -55,12 +52,6 @@ The scripts in this repo will install all Windows updates – by default – dur
     <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
     <Order>98</Order>
     <Description>Enable Microsoft Updates</Description>
-</SynchronousCommand>
-<SynchronousCommand wcm:action="add">
-    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1</CommandLine>
-    <Description>Install OpenSSH</Description>
-    <Order>99</Order>
-    <RequiresUserInput>true</RequiresUserInput>
 </SynchronousCommand>
 <SynchronousCommand wcm:action="add">
     <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\win-updates.ps1</CommandLine>
@@ -74,19 +65,22 @@ The scripts in this repo will install all Windows updates – by default – dur
 
 Doing so will give you hours back in your day, which is a good thing.
 
-### OpenSSH / WinRM
+### Post Processors
 
-Currently, [Packer](http://packer.io) has a single communicator that uses SSH. This means we need an SSH server installed on Windows - which is not optimal as we could use WinRM to communicate with the Windows VM. In the short term, everything works well with SSH; in the medium term, work is underway on a WinRM communicator for Packer.
+By default, the compress post-processor is used to create an archive of your VM. You can then use this with the [virtualbox-ovf](https://www.packer.io/docs/builders/virtualbox-ovf.html) or [vmware-vmx](https://www.packer.io/docs/builders/vmware-vmx.html) builders to further iterate on your image. This approach is recommended, particularly if you apply all Windows updates in your initial image. It will save you tens or hundreds of hours as you iterate on your project.
 
-If you have serious objections to OpenSSH being installed, you can always add another stage to your build pipeline:
+If you would like to switch back to the old approach of generating .box files for use with Vagrant, just replace the post-processors section with:
 
-* Build a base box using Packer
-* Create a Vagrantfile, use the base box from Packer, connect to the VM via WinRM (using the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin) and disable the 'sshd' service or uninstall OpenSSH completely
-* Perform a Vagrant run and output a .box file
-
-It's worth mentioning that many Chef cookbooks will not work properly through Cygwin's SSH environment on Windows. Specifically, packages that need access to environment-specific configurations such as the `PATH` variable, will fail. This includes packages that use the Windows installer, `msiexec.exe`.
-
-It's currently recommended that you add a second step to your pipeline and use Vagrant to install your packages through Chef.
+```json
+"post-processors": [
+  {
+    "type": "vagrant",
+    "keep_input_artifact": false,
+    "output": "windows_2012_r2_{{.Provider}}.box",
+    "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
+  }
+]
+```
 
 ### Using .box Files With Vagrant
 
@@ -96,7 +90,7 @@ WinRM to communicate with the box.
 
 ### Getting Started
 
-Trial versions of Windows 2008 R2 / 2012 / 2012 R2 are used by default. These images can be used for 180 days without activation.
+Trial versions of Windows 2008 R2 / 2012 / 2012 R2 / 7 / 8.1 / 10 are used by default. These images can be used for 180 days without activation.
 
 Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [TechNet](http://technet.microsoft.com/) – you can download retail or volume license ISO images and place them in the `iso` directory. If you do, you should supply appropriate values for `iso_url` (e.g. `./iso/<path to your iso>.iso`) and `iso_checksum` (e.g. `<the md5 of your iso>`) to the Packer command. For example, to use the Windows 2008 R2 (With SP1) retail ISO:
 
@@ -105,7 +99,7 @@ Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [Te
 3. Clone this repo to a local directory
 4. Move `en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso` to the `iso` directory
 5. Run:
-    
+
     ```
     packer build \
         -var iso_url=./iso/en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso \
@@ -117,7 +111,7 @@ Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [Te
 The Packer templates support the following variables:
 
 | Name                | Description                                                      |
-| --------------------|------------------------------------------------------------------|
+|:--------------------|:-----------------------------------------------------------------|
 | `iso_url`           | Path or URL to ISO file                                          |
 | `iso_checksum`      | Checksum (see also `iso_checksum_type`) of the ISO file          |
 | `iso_checksum_type` | The checksum algorithm to use (out of those supported by Packer) |
@@ -126,9 +120,3 @@ The Packer templates support the following variables:
 ### Contributing
 
 Pull requests welcomed.
-
-### Acknowledgements
-
-[CloudBees](http://www.cloudbees.com) is providing a hosted [Jenkins](http://jenkins-ci.org/) master through their CloudBees FOSS program. We also use their [On-Premise Executor](https://developer.cloudbees.com/bin/view/DEV/On-Premise+Executors) feature to connect a physical [Mac Mini Server](http://www.apple.com/mac-mini/server/) running VMware Fusion.
-
-![Powered By CloudBees](http://www.cloudbees.com/sites/default/files/Button-Powered-by-CB.png "Powered By CloudBees")![Built On DEV@Cloud](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png "Built On DEV@Cloud")
