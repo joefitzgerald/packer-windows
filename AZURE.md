@@ -93,6 +93,18 @@ data:    MicrosoftWindowsServer  WindowsServer      2016-Nano-Server            
 
 **TODO** Describe how to create the resource group and storage account needed by packer build. I've used an existing resource group and storage account.
 
+## Create Resource Group
+
+```
+azure group create myaccount westeurope
+```
+
+## Create a storage account
+
+```
+azure storage account create --sku-name LRS --location westeurope --kind BlobStorage --access-tier Cool --resource-group myaccount myaccount
+```
+
 ## Store secrets in pass
 
 I use `pass` for my secrets.
@@ -103,8 +115,8 @@ export PACKER_AZURE_SUBSCRIPTION_ID=xxx
 export PACKER_AZURE_OBJECT_ID=xxx
 export PACKER_AZURE_APP_ID=xxx
 export PACKER_AZURE_CLIENT_SECRET='xxx'
-export PACKER_AZURE_RESOURCE_GROUP=vagrantboxes
-export PACKER_AZURE_STORAGE_ACCOUNT=vagrantboxes
+export PACKER_AZURE_RESOURCE_GROUP=myaccount
+export PACKER_AZURE_STORAGE_ACCOUNT=myaccount
 ```
 
 ## Build
