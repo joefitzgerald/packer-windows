@@ -19,12 +19,12 @@
       "resource_group_name": "{{user `resource_group`}}",
 
       "cloud_environment_name": "Public",
-      "location": "North Europe",
-      "vm_size": "Standard_D3_v2",
+      "location": "West Europe",
+      "vm_size": "Standard_D2_v2",
 
       "storage_account": "{{user `storage_account`}}",
       "capture_container_name": "images",
-      "capture_name_prefix": "packer",
+      "capture_name_prefix": "WindowsServer2016Docker",
 
       "os_type": "Windows",
       "image_publisher": "MicrosoftWindowsServer",
