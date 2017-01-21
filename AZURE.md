@@ -4,6 +4,14 @@ Steps from the blog post http://blog.geuer-pollmann.de/blog/2016/09/21/azure-ger
 
 ## Security Setup
 
+### UsingPowerShell
+
+Read https://david-obrien.net/2016/06/use-packer-with-azurerm/
+
+### Using Azure CLI
+
+Read https://www.packer.io/docs/builders/azure-setup.html
+
 First, you create an app in Azure Active Directory:
 
 ```
