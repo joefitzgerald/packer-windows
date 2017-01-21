@@ -42,18 +42,19 @@
   "provisioners": [
     {
       "type": "powershell",
-      "inline": [
-        "Import-Module ServerManager",
-        "Install-WindowsFeature -Name NET-Framework-Features"
+      "scripts": [
+        "./scripts/docker/install-containers-feature.ps1"
       ]
+    },
+    {
+      "type": "windows-restart"
     },
     {
       "type": "powershell",
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/install-docker.ps1",
-        "./scripts/docker/remove-docker-key-json.ps1",
-        "./scripts/docker/disable-windows-defender.ps1"
+        "./scripts/docker/remove-docker-key-json.ps1"
       ]
     }
   ]
