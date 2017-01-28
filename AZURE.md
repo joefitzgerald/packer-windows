@@ -127,3 +127,16 @@ Load your secrets and run the packer build
 eval $(pass packer-azure)
 packer build windows_2016_docker_azure.json
 ```
+
+## Copy vhd
+
+### Create a public container
+
+Create a public container, eg. `vhds`
+
+### Copy blob
+
+```
+azure storage blob copy start https://myaccount.blob.core.windows.net/system/Microsoft.Compute/Images/images/WindowsServer2016Docker-osDisk.vhd vhds
+azure storage blob copy start https://myaccount.blob.core.windows.net/system/Microsoft.Compute/Images/images/WindowsServer2016Docker-osDisk.vhd --dest-container vhds --dest-blob WindowsServer2016Docker.20170122-osDisk.vhd
+```
