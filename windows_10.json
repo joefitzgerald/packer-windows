@@ -5,7 +5,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
+      "headless": "{{user `headless`}}",
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -13,7 +13,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows8srv-64",
       "tools_upload_flavor": "windows",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
@@ -26,8 +26,8 @@
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
-        "memsize": "2048",
-        "numvcpus": "2",
+        "memsize": "{{user `memory_size`}}",
+        "numvcpus": "{{user `cpus`}}",
         "scsi0.virtualDev": "lsisas1068"
       }
     },
@@ -36,14 +36,14 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
+      "headless": "{{user `headless`}}",
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows81_64",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/fixnetwork.ps1",
@@ -57,13 +57,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "2048"
+          "{{user `memory_size`}}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "2"
+          "{{user `cpus`}}"
         ]
       ]
     },
@@ -79,7 +79,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "win-10",
       "parallels_tools_flavor": "win",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/fixnetwork.ps1",
@@ -91,11 +91,11 @@
       "prlctl": [
         [
           "set", "{{.Name}}",
-          "--memsize", "2048"
+          "--memsize", "{{user `memory_size`}}"
         ],
         [
           "set", "{{.Name}}",
-          "--cpus", "2"
+          "--cpus", "{{user `cpus`}}"
         ],
         [
           "set", "{{.Name}}",
@@ -139,6 +139,10 @@
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
     "iso_checksum_type": "sha1",
     "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
-    "autounattend": "./answer_files/10/Autounattend.xml"
+    "autounattend": "./answer_files/10/Autounattend.xml",
+    "headless": "true",
+    "cpus": "2",
+    "memory_size": "2048",
+    "disk_size": "61440"
   }
 }
