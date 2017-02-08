@@ -14,9 +14,3 @@ Write-Host "Fix --restart=always for reboot ..."
 & sc.exe config Docker depend= LanmanWorkstation
 
 Start-Service Docker
-
-Write-Host "Installing WindowsServerCore container image..."
-& "C:\Program Files\docker\docker.exe" pull microsoft/windowsservercore
-
-Write-Host "Installing NanoServer container image..."
-& "C:\Program Files\docker\docker.exe" pull microsoft/nanoserver

@@ -1,0 +1,63 @@
+{
+ "variables": {
+    "azure_ad_tenant_id": "{{env `PACKER_AZURE_AD_TENANT_ID`}}",
+    "azure_subscription_id": "{{env `PACKER_AZURE_SUBSCRIPTION_ID`}}",
+    "object_id": "{{env `PACKER_AZURE_OBJECT_ID`}}",
+    "app_id": "{{env `PACKER_AZURE_APP_ID`}}",
+    "client_secret": "{{env `PACKER_AZURE_CLIENT_SECRET`}}",
+    "resource_group": "{{env `PACKER_AZURE_RESOURCE_GROUP`}}",
+    "storage_account": "{{env `PACKER_AZURE_STORAGE_ACCOUNT`}}"
+  },
+  "builders": [
+    {
+      "type": "azure-arm",
+      "subscription_id": "{{user `azure_subscription_id`}}",
+      "tenant_id": "{{user `azure_ad_tenant_id`}}",
+      "object_id": "{{user `object_id`}}",
+      "client_id": "{{user `app_id`}}",
+      "client_secret": "{{user `client_secret`}}",
+      "resource_group_name": "{{user `resource_group`}}",
+
+      "cloud_environment_name": "Public",
+      "location": "West Europe",
+      "vm_size": "Standard_D2_v2",
+
+      "storage_account": "{{user `storage_account`}}",
+      "capture_container_name": "images",
+      "capture_name_prefix": "WindowsServer2016Docker",
+
+      "os_type": "Windows",
+      "image_publisher": "MicrosoftWindowsServer",
+      "image_offer": "WindowsServer",
+      "image_sku": "2016-Datacenter",
+      "image_version": "latest",
+
+      "communicator": "winrm",
+      "winrm_use_ssl": "true",
+      "winrm_insecure": "true",
+      "winrm_timeout": "3m",
+      "winrm_username": "packer"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/docker/install-containers-feature.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/docker/add-docker-group.ps1",
+        "./scripts/docker/disable-windows-defender.ps1",
+        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/docker-pull-async.ps1",
+        "./scripts/docker/remove-docker-key-json.ps1"
+      ]
+    }
+  ]
+}

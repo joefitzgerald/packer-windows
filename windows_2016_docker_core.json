@@ -61,6 +61,7 @@
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/docker-pull-async.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
         "./scripts/docker/disable-windows-defender.ps1"
