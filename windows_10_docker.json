@@ -1,0 +1,66 @@
+{
+  "builders": [
+    {
+      "type": "vmware-vmx",
+      "communicator": "winrm",
+      "source_path": "{{user `source_path`}}",
+      "headless": false,
+      "boot_wait": "5s",
+      "boot_command": "",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "15m",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "2048",
+        "numvcpus": "2",
+        "scsi0.virtualDev": "lsisas1068"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/docker/install-containers-feature-windows10.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/docker/enable-winrm.ps1",
+        "./scripts/docker/add-docker-group.ps1",
+        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/docker-pull-async.ps1",
+        "./scripts/docker/open-docker-insecure-port.ps1",
+        "./scripts/docker/remove-docker-key-json.ps1",
+        "./scripts/docker/disable-windows-defender.ps1"
+      ]
+    },
+    {
+      "type": "windows-shell",
+      "scripts": [
+        "./scripts/uac-enable.bat",
+        "./scripts/compact.bat"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_10_docker_{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile-windows_10.template"
+    }
+  ],
+  "variables": {
+    "source_path": "~/.vagrant.d/boxes/windows_10/0/vmware_desktop/packer-vmware-iso.vmx"
+  }
+}
