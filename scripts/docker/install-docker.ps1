@@ -1,6 +1,6 @@
 Set-ExecutionPolicy Bypass -scope Process
 New-Item -Type Directory -Path "$($env:ProgramFiles)\docker"
-# wget -outfile $env:TEMP\docker-cs-1.12.zip "https://download.docker.com/components/engine/windows-server/cs-1.12/docker-1.12.2.zip"
+# wget -outfile $env:TEMP\docker-1.13.1.zip "https://dockermsft.blob.core.windows.net/dockercontainer/docker-1-13-1.zip"
 wget -outfile $env:TEMP\docker-1.13.1.zip "https://get.docker.com/builds/Windows/x86_64/docker-1.13.1.zip"
 Expand-Archive -Path $env:TEMP\docker-1.13.1.zip -DestinationPath $env:TEMP -Force
 copy $env:TEMP\docker\*.exe $env:ProgramFiles\docker
