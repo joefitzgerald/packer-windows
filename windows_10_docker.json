@@ -26,7 +26,7 @@
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/docker/install-containers-feature-windows10.ps1"
+        "./scripts/docker/10/install-containers-feature.ps1"
       ]
     },
     {
@@ -35,9 +35,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/docker/enable-winrm.ps1",
         "./scripts/docker/add-docker-group.ps1",
-        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/10/install-docker.ps1",
         "./scripts/docker/docker-pull-async.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
@@ -48,6 +47,7 @@
       "type": "windows-shell",
       "scripts": [
         "./scripts/uac-enable.bat",
+        "./scripts/set-winrm-automatic.bat",
         "./scripts/compact.bat"
       ]
     }

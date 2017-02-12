@@ -3,7 +3,7 @@ function DockerPull {
 
   Write-Host Installing $image ...
   $j = Start-Job -ScriptBlock { docker pull $args[0] } -ArgumentList $image
-  while ( $j.JobStateInfo.state -ne "Completed" ) {
+  while ( $j.JobStateInfo.state -ne "Completed" -And $j.JobStateInfo.state -ne "Failed" ) {
     Write-Host $j.JobStateInfo.state
     Start-Sleep 10
   }
