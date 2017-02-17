@@ -2,6 +2,7 @@
   "builders": [
     {
       "type": "vmware-iso",
+      "vm_name":"windows_10",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -39,6 +40,7 @@
     },
     {
       "type": "virtualbox-iso",
+      "vm_name":"windows_10",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -102,7 +104,6 @@
     },
     {
       "type": "powershell",
-      "execute_command": "powershell \"& { {{.Vars}}{{.Path}}; exit $LastExitCode}\"",
       "scripts": [
         "./scripts/set-powerplan.ps1",
         "./scripts/docker/disable-windows-defender.ps1"
