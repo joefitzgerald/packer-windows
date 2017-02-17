@@ -13,6 +13,6 @@
 *~
 /output/
 *.webm
-tmp/
+tmp
 /issues/
 *.iso
