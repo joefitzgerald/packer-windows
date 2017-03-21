@@ -104,7 +104,7 @@
       "type": "windows-shell",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
-        "./scripts/enable-rdp.bat",
+        "./scripts/enable-rdp.bat"
       ]
     },
     {
