@@ -5,6 +5,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
+      "output_directory": "{{user `output_directory`}}",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -36,6 +37,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
+      "output_directory": "{{user `output_directory`}}",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -72,6 +74,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
+      "output_directory": "{{user `output_directory`}}",
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -139,6 +142,7 @@
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
     "iso_checksum_type": "sha1",
     "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
-    "autounattend": "./answer_files/10/Autounattend.xml"
+    "autounattend": "./answer_files/10/Autounattend.xml",
+    "output_directory": "{{env `PACKER_OUTPUT_DIR`}}"
   }
 }
