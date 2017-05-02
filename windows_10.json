@@ -134,7 +134,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "windows_10_{{.Provider}}.box",
+      "output": "{{user `output_directory`}}/packer_windows_10_{{.BuildName}}_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_10.template"
     }
   ],
