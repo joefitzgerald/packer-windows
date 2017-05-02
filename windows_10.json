@@ -42,7 +42,7 @@
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows81_64",
+      "guest_os_type": "Windows10_64",
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
