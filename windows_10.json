@@ -14,7 +14,7 @@
       "winrm_password": "vagrant",
       "winrm_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "windows8srv-64",
+      "guest_os_type": "windows9-64",
       "disk_size": "{{user `disk_size`}}",
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
