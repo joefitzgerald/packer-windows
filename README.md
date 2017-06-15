@@ -96,7 +96,7 @@ WinRM to communicate with the box.
 
 ### Getting Started
 
-Trial versions of Windows 2008 R2 / 2012 / 2012 R2 are used by default. These images can be used for 180 days without activation.
+Trial versions of Windows 2008 R2 / 2012 / 2012 R2 / 2016 are used by default. These images can be used for 180 days without activation.
 
 Alternatively – if you have access to [MSDN](http://msdn.microsoft.com) or [TechNet](http://technet.microsoft.com/) – you can download retail or volume license ISO images and place them in the `iso` directory. If you do, you should supply appropriate values for `iso_url` (e.g. `./iso/<path to your iso>.iso`) and `iso_checksum` (e.g. `<the md5 of your iso>`) to the Packer command. For example, to use the Windows 2008 R2 (With SP1) retail ISO:
 
