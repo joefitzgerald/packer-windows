@@ -1,5 +1,7 @@
 ## Unreleased
 
+* Added Windows 2016 build
+
 ## v1.25 (August 13th, 2015)
 
 * Updated 7-Zip, UltraDefrag URLs (#154)
