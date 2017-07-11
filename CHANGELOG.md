@@ -1,4 +1,5 @@
 ## Unreleased
+* Fixed issue with Console Output (#245)
 
 ## v1.24 (June 8th, 2015)
 
