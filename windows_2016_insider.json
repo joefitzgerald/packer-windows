@@ -141,9 +141,9 @@
     }
   ],
   "variables": {
-    "iso_url": "http://care.dlservice.microsoft.com/dl/download/1/4/9/149D5452-9B29-4274-B6B3-5361DBDA30BC/14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_EN-US.ISO",
-    "iso_checksum_type": "md5",
-    "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
+    "iso_url": "https://software-download.microsoft.com/pr/Windows_InsiderPreview_Server_2_16237.iso",
+    "iso_checksum_type": "sha256",
+    "iso_checksum": "3d7f496892424926ad6b50f6acda74cf4f9f5d509ffd378767a3950932dbfce0",
     "autounattend": "./answer_files/2016_insider/Autounattend.xml"
   }
 }

@@ -51,7 +51,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME </Key>
-                            <Value>Windows Server 2016 SERVERDATACENTERCORE</Value>
+                            <Value>Windows Server 2016 Datacenter</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -63,7 +63,7 @@
             <UserData>
                 <ProductKey>
                     <!-- Windows Server Insider product key -->
-                    <Key>XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</Key>
+                    <Key>B69WH-PRNHK-BXVK3-P9XF7-XD84W</Key>
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
