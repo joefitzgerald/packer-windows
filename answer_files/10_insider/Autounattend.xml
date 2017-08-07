@@ -40,6 +40,12 @@
                     </InstallTo>
                     <WillShowUI>OnError</WillShowUI>
                     <InstallToAvailablePartition>false</InstallToAvailablePartition>
+                    <InstallFrom>
+                        <MetaData wcm:action="add">
+                            <Key>/IMAGE/NAME</Key>
+                            <Value>Windows 10 Enterprise</Value>
+                        </MetaData>
+                    </InstallFrom>
                 </OSImage>
             </ImageInstall>
         </component>
