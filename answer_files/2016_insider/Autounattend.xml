@@ -50,8 +50,8 @@
                 <OSImage>
                     <InstallFrom>
                         <MetaData wcm:action="add">
-                            <Key>/IMAGE/NAME </Key>
-                            <Value>Windows Server 2016 Datacenter</Value>
+                            <Key>/IMAGE/NAME</Key>
+                            <Value>Windows Server 2016 SERVERDATACENTERACORE</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
