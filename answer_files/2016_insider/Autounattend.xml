@@ -62,7 +62,10 @@
             </ImageInstall>
             <UserData>
                 <ProductKey>
-                    <!-- Windows Server Insider product key -->
+                    <!--
+                        Windows Server Insider product key
+                        See https://blogs.windows.com/windowsexperience/2017/07/13/announcing-windows-server-insider-preview-build-16237/
+                    -->
                     <Key>B69WH-PRNHK-BXVK3-P9XF7-XD84W</Key>
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
