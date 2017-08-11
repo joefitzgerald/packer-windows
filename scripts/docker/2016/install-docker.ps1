@@ -1,12 +1,9 @@
-$ProgressPreference = 'SilentlyContinue'
-
-Set-ExecutionPolicy Bypass -scope Process
-New-Item -Type Directory -Path "$($env:ProgramFiles)\docker"
-wget -outfile $env:TEMP\docker-17-03-1-ee.zip "https://dockermsft.blob.core.windows.net/dockercontainer/docker-17-03-1-ee.zip"
-Expand-Archive -Path $env:TEMP\docker-17-03-1-ee.zip -DestinationPath $env:TEMP -Force
-copy $env:TEMP\docker\*.exe $env:ProgramFiles\docker
-Remove-Item $env:TEMP\docker-17-03-1-ee.zip
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$($env:ProgramFiles)\docker", [EnvironmentVariableTarget]::Machine)
-$env:Path = $env:Path + ";$($env:ProgramFiles)\docker"
-. dockerd --register-service -H npipe:// -H 0.0.0.0:2375 -G docker
+Write-Host "Install-PackageProvider ..."
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Write-Host "Install-Module ..."
+Install-Module -Name DockerMsftProviderInsider -Force
+Write-Host "Install-Package ..."
+Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
+Install-Package -Name docker -ProviderName DockerMsftProviderInsider -Force -RequiredVersion 17.06.0-ce
+Set-PSRepository -InstallationPolicy Untrusted -Name PSGallery
 Start-Service docker
