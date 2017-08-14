@@ -23,7 +23,8 @@
       "ram_size": 2048,
       "cpu": 2,
       "switch_name":"{{user `hyperv_switchname`}}",
-      "enable_secure_boot":true
+      "enable_secure_boot":true,
+      "enable_virtualization_extensions":true
     },
     {
       "type": "vmware-iso",
