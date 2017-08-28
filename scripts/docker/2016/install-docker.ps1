@@ -4,6 +4,6 @@ Write-Host "Install-Module ..."
 Install-Module -Name DockerMsftProviderInsider -Force
 Write-Host "Install-Package ..."
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-Install-Package -Name docker -ProviderName DockerMsftProviderInsider -Force -RequiredVersion 17.06.0-ce
+Install-Package -Name docker -ProviderName DockerMsftProviderInsider -Force
 Set-PSRepository -InstallationPolicy Untrusted -Name PSGallery
 Start-Service docker
