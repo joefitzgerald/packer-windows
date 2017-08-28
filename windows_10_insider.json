@@ -86,7 +86,6 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
       "boot_wait": "0s",
       "guest_additions_mode":"disable",
       "winrm_username": "vagrant",
@@ -110,7 +109,7 @@
       "switch_name":"{{user `hyperv_switchname`}}",
       "enable_secure_boot":true,
       "enable_virtualization_extensions":true
-    },
+    }
   ],
   "provisioners": [
     {
