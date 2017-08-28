@@ -130,9 +130,9 @@
   ],
   "variables": {
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewadvanced",
-    "iso_url": "https://software-download.microsoft.com/pr/Windows10_InsiderPreview_EnterpriseVL_x64_en-us_16232.iso",
-    "iso_checksum_type": "sha1",
-    "iso_checksum": "8e84a14b972a2d7643d347c57068b51e88e86ae5",
+    "iso_url": "https://software-download.microsoft.com/pr/Windows10_InsiderPreview_EnterpriseVL_x64_en-us_16251.iso",
+    "iso_checksum_type": "sha256",
+    "iso_checksum": "CA0715B5646FBD18376F9A370BB1A2DF8A94DDB3F1BF107843C357E7DAD417FF",
     "autounattend": "./answer_files/10_insider/Autounattend.xml",
     "disk_size": "61440"
   }
