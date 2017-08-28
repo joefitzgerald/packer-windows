@@ -79,7 +79,38 @@
           "2"
         ]
       ]
-    }
+    },
+    {
+      "type": "hyperv-iso",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": false,
+      "boot_wait": "0s",
+      "guest_additions_mode":"disable",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "./floppy/WindowsPowershell.lnk",
+        "./floppy/PinTo10.exe",
+        "./scripts/fixnetwork.ps1",
+        "./scripts/disable-screensaver.ps1",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1"
+      ],
+      "ram_size": 2048,
+      "cpu": 2,
+      "switch_name":"{{user `hyperv_switchname`}}",
+      "enable_secure_boot":true,
+      "enable_virtualization_extensions":true
+    },
   ],
   "provisioners": [
     {
