@@ -1,9 +1,9 @@
-# Packer builder in Azure
+# Packer Hyper-V builder in Azure
 
-This is a Terraform template to spin up a VM in Azure that has nested HyperV
-activated and tools like Packer, Vagrant and Docker CLI installed.
+This is a Terraform template to spin up a VM in Azure that has nested Hyper-V
+activated and tools like Git, Packer and Vagrant installed.
 
-Now you are able to build Vagrant base boxes for HyperV in the Cloud with Packer.
+Now you are able to build Vagrant base boxes for Hyper-V in the Cloud with Packer.
 
 ## Stage 1: Spin up the Azure VM with Terraform
 
@@ -36,7 +36,7 @@ Adjust the file `variables.tf` to your needs to choose
 
 - location / region
 - DNS prefix and suffix
-- size of the VM's, default is `Standard_D2_v3` which is needed for nested virtualization
+- size of the VM's, default is `Standard_E2s_v3` which is needed for nested virtualization
 - username and password
 
 ### Plan
@@ -47,17 +47,17 @@ terraform plan
 
 ### Create / Apply
 
-Create the Azure VM with. After 5 minutes the VM should be up and running, and the provision.ps1 script will run inside the VM to install Packer, Vagrant, HyperV and then reboots the VM and adds the VM switch 'packer-hyperv-iso' and DHCP server.
+Create the Azure VM with. After 5 minutes the VM should be up and running, and the provision.ps1 script will run inside the VM to install Packer, Vagrant, Hyper-V and then reboots the VM and adds the internal virtual switch 'packer-hyperv-iso' and DHCP server.
 
 ```bash
 terraform apply
 ```
 
-If you want more than one Packer VM, then use `terraform apply -var count=3`.
+If you want more than one Packer VM, then use eg. `terraform apply -var count=3`.
 
 ## Stage 2: Packer build
 
-Now RDP into the Azure VM `pckr-01.westeurope.cloudapp.azure.com` (the dns_prefix is specified in `variables.tf`). Open a PowerShell terminal and clone my packer-windows repo or any other repo with a Packer template for HyperV.
+Now RDP into the Azure VM `pckr-01.westeurope.cloudapp.azure.com` (the dns_prefix is specified in `variables.tf`). Open a PowerShell terminal and clone my packer-windows repo or any other repo with a Packer template for Hyper-V.
 
 ```
 git clone https://github.com/StefanScherer/packer-windows
@@ -65,7 +65,7 @@ cd packer-windows
 packer build --only=hyperv-iso windows_2016_docker.json
 ```
 
-Packer creates an external Hyper-V virtual switch with name "ext". It downloads the eval ISO file and boots a Hyper-V VM to run the whole packer build configuration.
+Packer uses the internal Hyper-V virtual switch with name "packer-hyperv-iso" which was creating during the provisioning of the Azure VM. Packer now downloads the eval ISO file and boots a Hyper-V VM to run the whole packer build configuration.
 
 You could also try to run it in this Azure VM with
 
