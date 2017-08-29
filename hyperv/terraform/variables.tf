@@ -9,7 +9,6 @@ variable "dns_prefix" {
 }
 
 variable "location" {
-  // default = "northeurope"
   default = "westeurope"
 }
 
@@ -27,13 +26,9 @@ variable "admin_password" {
 }
 
 variable "count" {
-  type = "map"
-
-  default = {
-    windows = "1"
-  }
+  default = 1
 }
 
 variable "vm_size" {
-  default = "Standard_D2_v3"
+  default = "Standard_E2s_v3"
 }

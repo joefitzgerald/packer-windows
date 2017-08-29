@@ -53,9 +53,11 @@ Create the Azure VM with. After 5 minutes the VM should be up and running, and t
 terraform apply
 ```
 
+If you want more than one Packer VM, then use `terraform apply -var count=3`.
+
 ## Stage 2: Packer build
 
-Now RDP into the Azure VM. Open a PowerShell terminal and clone my packer-windows repo or any other repo with a Packer template for HyperV.
+Now RDP into the Azure VM `pckr-01.westeurope.cloudapp.azure.com` (the dns_prefix is specified in `variables.tf`). Open a PowerShell terminal and clone my packer-windows repo or any other repo with a Packer template for HyperV.
 
 ```
 git clone https://github.com/StefanScherer/packer-windows
