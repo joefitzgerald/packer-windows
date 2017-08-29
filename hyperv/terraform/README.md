@@ -47,7 +47,7 @@ terraform plan
 
 ### Create / Apply
 
-Create the Azure VM with. After 5 minutes the VM should be up and running, and the provision.ps1 script will run inside the VM to install Packer, Vagrant, HyperV and then reboots the VM.
+Create the Azure VM with. After 5 minutes the VM should be up and running, and the provision.ps1 script will run inside the VM to install Packer, Vagrant, HyperV and then reboots the VM and adds the VM switch 'packer-hyperv-iso' and DHCP server.
 
 ```bash
 terraform apply
@@ -59,10 +59,8 @@ Now RDP into the Azure VM. Open a PowerShell terminal and clone my packer-window
 
 ```
 git clone https://github.com/StefanScherer/packer-windows
-mkdir D:\packer_cache
-$env:PACKER_CACHE="D:\packer_cache"
 cd packer-windows
-packer build --only=hyperv-iso --var hyperv_switchname=ext windows_2016_docker.json
+packer build --only=hyperv-iso windows_2016_docker.json
 ```
 
 Packer creates an external Hyper-V virtual switch with name "ext". It downloads the eval ISO file and boots a Hyper-V VM to run the whole packer build configuration.
