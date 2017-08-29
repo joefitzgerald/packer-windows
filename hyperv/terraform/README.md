@@ -67,6 +67,8 @@ packer build --only=hyperv-iso windows_2016_docker.json
 
 Packer uses the internal Hyper-V virtual switch with name "packer-hyperv-iso" which was creating during the provisioning of the Azure VM. Packer now downloads the eval ISO file and boots a Hyper-V VM to run the whole packer build configuration.
 
+## Stage 3: Vagrant up
+
 You could also try to run it in this Azure VM with
 
 ```
@@ -75,6 +77,7 @@ cd ..
 git clone https://github.com/StefanScherer/docker-windows-box
 cd docker-windows-box
 vagrant up
+vagrant rdp
 ```
 
 ### packer push
