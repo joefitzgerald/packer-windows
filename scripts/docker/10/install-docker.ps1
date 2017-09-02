@@ -1,7 +1,7 @@
 Set-ExecutionPolicy Bypass -scope Process
 New-Item -Type Directory -Path "$($env:ProgramFiles)\docker"
 Write-Host "Downloading docker ..."
-wget -outfile $env:TEMP\docker.zip "https://download.docker.com/win/static/edge/x86_64/docker-17.06.1-ce.zip"
+wget -outfile $env:TEMP\docker.zip "https://download.docker.com/win/static/edge/x86_64/docker-17.07.0-ce.zip"
 Expand-Archive -Path $env:TEMP\docker.zip -DestinationPath $env:TEMP -Force
 copy $env:TEMP\docker\*.exe $env:ProgramFiles\docker
 Remove-Item $env:TEMP\docker.zip
