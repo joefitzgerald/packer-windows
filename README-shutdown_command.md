@@ -9,7 +9,7 @@ Normally we use something like this to shutdown the VM in packer.
 Replace it with
 
 ```json
-   "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /oobe /generalize /shutdown /mode:vm",
+   "shutdown_command": "c:/windows/system32/sysprep/sysprep.exe /generalize /oobe /quiet /shutdown /unattend:a:/unattend.xml",
 ```
 
-On the first `vagrant up` the box will boot with an out-of-box-experience (OOBE)
+and on the first `vagrant up` the box will boot with an out-of-box-experience (OOBE)
