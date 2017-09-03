@@ -11,25 +11,27 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/WindowsPowershell.lnk",
-        "./floppy/PinTo10.exe",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
+        "./scripts/unattend.xml",
+        "./scripts/sysprep.bat",
         "./scripts/win-updates.ps1"
       ],
       "communicator":"winrm",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout" : "4h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "winrm_timeout" : "2h",
+      "shutdown_command": "a:/sysprep.bat",
       "ram_size": 2048,
       "cpu": 2,
       "switch_name":"{{user `hyperv_switchname`}}",
-      "enable_secure_boot":true
+      "enable_secure_boot":true,
+      "enable_virtualization_extensions":true
     },
     {
+      "vm_name":"WindowsServer2016",
       "type": "vmware-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -39,8 +41,8 @@
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "winrm_timeout": "2h",
+      "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "windows9srv-64",
       "disk_size": 61440,
       "vnc_port_min": 5900,
@@ -48,12 +50,12 @@
       "version": 11,
       "floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/WindowsPowershell.lnk",
-        "./floppy/PinTo10.exe",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
+        "./scripts/unattend.xml",
+        "./scripts/sysprep.bat",
         "./scripts/win-updates.ps1"
       ],
       "vmx_data": {
@@ -65,6 +67,7 @@
       }
     },
     {
+      "vm_name":"WindowsServer2016",
       "type": "virtualbox-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -74,20 +77,20 @@
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "winrm_timeout": "2h",
+      "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/WindowsPowershell.lnk",
-        "./floppy/PinTo10.exe",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
+        "./scripts/unattend.xml",
+        "./scripts/sysprep.bat",
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
@@ -128,7 +131,6 @@
       "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/pin-powershell.bat",
         "./scripts/set-winrm-automatic.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
