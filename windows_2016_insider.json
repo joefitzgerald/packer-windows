@@ -116,7 +116,7 @@
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/2016/install-docker.ps1",
-        "./scripts/docker/docker-pull-local.ps1",
+        "./scripts/docker/docker-pull-insider-async.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
         "./scripts/docker/disable-windows-defender.ps1"
