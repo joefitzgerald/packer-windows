@@ -143,9 +143,9 @@
   ],
   "variables": {
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
-    "iso_url": "https://software-download.microsoft.com/pr/Windows_InsiderPreview_Server_16267.iso",
+    "iso_url": "https://software-download.microsoft.com/pr/Windows_InsiderPreview_Server_16278.iso",
     "iso_checksum_type": "sha256",
-    "iso_checksum": "1FA3EEED8555DD6E120727A7DB6B47B2987357B7001F6B5AF2A732A12CB61EC3",
+    "iso_checksum": "f87ebde2f4dc7094d2e01819d370cb8d06d2bcde520d3bdf9e8ce7e70a8ea5da",
     "autounattend": "./answer_files/2016_insider/Autounattend.xml"
   }
 }
