@@ -6,5 +6,7 @@ install:
   - choco install -y packer
   - ps: Install-WindowsFeature Hyper-V-PowerShell
 
+build: off
+
 test_script:
   - ps: .\test.ps1
