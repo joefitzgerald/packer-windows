@@ -32,7 +32,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
+      "headless": "{{user `headless`}}",
       "boot_wait": "60s",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
@@ -62,7 +62,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
+      "headless": "{{user `headless`}}",
       "boot_wait": "60s",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
@@ -142,6 +142,7 @@
     }
   ],
   "variables": {
+    "headless": "false",
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
     "iso_url": "https://software-download.microsoft.com/pr/Windows_InsiderPreview_Server_16278.iso",
     "iso_checksum_type": "sha256",

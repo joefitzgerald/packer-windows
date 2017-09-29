@@ -32,7 +32,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
+      "headless": "{{user `headless`}}",
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
@@ -63,7 +63,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
+      "headless": "{{user `headless`}}",
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
@@ -128,6 +128,7 @@
     }
   ],
   "variables": {
+    "headless": "false",
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/8/8/6/886DAAEF-81A7-4418-82D5-07D33B816962/14393.0.161119-1705.RS1_REFRESH_SERVERHYPERCORE_OEM_X64FRE_EN-US.ISO",
     "iso_checksum_type": "sha256",
     "iso_checksum": "53e2f01dc4077192a85f60f8d2ffb02189074e19b25f990cbe9eb767328d3fb6",
