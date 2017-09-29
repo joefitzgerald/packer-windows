@@ -1,5 +1,6 @@
 {
  "variables": {
+    "headless": "false",
     "azure_ad_tenant_id": "{{env `PACKER_AZURE_AD_TENANT_ID`}}",
     "azure_subscription_id": "{{env `PACKER_AZURE_SUBSCRIPTION_ID`}}",
     "object_id": "{{env `PACKER_AZURE_OBJECT_ID`}}",
