@@ -1,0 +1,10 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+install:
+  - choco feature disable --name showDownloadProgress
+  - choco install -y packer
+  - ps: Install-WindowsFeature Hyper-V-PowerShell
+
+test_script:
+  - ps: .\test.ps1
