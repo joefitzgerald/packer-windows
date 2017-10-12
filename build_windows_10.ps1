@@ -4,6 +4,8 @@
 #       --var iso_checksum=99fd8082a609997ae97a514dca22becf20420891 `
 #       --var autounattend=./tmp/10/Autounattend.xml `
 #       windows_10.json
+
+# bigger disk for hyperv
 packer build --only=vmware-iso `
-       --var iso_url=C:/packer_cache/14393.0.160715-1616.RS1_RELEASE_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO `
+       --var disk_size=136400 `
        windows_10.json

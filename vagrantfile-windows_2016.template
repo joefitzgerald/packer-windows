@@ -34,15 +34,6 @@ Vagrant.configure("2") do |config|
         v.vmx["RemoteDisplay.vnc.port"] = "5900"
         v.vmx["scsi0.virtualDev"] = "lsisas1068"
         v.enable_vmrun_ip_lookup = false
-        v.vmx["gui.fitguestusingnativedisplayresolution"] = "TRUE"
-        v.vmx["mks.enable3d"] = "TRUE"
-        v.vmx["mks.forceDiscreteGPU"] = "TRUE"
-        v.vmx["gui.fullscreenatpoweron"] = "TRUE"
-        v.vmx["gui.viewmodeatpoweron"] = "fullscreen"
-        v.vmx["gui.lastPoweredViewMode"] = "fullscreen"
-        v.vmx["sound.startconnected"] = "TRUE"
-        v.vmx["sound.present"] = "TRUE"
-        v.vmx["sound.autodetect"] = "TRUE"
     end
 
     config.vm.provider :vmware_workstation do |v, override|
@@ -53,5 +44,6 @@ Vagrant.configure("2") do |config|
         v.vmx["RemoteDisplay.vnc.enabled"] = "false"
         v.vmx["RemoteDisplay.vnc.port"] = "5900"
         v.vmx["scsi0.virtualDev"] = "lsisas1068"
+        v.enable_vmrun_ip_lookup = false
     end
 end

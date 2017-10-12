@@ -13,6 +13,7 @@
 *~
 /output/
 *.webm
-tmp/
+tmp
 /issues/
 *.iso
+path-to.vmx

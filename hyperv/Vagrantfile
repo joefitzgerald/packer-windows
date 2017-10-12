@@ -23,6 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "reload"
   config.vm.provision "shell", path: "scripts/install-packer.ps1", privileged: false
   config.vm.provision "shell", path: "scripts/install-vagrant.ps1", privileged: false
+  config.vm.provision "shell", path: "scripts/install-docker.ps1", privileged: false
+  config.vm.provision "shell", path: "scripts/install-docker-machine.ps1", privileged: false
 
   ["vmware_fusion", "vmware_workstation"].each do |provider|
     config.vm.provider provider do |v, override|

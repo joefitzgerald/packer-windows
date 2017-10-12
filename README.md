@@ -1,4 +1,5 @@
 # My Retina Windows Templates for Packer
+[![Build status](https://ci.appveyor.com/api/projects/status/76pea1oexae5ca05?svg=true)](https://ci.appveyor.com/project/StefanScherer/packer-windows)
 
 ### Introduction
 
@@ -14,7 +15,7 @@ Some of my enhancements are:
 
 ### Packer Version
 
-[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.10.0` or greater is required.
+[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `0.12.2` or greater is required.
 
 ### Windows Versions
 
@@ -91,17 +92,7 @@ Doing so will give you hours back in your day, which is a good thing.
 These boxes use WinRM. There is no OpenSSH installed.
 
 ### Hyper-V Support
-If you are running Windows 10, then you can also use these packerfiles to build a Hyper-V virtual machine:
-
-This requires @taliesens [fork of Packer](https://github.com/mitchellh/packer/pull/2576) with Hyper-V support. The linked PR also has binaries available ex: https://dl.bintray.com/taliesins/Packer/Packer.1.0.0.104-HyperV.nupkg
-
-Then run Packer:
-```
-packer build -var 'hyperv_switchname=Wifi' .\windows_2016.json
-```
-Be sure to set hyperv_switchname to an external Hyper-V switch.
-
-I have the ISO already downloaded to save time, and only have Hyper-V installed on my laptop, so I run:
+If you are running Windows 10, then you can also use these packerfiles to build a Hyper-V virtual machine. I have the ISO already downloaded to save time, and only have Hyper-V installed on my laptop, so I run:
 ```
 packer build --only hyperv-iso -var 'hyperv_switchname=Ethernet' -var 'iso_url=./server2016.iso' .\windows_2016_docker.json
 ```

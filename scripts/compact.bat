@@ -1,3 +1,7 @@
+if "%PACKER_BUILDER_TYPE:~0,6%"=="hyperv" (
+  echo "Skip compact steps in Hyper-V build."
+  goto :eof
+)
 if not exist "C:\Windows\Temp\7z920-x64.msi" (
 	powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://www.7-zip.org/a/7z920-x64.msi', 'C:\Windows\Temp\7z920-x64.msi')" <NUL
 )
@@ -13,6 +17,7 @@ if not exist "C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe" (
 
 if not exist "C:\Windows\Temp\SDelete.zip" (
   powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://download.sysinternals.com/files/SDelete.zip', 'C:\Windows\Temp\SDelete.zip')" <NUL
+  powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://vagrantboxes.blob.core.windows.net/box/sdelete/v1.6.1/sdelete.exe', 'C:\Windows\Temp\sdelete.exe')" <NUL
 )
 
 if not exist "C:\Windows\Temp\sdelete.exe" (

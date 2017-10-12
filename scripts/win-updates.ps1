@@ -1,7 +1,8 @@
 param($global:RestartRequired=0,
         $global:MoreUpdates=0,
         $global:MaxCycles=5,
-        $MaxUpdatesPerCycle=500)
+        $MaxUpdatesPerCycle=500,
+        $BeginWithRestart=0)
 
 $Logfile = "C:\Windows\Temp\win-updates.log"
 
@@ -223,6 +224,11 @@ $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
 $script:SearchResult = New-Object -ComObject 'Microsoft.Update.UpdateColl'
 $script:Cycles = 0
 $script:CycleUpdateCount = 0
+
+if ($BeginWithRestart) {
+  $global:RestartRequired = 1
+  Check-ContinueRestartOrEnd
+}
 
 Check-WindowsUpdates
 if ($global:MoreUpdates -eq 1) {
