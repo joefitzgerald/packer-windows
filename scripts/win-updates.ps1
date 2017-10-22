@@ -13,6 +13,14 @@ function LogWrite {
    Write-Host $logstring
 }
 
+function IsServer {
+  $caption = (Get-WmiObject -class Win32_OperatingSystem -computername ".").Caption
+  if ($caption -Like "*Windows Server*") {
+    return $true
+  }
+  return $false
+}
+
 function Check-ContinueRestartOrEnd() {
     $RegistryKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
     $RegistryEntry = "InstallWindowsUpdates"
@@ -69,15 +77,19 @@ function Install-WindowsUpdates() {
             if ($Update.InstallationBehavior.CanRequestUserInput) {
                 LogWrite "> Skipping: $($Update.Title) because it requires user input"
             } else {
+              if (IsServer -And ($($Update.Title) -Like '*Windows 10*')) {
+                LogWrite "> Skipping: $($Update.Title) because it is for Windows 10 and we run on Windows Server"
+              } else {
                 if (!($Update.EulaAccepted)) {
-                    LogWrite "> Note: $($Update.Title) has a license agreement that must be accepted. Accepting the license."
-                    $Update.AcceptEula()
-                    [bool]$addThisUpdate = $true
-                    $script:CycleUpdateCount++
+                  LogWrite "> Note: $($Update.Title) has a license agreement that must be accepted. Accepting the license."
+                  $Update.AcceptEula()
+                  [bool]$addThisUpdate = $true
+                  $script:CycleUpdateCount++
                 } else {
-                    [bool]$addThisUpdate = $true
-                    $script:CycleUpdateCount++
+                  [bool]$addThisUpdate = $true
+                  $script:CycleUpdateCount++
                 }
+              }
             }
 
             if ([bool]$addThisUpdate) {
@@ -144,7 +156,7 @@ function Install-WindowsUpdates() {
     LogWrite "Installation Result: $($InstallationResult.ResultCode)"
     LogWrite "Reboot Required: $($InstallationResult.RebootRequired)"
     LogWrite 'Listing of updates installed and individual installation results:'
-    if ($InstallationResult.RebootRequired) {
+    if ($InstallationResult.RebootRequired -Or $InstallationResult.ResultCode -Eq 4) {
         $global:RestartRequired=1
     } else {
         $global:RestartRequired=0
