@@ -48,6 +48,7 @@
       "disk_size": 61440,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
+      "version": 14,
       "floppy_files": [
         "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
@@ -133,6 +134,7 @@
       "type": "powershell",
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
+        "./scripts/docker/set-winrm-automatic.ps1",
         "./scripts/docker/2016/install-docker-ee-preview.ps1",
         "./scripts/docker/docker-pull-1709-async.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",

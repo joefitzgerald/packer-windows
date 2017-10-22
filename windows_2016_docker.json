@@ -155,6 +155,7 @@
       "type": "windows-shell",
       "scripts": [
         "./scripts/uac-enable.bat",
+        "./scripts/docker/set-winrm-automatic.bat",
         "./scripts/set-winrm-automatic.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/compact.bat"
