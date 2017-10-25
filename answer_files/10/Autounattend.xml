@@ -45,8 +45,8 @@
                     Notice the addition of the `<Key>` element.
                 -->
 
-                <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
-                <ProductKey>NPPR9-FWDCX-D2C8J-H872K-2YT43
+                <!-- Product Key from https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise -->
+                <ProductKey>2FMYP-QCY43-QR9VK-WTVCK
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
