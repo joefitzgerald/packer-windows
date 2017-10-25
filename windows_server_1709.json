@@ -3,7 +3,7 @@
     {
       "vm_name":"WindowsServer1709",
       "type": "hyperv-iso",
-      "disk_size": 41440,
+      "disk_size": "{{user `disk_size`}}",
       "boot_wait": "60s",
       "guest_additions_mode":"disable",
       "iso_url": "{{user `iso_url`}}",
@@ -45,10 +45,10 @@
       "winrm_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows9srv-64",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
+      "version": 11,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
-      "version": 14,
       "floppy_files": [
         "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
@@ -66,7 +66,7 @@
         "memsize": "2048",
         "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068",
-        "virtualHW.version": "12"
+        "vhv.enable": "{{user `vhv_enable`}}"
       }
     },
     {
@@ -84,7 +84,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./floppy/WindowsPowershell.lnk",
@@ -163,6 +163,9 @@
   ],
   "variables": {
     "headless": "false",
+    "disk_size": "61440",
+    "disk_type_id": "1",
+    "vhv_enable": "false",
     "manually_download_iso_from": "https://my.visualstudio.com/downloads?pid=2347",
     "iso_url": "https://software-download.microsoft.com/pr/en_windows_server_version_1709_x64_dvd_100090904.iso",
     "iso_checksum_type": "sha256",
