@@ -138,6 +138,7 @@
         "./scripts/docker/2016/install-docker-ee-preview.ps1",
         "./scripts/docker/docker-pull-1709-async.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
+        "./scripts/docker/open-docker-swarm-ports.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
         "./scripts/docker/disable-windows-defender.ps1"
       ]
