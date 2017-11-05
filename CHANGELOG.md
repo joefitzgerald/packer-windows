@@ -1,7 +1,10 @@
 ## Unreleased
-* Fixed issue with Console Output (#245)
-
-* Added Windows 2016 build
+* Fixed issue with Console Output in win-updates.ps1 (#245)
+* Added Windows 2016 build (#243)
+* Use VBox certs from guest addition (#247, #250)
+* Improve Windows 10 (#236)
+* Add more build variables (#228)
+* Increase 2008R2 timeouts (#206)
 
 ## v1.25 (August 13th, 2015)
 
