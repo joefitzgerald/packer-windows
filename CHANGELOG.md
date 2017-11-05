@@ -1,4 +1,7 @@
 ## Unreleased
+* Fixed issue with Console Output (#245)
+
+* Added Windows 2016 build
 
 ## v1.25 (August 13th, 2015)
 
