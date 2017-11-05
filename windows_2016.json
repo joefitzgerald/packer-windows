@@ -90,8 +90,7 @@
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/unattend.xml",
-        "./scripts/sysprep.bat",
-        "./scripts/oracle-cert.cer"
+        "./scripts/sysprep.bat"
       ],
       "vboxmanage": [
         [

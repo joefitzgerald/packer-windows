@@ -31,16 +31,12 @@ goto :done
 
 :virtualbox
 
-:: There needs to be Oracle CA (Certificate Authority) certificates installed in order
-:: to prevent user intervention popups which will undermine a silent installation.
-cmd /c certutil -addstore -f "TrustedPublisher" A:\oracle-cert.cer
-
 if exist "C:\Users\vagrant\VBoxGuestAdditions.iso" (
     move /Y C:\Users\vagrant\VBoxGuestAdditions.iso C:\Windows\Temp
 )
 
 if not exist "C:\Windows\Temp\VBoxGuestAdditions.iso" (
-    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://download.virtualbox.org/virtualbox/5.2.0/VBoxGuestAdditions_5.2.0.iso', 'C:\Windows\Temp\VBoxGuestAdditions.iso')" <NUL
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso', 'C:\Windows\Temp\VBoxGuestAdditions.iso')" <NUL
 )
 
 cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\VBoxGuestAdditions.iso -oC:\Windows\Temp\virtualbox"

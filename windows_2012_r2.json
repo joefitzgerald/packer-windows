@@ -56,8 +56,7 @@
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/unattend.xml",
-        "./scripts/win-updates.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/win-updates.ps1"
       ],
       "vboxmanage": [
         [

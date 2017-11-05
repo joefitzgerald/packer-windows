@@ -49,8 +49,7 @@
         "./scripts/dis-updates.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/openssh.ps1"
       ],
       "vboxmanage": [
         [

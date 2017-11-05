@@ -96,8 +96,7 @@
         "./scripts/docker/enable-winrm.ps1",
         "./scripts/docker/2016/install-containers-feature.ps1",
         "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/win-updates.ps1"
       ],
       "vboxmanage": [
         [

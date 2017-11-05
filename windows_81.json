@@ -47,8 +47,7 @@
         "./answer_files/81/Autounattend.xml",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/openssh.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/openssh.ps1"
       ],
       "vboxmanage": [
         [
