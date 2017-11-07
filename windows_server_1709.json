@@ -170,6 +170,6 @@
     "iso_url": "https://software-download.microsoft.com/pr/en_windows_server_version_1709_x64_dvd_100090904.iso",
     "iso_checksum_type": "sha256",
     "iso_checksum": "ca1108d5be2c091bfb57e8f3db3be1e8baa9c32802131f7a6e43e63f7b596591",
-    "autounattend": "./answer_files/2016_core/Autounattend.xml"
+    "autounattend": "./answer_files/1709/Autounattend.xml"
   }
 }
