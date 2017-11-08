@@ -20,7 +20,7 @@
       "communicator":"winrm",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout" : "4h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "ram_size": 2048,
       "cpu": 2,
@@ -38,7 +38,7 @@
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows9srv-64",
       "disk_size": 61440,
@@ -71,7 +71,7 @@
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
@@ -126,7 +126,8 @@
       ]
     },
     {
-      "type": "windows-restart"
+      "type": "windows-restart",
+      "restart_timeout": "{{user `restart_timeout`}}"
     },
     {
       "type": "powershell",
@@ -135,7 +136,8 @@
       ]
     },
     {
-      "type": "windows-restart"
+      "type": "windows-restart",
+      "restart_timeout": "{{user `restart_timeout`}}"
     },
     {
       "type": "windows-shell",
@@ -162,6 +164,8 @@
     "autounattend": "./answer_files/2016_core/Autounattend.xml",
     "DomainName": "windomain.local",
     "DomainNetbiosName": "windom",
-    "SafeModeAdministratorPassword": "BadAdminPassword!"
+    "SafeModeAdministratorPassword": "BadAdminPassword!",
+    "restart_timeout": "5m",
+    "winrm_timeout": "6h"
   }
 }

@@ -22,7 +22,7 @@
       "communicator":"winrm",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout" : "2h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "a:/sysprep.bat",
       "ram_size": 2048,
       "cpu": 2,
@@ -41,7 +41,7 @@
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "2h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "windows9srv-64",
       "disk_size": 61440,
@@ -77,7 +77,7 @@
       "boot_wait": "2m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "2h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
@@ -124,7 +124,8 @@
       ]
     },
     {
-      "type": "windows-restart"
+      "type": "windows-restart",
+      "restart_timeout": "{{user `restart_timeout`}}"
     },
     {
       "type": "windows-shell",
@@ -151,6 +152,8 @@
     "iso_checksum_type": "md5",
     "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
     "autounattend": "./answer_files/2016/Autounattend.xml",
-    "hyperv_switchname": "{{env `hyperv_switchname`}}"
+    "hyperv_switchname": "{{env `hyperv_switchname`}}",
+    "restart_timeout": "5m",
+    "winrm_timeout": "2h"
   }
 }
