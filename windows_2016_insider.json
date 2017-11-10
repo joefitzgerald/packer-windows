@@ -18,7 +18,7 @@
       "communicator":"winrm",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout" : "2h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "ram_size": 2048,
       "cpu": 2,
@@ -36,7 +36,7 @@
       "boot_wait": "60s",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "2h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows9srv-64",
       "disk_size": 61440,
@@ -66,7 +66,7 @@
       "boot_wait": "60s",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
-      "winrm_timeout": "2h",
+      "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
@@ -108,7 +108,8 @@
       ]
     },
     {
-      "type": "windows-restart"
+      "type": "windows-restart",
+      "restart_timeout": "{{user `restart_timeout`}}"
     },
     {
       "type": "powershell",
@@ -122,7 +123,8 @@
       ]
     },
     {
-      "type": "windows-restart"
+      "type": "windows-restart",
+      "restart_timeout": "{{user `restart_timeout`}}"
     },
     {
       "type": "windows-shell",
@@ -146,6 +148,8 @@
     "iso_url": "https://software-download.microsoft.com/pr/Windows_InsiderPreview_Server_16278.iso",
     "iso_checksum_type": "sha256",
     "iso_checksum": "f87ebde2f4dc7094d2e01819d370cb8d06d2bcde520d3bdf9e8ce7e70a8ea5da",
-    "autounattend": "./answer_files/2016_insider/Autounattend.xml"
+    "autounattend": "./answer_files/2016_insider/Autounattend.xml",
+    "restart_timeout": "5m",
+    "winrm_timeout": "2h"
   }
 }
