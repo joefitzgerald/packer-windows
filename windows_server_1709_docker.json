@@ -1,7 +1,7 @@
 {
   "builders": [
     {
-      "vm_name": "WindowsServer1709",
+      "vm_name": "WindowsServer1709Docker",
       "type": "hyperv-iso",
       "disk_size": "{{user `disk_size`}}",
       "boot_wait": "60s",
@@ -14,7 +14,8 @@
         "./floppy/WindowsPowershell.lnk",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
+        "./scripts/docker/enable-winrm.ps1",
+        "./scripts/docker/2016/install-containers-feature.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
@@ -31,7 +32,7 @@
       "enable_virtualization_extensions": true
     },
     {
-      "vm_name": "WindowsServer1709",
+      "vm_name": "WindowsServer1709Docker",
       "type": "vmware-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -54,7 +55,8 @@
         "./floppy/WindowsPowershell.lnk",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
+        "./scripts/docker/enable-winrm.ps1",
+        "./scripts/docker/2016/install-containers-feature.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
@@ -68,7 +70,7 @@
       }
     },
     {
-      "vm_name": "WindowsServer1709",
+      "vm_name": "WindowsServer1709Docker",
       "type": "virtualbox-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -89,7 +91,8 @@
         "./floppy/WindowsPowershell.lnk",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
+        "./scripts/docker/enable-winrm.ps1",
+        "./scripts/docker/2016/install-containers-feature.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
@@ -102,12 +105,28 @@
   "provisioners": [
     {
       "type": "windows-shell",
-      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": ["./scripts/vm-guest-tools.bat", "./scripts/enable-rdp.bat"]
     },
     {
       "type": "powershell",
-      "scripts": ["./scripts/debloat-windows.ps1"]
+      "scripts": ["./scripts/docker/2016/install-containers-feature.ps1"]
+    },
+    {
+      "type": "windows-restart",
+      "restart_timeout": "{{user `restart_timeout`}}"
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/docker/add-docker-group.ps1",
+        "./scripts/docker/set-winrm-automatic.ps1",
+        "./scripts/docker/2016/install-docker-ee-preview.ps1",
+        "./scripts/docker/docker-pull-1709-async.ps1",
+        "./scripts/docker/open-docker-insecure-port.ps1",
+        "./scripts/docker/open-docker-swarm-ports.ps1",
+        "./scripts/docker/remove-docker-key-json.ps1",
+        "./scripts/docker/disable-windows-defender.ps1"
+      ]
     },
     {
       "type": "windows-restart",
@@ -115,11 +134,8 @@
     },
     {
       "type": "windows-shell",
-      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/set-winrm-automatic.bat",
         "./scripts/compile-dotnet-assemblies.bat",
-        "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ]
     }
@@ -128,7 +144,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "windows_server_1709_{{.Provider}}.box",
+      "output": "windows_server_1709_docker_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-windows_2016.template"
     }
   ],

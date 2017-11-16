@@ -9,4 +9,4 @@ packer build \
   --var iso_checksum=ca1108d5be2c091bfb57e8f3db3be1e8baa9c32802131f7a6e43e63f7b596591 \
   --var iso_checksum_type=sha256 \
   --var autounattend=./tmp/1709/Autounattend.xml \
-  windows_server_1709.json
+  windows_server_1709_docker.json
