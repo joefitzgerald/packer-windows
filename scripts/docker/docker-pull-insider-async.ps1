@@ -14,4 +14,3 @@ function DockerPull {
 
 DockerPull microsoft/windowsservercore-insider
 DockerPull microsoft/nanoserver-insider
-DockerPull microsoft/nanoserver-insider-powershell
