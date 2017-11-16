@@ -47,6 +47,7 @@
         "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "windows9srv-64",
       "disk_size": "{{user `disk_size`}}",
+      "disk_type_id": "{{user `disk_type_id`}}",
       "version": 11,
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
