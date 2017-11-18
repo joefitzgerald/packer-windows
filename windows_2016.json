@@ -3,7 +3,7 @@
     {
       "vm_name":"WindowsServer2016",
       "type": "hyperv-iso",
-      "disk_size": 41440,
+      "disk_size": "{{user `disk_size`}}",
       "boot_wait": "0s",
       "guest_additions_mode":"disable",
       "iso_url": "{{user `iso_url`}}",
@@ -44,7 +44,8 @@
       "winrm_timeout" : "{{user `winrm_timeout`}}",
       "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "windows9srv-64",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
+      "disk_type_id": "{{user `disk_type_id`}}",
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "version": 11,
@@ -82,7 +83,7 @@
       "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "Windows2012_64",
       "guest_additions_mode": "disable",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-screensaver.ps1",
@@ -132,9 +133,11 @@
       "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
+        "./scripts/pin-powershell.bat",
         "./scripts/set-winrm-automatic.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/dis-updates.bat",
         "./scripts/compact.bat"
       ]
     }
@@ -149,6 +152,8 @@
   ],
   "variables": {
     "headless": "false",
+    "disk_size": "61440",
+    "disk_type_id": "1",
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/1/4/9/149D5452-9B29-4274-B6B3-5361DBDA30BC/14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_EN-US.ISO",
     "iso_checksum_type": "md5",
     "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",

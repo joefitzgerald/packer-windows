@@ -31,7 +31,8 @@ The following Windows versions are known to work (built with VMware Fusion Pro
 * Windows 10
   * Windows 10 1709
   * Windows 10 Insider
-* Windows Server
+* Windows Server 2016 Desktop
+* Windows Server Core
   * Windows Server 2016 without and with Docker
   * Windows Server 1709 without and with Docker
   * Windows Server Insider without and with Docker

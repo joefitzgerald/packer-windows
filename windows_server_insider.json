@@ -117,7 +117,7 @@
       "type": "vagrant",
       "keep_input_artifact": false,
       "output": "windows_server_insider_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows_2016.template"
+      "vagrantfile_template": "vagrantfile-windows_2016_core.template"
     }
   ],
   "variables": {
