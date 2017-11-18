@@ -111,6 +111,7 @@
         "./scripts/docker/2016/install-docker-ee-preview.ps1",
         "./scripts/docker/docker-pull-insider-async.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
+        "./scripts/docker/open-docker-swarm-ports.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
         "./scripts/docker/disable-windows-defender.ps1"
       ]
@@ -121,7 +122,7 @@
       "type": "vagrant",
       "keep_input_artifact": false,
       "output": "windows_server_insider_docker_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows_2016.template"
+      "vagrantfile_template": "vagrantfile-windows_2016_core.template"
     }
   ],
   "variables": {
