@@ -14,6 +14,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
+      "vmx_remove_ethernet_interfaces": true,
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
