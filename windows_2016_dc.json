@@ -52,6 +52,7 @@
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
+      "vmx_remove_ethernet_interfaces": true,
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",

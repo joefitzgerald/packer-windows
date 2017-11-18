@@ -51,6 +51,7 @@
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1"
       ],
+      "vmx_remove_ethernet_interfaces": true,
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
