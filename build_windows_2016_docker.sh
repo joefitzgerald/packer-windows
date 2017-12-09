@@ -4,11 +4,11 @@
 # MSDN ISO
 packer build \
   --only=vmware-iso \
-  --var disk_type_id=3 \
-  --var disk_size=30720 \
   --var vhv_enable=true \
   --var iso_url=~/packer_cache/msdn/en_windows_server_2016_x64_dvd_9718492.iso \
   --var iso_checksum=F185197AF68FAE4F0E06510A4579FC511BA27616 \
   --var iso_checksum_type=sha1 \
-  --var autounattend=./tmp/2016/Autounattend.xml \
+  --var autounattend=./tmp/2016_core/Autounattend.xml \
   windows_2016_docker.json
+#  --var disk_type_id=3 \
+#  --var disk_size=30720 \
