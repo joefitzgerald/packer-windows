@@ -128,7 +128,8 @@
     },
     {
       "scripts": [
-        "./scripts/debloat-windows.ps1"
+        "./scripts/debloat-windows.ps1",
+        "./scripts/docker/set-winrm-automatic.ps1"
       ],
       "type": "powershell"
     },
@@ -144,7 +145,6 @@
       ],
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
-        "./scripts/docker/set-winrm-automatic.ps1",
         "./scripts/docker/install-docker.ps1",
         "./scripts/docker/docker-pull.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
