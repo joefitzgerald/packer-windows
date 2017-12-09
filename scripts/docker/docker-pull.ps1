@@ -1,6 +1,6 @@
 $images = ""
-if (Test-Path env:docker_pull) {
-  $images = $env:docker_pull.split() 
+if (Test-Path env:docker_images) {
+  $images = $env:docker_images.split() 
 }
 
 function DockerPull {
