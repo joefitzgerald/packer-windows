@@ -1,83 +1,68 @@
 {
   "builders": [
     {
-      "vm_name": "WindowsServerInsider",
-      "type": "hyperv-iso",
-      "disk_size": "{{user `disk_size`}}",
       "boot_wait": "60s",
-      "guest_additions_mode": "disable",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
+      "communicator": "winrm",
+      "cpu": 2,
+      "disk_size": "{{user `disk_size`}}",
+      "enable_secure_boot": true,
+      "enable_virtualization_extensions": true,
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-screensaver.ps1",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1"
       ],
-      "communicator": "winrm",
-      "winrm_username": "vagrant",
+      "guest_additions_mode": "disable",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "ram_size": 2048,
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "switch_name": "{{user `hyperv_switchname`}}",
+      "type": "hyperv-iso",
+      "vm_name": "WindowsServerInsider",
       "winrm_password": "vagrant",
       "winrm_timeout": "{{user `winrm_timeout`}}",
-      "shutdown_command":
-        "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "ram_size": 2048,
-      "cpu": 2,
-      "switch_name": "{{user `hyperv_switchname`}}",
-      "enable_secure_boot": true,
-      "enable_virtualization_extensions": true
+      "winrm_username": "vagrant"
     },
     {
-      "vm_name": "WindowsServerInsider",
-      "type": "vmware-iso",
-      "communicator": "winrm",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": "{{user `headless`}}",
       "boot_wait": "60s",
-      "winrm_username": "vagrant",
-      "winrm_password": "vagrant",
-      "winrm_timeout": "{{user `winrm_timeout`}}",
-      "shutdown_command":
-        "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "windows9srv-64",
+      "communicator": "winrm",
       "disk_size": "{{user `disk_size`}}",
       "disk_type_id": "{{user `disk_type_id`}}",
-      "vnc_port_min": 5900,
-      "vnc_port_max": 5980,
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1"
       ],
-      "vmx_remove_ethernet_interfaces": true,
+      "guest_os_type": "windows9srv-64",
+      "headless": "{{user `headless`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "type": "vmware-iso",
+      "vm_name": "WindowsServerInsider",
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
         "memsize": "2048",
         "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068",
-        "virtualHW.version": "12",
-        "vhv.enable": "{{user `vhv_enable`}}"
-      }
-    },
-    {
-      "vm_name": "WindowsServerInsider",
-      "type": "virtualbox-iso",
-      "communicator": "winrm",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": "{{user `headless`}}",
-      "boot_wait": "60s",
-      "winrm_username": "vagrant",
+        "vhv.enable": "{{user `vhv_enable`}}",
+        "virtualHW.version": "12"
+      },
+      "vmx_remove_ethernet_interfaces": true,
+      "vnc_port_max": 5980,
+      "vnc_port_min": 5900,
       "winrm_password": "vagrant",
       "winrm_timeout": "{{user `winrm_timeout`}}",
-      "shutdown_command":
-        "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows2012_64",
-      "guest_additions_mode": "disable",
+      "winrm_username": "vagrant"
+    },
+    {
+      "boot_wait": "60s",
+      "communicator": "winrm",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
@@ -85,55 +70,78 @@
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1"
       ],
+      "guest_additions_mode": "disable",
+      "guest_os_type": "Windows2012_64",
+      "headless": "{{user `headless`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "type": "virtualbox-iso",
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "2048"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"]
-      ]
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "vm_name": "WindowsServerInsider",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "vagrant"
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "windows_server_insider_{{.Provider}}.box",
+      "type": "vagrant",
+      "vagrantfile_template": "vagrantfile-windows_2016_core.template"
     }
   ],
   "provisioners": [
     {
-      "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
-      "scripts": ["./scripts/vm-guest-tools.bat", "./scripts/enable-rdp.bat"]
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/enable-rdp.bat"
+      ],
+      "type": "windows-shell"
     },
     {
-      "type": "windows-restart",
-      "restart_timeout": "{{user `restart_timeout`}}"
+      "restart_timeout": "{{user `restart_timeout`}}",
+      "type": "windows-restart"
     },
     {
-      "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/set-winrm-automatic.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
-      ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "windows_server_insider_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows_2016_core.template"
+      ],
+      "type": "windows-shell"
     }
   ],
   "variables": {
-    "headless": "false",
+    "autounattend": "./answer_files/server_insider/Autounattend.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
-    "vhv_enable": "false",
-    "manually_download_iso_from":
-      "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
-    "iso_url":
-      "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17035.iso",
+    "headless": "false",
+    "iso_checksum": "dd412bd5c7d29fa5166a10f4cb36dacf7fcb605a5b8e8a6e8fa87e13aed6851d",
     "iso_checksum_type": "sha256",
-    "iso_checksum":
-      "dd412bd5c7d29fa5166a10f4cb36dacf7fcb605a5b8e8a6e8fa87e13aed6851d",
-    "autounattend": "./answer_files/server_insider/Autounattend.xml",
+    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17035.iso",
+    "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
     "restart_timeout": "5m",
+    "vhv_enable": "false",
     "winrm_timeout": "2h"
   }
 }
+

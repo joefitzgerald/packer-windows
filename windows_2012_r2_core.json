@@ -1,21 +1,9 @@
 {
   "builders": [
     {
-      "type": "vmware-iso",
-      "communicator": "winrm",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": true,
       "boot_wait": "2m",
-      "winrm_username": "vagrant",
-      "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "windows8srv-64",
+      "communicator": "winrm",
       "disk_size": 61440,
-      "vnc_port_min": 5900,
-      "vnc_port_max": 5980,
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-winrm.ps1",
@@ -23,29 +11,30 @@
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
-      "vmx_remove_ethernet_interfaces": true,
+      "guest_os_type": "windows8srv-64",
+      "headless": true,
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "type": "vmware-iso",
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
         "memsize": "2048",
         "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068"
-      }
-    },
-    {
-      "type": "virtualbox-iso",
-      "communicator": "winrm",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": true,
-      "boot_wait": "2m",
-      "winrm_username": "vagrant",
+      },
+      "vmx_remove_ethernet_interfaces": true,
+      "vnc_port_max": 5980,
+      "vnc_port_min": 5900,
       "winrm_password": "vagrant",
       "winrm_timeout": "6h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows2012_64",
-      "guest_additions_mode": "disable",
+      "winrm_username": "vagrant"
+    },
+    {
+      "boot_wait": "2m",
+      "communicator": "winrm",
       "disk_size": 61440,
       "floppy_files": [
         "{{user `autounattend`}}",
@@ -54,6 +43,14 @@
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1"
       ],
+      "guest_additions_mode": "disable",
+      "guest_os_type": "Windows2012_64",
+      "headless": true,
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "type": "virtualbox-iso",
       "vboxmanage": [
         [
           "modifyvm",
@@ -67,33 +64,37 @@
           "--cpus",
           "2"
         ]
-      ]
+      ],
+      "winrm_password": "vagrant",
+      "winrm_timeout": "6h",
+      "winrm_username": "vagrant"
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "windows_2012_r2_core_{{.Provider}}.box",
+      "type": "vagrant",
+      "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
     }
   ],
   "provisioners": [
     {
-      "type": "windows-shell",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/disable-auto-logon.bat",
         "./scripts/compact.bat"
-      ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "windows_2012_r2_core_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
+      ],
+      "type": "windows-shell"
     }
   ],
   "variables": {
-    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO",
-    "iso_checksum_type": "md5",
+    "autounattend": "./answer_files/2012_r2_core/Autounattend.xml",
     "iso_checksum": "5b5e08c490ad16b59b1d9fab0def883a",
-    "autounattend": "./answer_files/2012_r2_core/Autounattend.xml"
+    "iso_checksum_type": "md5",
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO"
   }
 }
+
