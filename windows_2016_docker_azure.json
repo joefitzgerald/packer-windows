@@ -38,11 +38,16 @@
       "type": "windows-restart"
     },
     {
+      "environment_vars": [
+        "docker_images={{user `docker_images`}}",
+        "docker_provider={{user `docker_provider`}}",
+        "docker_version={{user `docker_version`}}"
+      ],
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/disable-windows-defender.ps1",
-        "./scripts/docker/2016/install-docker.ps1",
-        "./scripts/docker/docker-pull-async.ps1",
+        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/docker-pull.ps1",
         "./scripts/docker/remove-docker-key-json.ps1"
       ],
       "type": "powershell"
@@ -53,6 +58,9 @@
     "azure_ad_tenant_id": "{{env `PACKER_AZURE_AD_TENANT_ID`}}",
     "azure_subscription_id": "{{env `PACKER_AZURE_SUBSCRIPTION_ID`}}",
     "client_secret": "{{env `PACKER_AZURE_CLIENT_SECRET`}}",
+    "docker_images": "microsoft/windowsservercore microsoft/nanoserver",
+    "docker_provider": "DockerProvider",
+    "docker_version": "stable",
     "headless": "false",
     "object_id": "{{env `PACKER_AZURE_OBJECT_ID`}}",
     "resource_group": "{{env `PACKER_AZURE_RESOURCE_GROUP`}}",

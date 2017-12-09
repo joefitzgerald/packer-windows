@@ -125,10 +125,15 @@
       "type": "windows-restart"
     },
     {
+      "environment_vars": [
+        "docker_images={{user `docker_images`}}",
+        "docker_provider={{user `docker_provider`}}",
+        "docker_version={{user `docker_version`}}"
+      ],
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
-        "./scripts/docker/2016/install-docker-ee-preview.ps1",
-        "./scripts/docker/docker-pull-insider-async.ps1",
+        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/docker-pull.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
         "./scripts/docker/open-docker-swarm-ports.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
@@ -141,6 +146,9 @@
     "autounattend": "./answer_files/server_insider/Autounattend.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
+    "docker_images": "microsoft/windowsservercore-insider microsoft/nanoserver-insider",
+    "docker_provider": "DockerProvider",
+    "docker_version": "preview",
     "headless": "false",
     "iso_checksum": "dd412bd5c7d29fa5166a10f4cb36dacf7fcb605a5b8e8a6e8fa87e13aed6851d",
     "iso_checksum_type": "sha256",
