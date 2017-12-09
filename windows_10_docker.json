@@ -43,10 +43,15 @@
       "type": "windows-restart"
     },
     {
+      "environment_vars": [
+        "docker_images={{user `docker_images`}}",
+        "docker_provider={{user `docker_provider`}}",
+        "docker_version={{user `docker_version`}}"
+      ],
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
-        "./scripts/docker/10/install-docker.ps1",
-        "./scripts/docker/docker-pull-async.ps1",
+        "./scripts/docker/install-docker.ps1",
+        "./scripts/docker/docker-pull.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
         "./scripts/docker/open-docker-swarm-ports.ps1",
         "./scripts/docker/remove-docker-key-json.ps1",
@@ -64,6 +69,9 @@
     }
   ],
   "variables": {
+    "docker_images": "microsoft/windowsservercore microsoft/nanoserver",
+    "docker_provider": "ce",
+    "docker_version": "17.10.0",
     "source_path": "path-to.vmx"
   }
 }
