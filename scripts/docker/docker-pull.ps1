@@ -24,3 +24,6 @@ function DockerPull {
 $images | foreach {
   DockerPull $_
 }
+$images | foreach {
+  DockerPull $_
+}

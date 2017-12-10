@@ -121,6 +121,7 @@
   ],
   "provisioners": [
     {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat"
@@ -129,7 +130,8 @@
     },
     {
       "scripts": [
-        "./scripts/docker/2016/install-containers-feature.ps1"
+        "./scripts/docker/2016/install-containers-feature.ps1",
+        "./scripts/docker/set-winrm-automatic.ps1"
       ],
       "type": "powershell"
     },
@@ -145,7 +147,6 @@
       ],
       "scripts": [
         "./scripts/docker/add-docker-group.ps1",
-        "./scripts/docker/set-winrm-automatic.ps1",
         "./scripts/docker/install-docker.ps1",
         "./scripts/docker/docker-pull.ps1",
         "./scripts/docker/open-docker-insecure-port.ps1",
