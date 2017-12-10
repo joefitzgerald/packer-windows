@@ -31,5 +31,6 @@ if ($docker_provider -eq "ce") {
   Set-PSRepository -InstallationPolicy Untrusted -Name PSGallery  
 }
 
+$ErrorActionPreference = 'Stop'
 Write-Host "Starting docker ..."
 Start-Service docker
