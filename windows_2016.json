@@ -52,7 +52,7 @@
       "iso_url": "{{user `iso_url`}}",
       "shutdown_command": "a:/sysprep.bat",
       "type": "vmware-iso",
-      "version": 11,
+      "version": 12,
       "vm_name": "WindowsServer2016",
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
