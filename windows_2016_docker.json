@@ -50,7 +50,7 @@
       "iso_url": "{{user `iso_url`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "type": "vmware-iso",
-      "version": 11,
+      "version": 12,
       "vm_name": "WindowsServer2016Docker",
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
