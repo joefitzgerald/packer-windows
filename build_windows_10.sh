@@ -22,7 +22,9 @@
 
 packer build \
   --only=vmware-iso \
-  --var disk_type_id=3 \
-  --var disk_size=30720 \
   --var vhv_enable=true \
-  windows_10.json
+  --var iso_url=~/packer_cache/connect/17046.1000.171118-1403.rs_prerelease_CLIENT_BUSINESS_VOL_x64FRE_en-us.iso \
+  --var iso_checksum=0c014fda2648f3659682e51ef3609f7b127be09db51c59ad632a6c407afba4b6 \
+  windows_10_insider.json
+#  --var disk_type_id=3 \
+#  --var disk_size=30720 \

@@ -6,8 +6,6 @@
 # Windows Insider ISO
 packer build \
   --only=vmware-iso \
-  --var disk_type_id=3 \
-  --var disk_size=30720 \
   --var vhv_enable=true \
-  --var iso_url=~/packer_cache/insider/Windows_InsiderPreview_Server_17035.iso \
+  --var iso_url=~/packer_cache/insider/Windows_InsiderPreview_Server_17046.iso \
   windows_server_insider_docker.json
