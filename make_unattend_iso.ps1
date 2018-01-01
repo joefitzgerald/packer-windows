@@ -3,7 +3,7 @@
 
 $isoList = @(
     @{
-        FileName="./iso/windows_server_insider.iso";
+        FileName="./iso/windows_server_insider_unattend.iso";
         Files=@(
             "./answer_files/server_insider_uefi/autounattend.xml",
             "./scripts/disable-screensaver.ps1",
