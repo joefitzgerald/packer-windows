@@ -9,7 +9,7 @@
       "enable_virtualization_extensions": true,
       "generation": 2,
       "secondary_iso_images": [
-        "./iso/windows_server_insider.iso"
+        "./iso/windows_server_insider_unattend.iso"
       ],
       "guest_additions_mode": "disable",
       "iso_checksum": "{{user `iso_checksum`}}",
