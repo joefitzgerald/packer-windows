@@ -2,9 +2,9 @@
   "builders": [
     {
       "boot_command": [
-        "<enter><enter>"
+        "<enter>"
       ],
-      "boot_wait": "2s",
+      "boot_wait": "1s",
       "communicator": "winrm",
       "cpu": 2,
       "disk_size": "{{user `disk_size`}}",
@@ -124,7 +124,6 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/set-winrm-automatic.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ],
