@@ -7,11 +7,9 @@
       "disk_size": "{{user `disk_size`}}",
       "enable_secure_boot": true,
       "enable_virtualization_extensions": true,
-      "floppy_files": [
-        "{{user `autounattend`}}",
-        "./scripts/disable-screensaver.ps1",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1"
+      "generation": 2,
+      "secondary_iso_images": [
+        "./iso/windows_server_insider.iso"
       ],
       "guest_additions_mode": "disable",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -144,4 +142,3 @@
     "winrm_timeout": "2h"
   }
 }
-
