@@ -150,13 +150,13 @@
     "docker_provider": "DockerProvider",
     "docker_version": "preview",
     "headless": "false",
-    "iso_checksum": "dd412bd5c7d29fa5166a10f4cb36dacf7fcb605a5b8e8a6e8fa87e13aed6851d",
+    "iso_checksum": "135b2cd050b55de7076fa50f2e35e816a7def180413d54c0681590cc80d18798",
     "iso_checksum_type": "sha256",
-    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17035.iso",
+    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17046.iso",
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
     "restart_timeout": "5m",
     "vhv_enable": "false",
-    "winrm_timeout": "2h"
+    "winrm_timeout": "4h"
   }
 }
 
