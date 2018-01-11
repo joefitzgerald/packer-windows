@@ -148,7 +148,7 @@
     "disk_type_id": "1",
     "docker_images": "microsoft/windowsservercore-insider microsoft/nanoserver-insider",
     "docker_provider": "DockerProvider",
-    "docker_version": "preview",
+    "docker_version": "17.10.0-ee-preview-3",
     "headless": "false",
     "iso_checksum": "135b2cd050b55de7076fa50f2e35e816a7def180413d54c0681590cc80d18798",
     "iso_checksum_type": "sha256",
