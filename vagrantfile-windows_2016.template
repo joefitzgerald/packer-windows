@@ -46,6 +46,7 @@ Vagrant.configure("2") do |config|
         v.vms["virtualhw.version"] = "11"
         v.enable_vmrun_ip_lookup = false
         v.whitelist_verified = true
+        v.vmx["hgfs.linkRootShare"] = "FALSE"
     end
 
     config.vm.provider :vmware_workstation do |v, override|
@@ -58,5 +59,6 @@ Vagrant.configure("2") do |config|
         v.vmx["scsi0.virtualDev"] = "lsisas1068"
         v.enable_vmrun_ip_lookup = false
         v.whitelist_verified = true
+        v.vmx["hgfs.linkRootShare"] = "FALSE"
     end
 end
