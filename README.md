@@ -138,6 +138,8 @@ You then can use this box with Vagrant to spin up a Hyper-V VM.
 Some of these images use Hyper-V "Generation 2" VMs to enable the latest features and faster booting. However, an extra manual step is needed to put the needed files into ISOs because Gen2 VMs don't support virtual floppy disks.
 
 - `windows_server_insider.json`
+- `windows_server_insider_docker.json`
+- `windows_10_insider.json`
 
 Before running `packer build`, be sure to run `./make_unattend_iso.ps1` first. Otherwise the build will fail on a missing ISO file
 
