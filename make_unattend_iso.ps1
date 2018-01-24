@@ -10,6 +10,20 @@ $isoList = @(
             "./scripts/disable-winrm.ps1",
             "./scripts/enable-winrm.ps1"
         )
+    },
+    @{
+        FileName="./iso/windows_10_insider_unattend.iso";
+        Files=@(
+            "./answer_files/10_insider_uefi/Autounattend.xml"
+            "./floppy/WindowsPowershell.lnk",
+            "./floppy/PinTo10.exe",
+            "./scripts/fixnetwork.ps1",
+            "./scripts/disable-screensaver.ps1",
+            "./scripts/disable-winrm.ps1",
+            "./scripts/enable-winrm.ps1",
+            "./scripts/microsoft-updates.bat",
+            "./scripts/win-updates.ps1"
+        )
     }
 )
 
