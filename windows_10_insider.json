@@ -102,6 +102,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "switch_name": "{{user `hyperv_switchname`}}",
       "type": "hyperv-iso",
+      "vm_name": "Windows10Insider",
       "winrm_password": "vagrant",
       "winrm_timeout": "2h",
       "winrm_username": "vagrant"
