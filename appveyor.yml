@@ -6,7 +6,8 @@ install:
   - choco install -y packer
   - ps: Install-WindowsFeature Hyper-V-PowerShell
 
-build: off
+build_script:
+  - ps: .\make_unattend_iso.ps1
 
 test_script:
   - ps: .\test.ps1

@@ -1,17 +1,18 @@
 {
   "builders": [
     {
-      "boot_wait": "60s",
+      "boot_command": [
+        "<enter>"
+      ],
+      "boot_wait": "1s",
       "communicator": "winrm",
       "cpu": 2,
       "disk_size": "{{user `disk_size`}}",
       "enable_secure_boot": true,
       "enable_virtualization_extensions": true,
-      "floppy_files": [
-        "{{user `autounattend`}}",
-        "./scripts/disable-screensaver.ps1",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1"
+      "generation": 2,
+      "secondary_iso_images": [
+        "./iso/windows_server_insider_unattend.iso"
       ],
       "guest_additions_mode": "disable",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -123,7 +124,6 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/set-winrm-automatic.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ],
@@ -144,4 +144,3 @@
     "winrm_timeout": "2h"
   }
 }
-
