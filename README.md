@@ -47,6 +47,23 @@ can modify this by editing the Autounattend.xml file, changing the
 `ImageInstall`>`OSImage`>`InstallFrom`>`MetaData`>`Value` element (e.g. to
 Windows Server 2012 R2 SERVERDATACENTER).
 
+To retrieve the correct ImageName from an ISO file use the following two commands.
+
+```
+PS C:\> Mount-DiskImage -ImagePath C:\iso\Windows_InsiderPreview_Server_2_16237.iso
+PS C:\> Get-WindowsImage -ImagePath e:\sources\install.wim
+
+ImageIndex       : 1
+ImageName        : Windows Server 2016 SERVERSTANDARDACORE
+ImageDescription : Windows Server 2016 SERVERSTANDARDACORE
+ImageSize        : 7,341,507,794 bytes
+
+ImageIndex       : 2
+ImageName        : Windows Server 2016 SERVERDATACENTERACORE
+ImageDescription : Windows Server 2016 SERVERDATACENTERACORE
+ImageSize        : 7,373,846,520 bytes
+```
+
 ### Product Keys
 
 The `Autounattend.xml` files are configured to work correctly with trial ISOs
