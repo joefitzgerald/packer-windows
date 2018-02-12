@@ -147,29 +147,30 @@ only have Hyper-V installed on my laptop, so I run:
 packer build --only hyperv-iso -var 'hyperv_switchname=Ethernet' -var 'iso_url=./server2016.iso' .\windows_2016_docker.json
 ```
 
-You then can use this box with Vagrant to spin up a Hyper-V VM. 
-
+You then can use this box with Vagrant to spin up a Hyper-V VM.
 
 #### Generation 2 VMs
 
 Some of these images use Hyper-V "Generation 2" VMs to enable the latest features and faster booting. However, an extra manual step is needed to put the needed files into ISOs because Gen2 VMs don't support virtual floppy disks.
 
-- `windows_server_insider.json`
-- `windows_server_insider_docker.json`
-- `windows_10_insider.json`
+* `windows_server_insider.json`
+* `windows_server_insider_docker.json`
+* `windows_10_insider.json`
 
 Before running `packer build`, be sure to run `./make_unattend_iso.ps1` first. Otherwise the build will fail on a missing ISO file
 
 ```none
-TODO: error example here
-```
+hyperv-iso output will be in this color.
 
+1 error(s) occurred:
+
+* Secondary Dvd image does not exist: CreateFile ./iso/windows_server_insider_unattend.iso: The system cannot find the file specified.
+```
 
 ### Using .box Files With Vagrant
 
 The generated box files include a Vagrantfile template that is suitable for use
 with Vagrant 1.7.4+, but the latest ersion is always recommended.
-
 
 Example Steps for Hyper-V:
 
