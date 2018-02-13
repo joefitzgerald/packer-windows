@@ -11,14 +11,14 @@
       "enable_secure_boot": true,
       "enable_virtualization_extensions": true,
       "generation": 2,
-      "secondary_iso_images": [
-        "./iso/windows_server_insider_unattend.iso"
-      ],
       "guest_additions_mode": "disable",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
       "ram_size": 2048,
+      "secondary_iso_images": [
+        "./iso/windows_server_insider_unattend.iso"
+      ],
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "switch_name": "{{user `hyperv_switchname`}}",
       "type": "hyperv-iso",
@@ -135,12 +135,13 @@
     "disk_size": "61440",
     "disk_type_id": "1",
     "headless": "false",
-    "iso_checksum": "4ac2db4bfc90e8bc569646200592b76915aa6dadd5c0b829b0e997db5ad691b8",
+    "iso_checksum": "7d9782673b5429dbc2bc05ce82f3ce2dabde2505d10a5e2b006d064928266041",
     "iso_checksum_type": "sha256",
-    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17079.iso",
+    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17093.iso",
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
     "restart_timeout": "5m",
     "vhv_enable": "false",
     "winrm_timeout": "2h"
   }
 }
+
