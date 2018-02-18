@@ -131,7 +131,7 @@
     {
       "scripts": [
         "./scripts/docker/2016/install-containers-feature.ps1",
-        "./scripts/docker/set-winrm-automatic.ps1"
+        "./scripts/docker/set-winrm-delayed-automatic.ps1"
       ],
       "type": "powershell"
     },
@@ -146,6 +146,7 @@
         "docker_version={{user `docker_version`}}"
       ],
       "scripts": [
+        "./scripts/docker/set-winrm-automatic.ps1",
         "./scripts/docker/add-docker-group.ps1",
         "./scripts/docker/install-docker.ps1",
         "./scripts/docker/docker-pull.ps1",
