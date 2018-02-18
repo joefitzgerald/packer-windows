@@ -158,7 +158,7 @@
     "iso_url": "https://software-download.microsoft.com/pr/Windows_InsiderPreview_Server_17093.iso",
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
     "restart_timeout": "5m",
-    "vhv_enable": "false",
+    "vhv_enable": "true",
     "winrm_timeout": "4h"
   }
 }

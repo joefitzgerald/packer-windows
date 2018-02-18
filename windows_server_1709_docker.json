@@ -182,7 +182,7 @@
     "iso_url": "https://software-download.microsoft.com/pr/en_windows_server_version_1709_x64_dvd_100090904.iso",
     "manually_download_iso_from": "https://my.visualstudio.com/downloads?pid=2347",
     "restart_timeout": "5m",
-    "vhv_enable": "false",
+    "vhv_enable": "true",
     "winrm_timeout": "2h"
   }
 }
