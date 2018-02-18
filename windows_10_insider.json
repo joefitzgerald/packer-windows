@@ -91,14 +91,14 @@
       "enable_secure_boot": true,
       "enable_virtualization_extensions": true,
       "generation": 2,
-      "secondary_iso_images": [
-        "./iso/windows_10_insider_unattend.iso"
-      ],
       "guest_additions_mode": "disable",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
       "ram_size": 2048,
+      "secondary_iso_images": [
+        "./iso/windows_10_insider_unattend.iso"
+      ],
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "switch_name": "{{user `hyperv_switchname`}}",
       "type": "hyperv-iso",
