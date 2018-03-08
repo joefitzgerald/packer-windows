@@ -36,7 +36,7 @@ if exist "C:\Users\vagrant\VBoxGuestAdditions.iso" (
 )
 
 if not exist "C:\Windows\Temp\VBoxGuestAdditions.iso" (
-    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://download.virtualbox.org/virtualbox/5.2.4/VBoxGuestAdditions_5.2.4.iso', 'C:\Windows\Temp\VBoxGuestAdditions.iso')" <NUL
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://download.virtualbox.org/virtualbox/5.2.8/VBoxGuestAdditions_5.2.8.iso', 'C:\Windows\Temp\VBoxGuestAdditions.iso')" <NUL
 )
 
 cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\VBoxGuestAdditions.iso -oC:\Windows\Temp\virtualbox"
