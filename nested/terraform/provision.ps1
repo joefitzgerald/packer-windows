@@ -34,6 +34,9 @@ Function SetupPhase1 {
 
 Function SetupPhase2 {
 
+  Write-Host "Installing Vagrant plugins"
+  vagrant plugin install vagrant-reload
+
   Write-Host "Adding NAT"
   New-VMSwitch -SwitchName "packer-hyperv-iso" -SwitchType Internal
   New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex (Get-NetAdapter -name "vEthernet (packer-hyperv-iso)").ifIndex

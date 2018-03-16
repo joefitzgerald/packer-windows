@@ -11,6 +11,7 @@
 /packer_cache/
 *.log
 *~
+*.swp
 /output/
 *.webm
 tmp

@@ -1,23 +1,24 @@
 {
   "builders": [
     {
-      "boot_wait": "60s",
+      "boot_command": [
+        "<enter>"
+      ],
+      "boot_wait": "1s",
       "communicator": "winrm",
       "cpu": 2,
       "disk_size": "{{user `disk_size`}}",
       "enable_secure_boot": true,
       "enable_virtualization_extensions": true,
-      "floppy_files": [
-        "{{user `autounattend`}}",
-        "./scripts/disable-screensaver.ps1",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1"
-      ],
+      "generation": 2,
       "guest_additions_mode": "disable",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
       "ram_size": 2048,
+      "secondary_iso_images": [
+        "./iso/windows_server_insider_unattend.iso"
+      ],
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "switch_name": "{{user `hyperv_switchname`}}",
       "type": "hyperv-iso",
@@ -123,7 +124,6 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/set-winrm-automatic.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ],
@@ -135,9 +135,9 @@
     "disk_size": "61440",
     "disk_type_id": "1",
     "headless": "false",
-    "iso_checksum": "dd412bd5c7d29fa5166a10f4cb36dacf7fcb605a5b8e8a6e8fa87e13aed6851d",
+    "iso_checksum": "7d9782673b5429dbc2bc05ce82f3ce2dabde2505d10a5e2b006d064928266041",
     "iso_checksum_type": "sha256",
-    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17035.iso",
+    "iso_url": "https://software-download.microsoft.com/sg/Windows_InsiderPreview_Server_17093.iso",
     "manually_download_iso_from": "https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver",
     "restart_timeout": "5m",
     "vhv_enable": "false",
