@@ -1,9 +1,39 @@
 {
   "builders": [
     {
+      "boot_wait": "0m",
+      "communicator": "winrm",
+      "cpu": 2,
+      "disk_size": "{{user `disk_size`}}",
+      "enable_secure_boot": true,
+      "enable_virtualization_extensions": true,
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "./scripts/disable-screensaver.ps1",
+        "./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/unattend.xml",
+        "./scripts/sysprep.bat",
+        "./scripts/win-updates.ps1"
+      ],
+      "guest_additions_mode": "disable",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "ram_size": 2048,      
+      "shutdown_command": "a:/sysprep.bat",
+      "switch_name": "{{user `hyperv_switchname`}}",
+      "type": "hyperv-iso",
+      "vm_name": "windows_2012_r2",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "vagrant"
+    }, 
+    {
       "boot_wait": "2m",
       "communicator": "winrm",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-winrm.ps1",
@@ -13,7 +43,7 @@
         "./scripts/win-updates.ps1"
       ],
       "guest_os_type": "windows8srv-64",
-      "headless": true,
+      "headless": "{{user `headless`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
@@ -32,13 +62,13 @@
       "vnc_port_max": 5980,
       "vnc_port_min": 5900,
       "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
       "winrm_username": "vagrant"
     },
     {
       "boot_wait": "2m",
       "communicator": "winrm",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./scripts/disable-winrm.ps1",
@@ -49,7 +79,7 @@
       ],
       "guest_additions_mode": "disable",
       "guest_os_type": "Windows2012_64",
-      "headless": true,
+      "headless": "{{user `headless`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
@@ -71,9 +101,9 @@
       ],
       "vm_name": "windows_2012_r2",
       "winrm_password": "vagrant",
-      "winrm_timeout": "6h",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
       "winrm_username": "vagrant"
-    }
+    }   
   ],
   "post-processors": [
     {
@@ -96,9 +126,14 @@
   ],
   "variables": {
     "autounattend": "./answer_files/2012_r2/Autounattend.xml",
+    "disk_size": "61440",
+    "disk_type_id": "1",
+    "headless": "false",
+    "hyperv_switchname": "{{env `hyperv_switchname`}}",
     "iso_checksum": "5b5e08c490ad16b59b1d9fab0def883a",
     "iso_checksum_type": "md5",
-    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO"
-  }
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO",
+    "winrm_timeout": "6h"
+  }  
 }
 
