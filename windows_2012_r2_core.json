@@ -21,7 +21,7 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
-      "ram_size": 2048,      
+      "ram_size": 2048,
       "shutdown_command": "a:/sysprep.bat",
       "switch_name": "{{user `hyperv_switchname`}}",
       "type": "hyperv-iso",
@@ -29,7 +29,7 @@
       "winrm_password": "vagrant",
       "winrm_timeout": "{{user `winrm_timeout`}}",
       "winrm_username": "vagrant"
-    },     
+    },
     {
       "boot_wait": "2m",
       "communicator": "winrm",
@@ -129,6 +129,7 @@
     "iso_checksum": "5b5e08c490ad16b59b1d9fab0def883a",
     "iso_checksum_type": "md5",
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO",
-    "winrm_timeout": "6h"  }
+    "winrm_timeout": "6h"
+  }
 }
 
