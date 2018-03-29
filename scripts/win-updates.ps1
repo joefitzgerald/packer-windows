@@ -4,6 +4,7 @@ param($global:RestartRequired=0,
         $MaxUpdatesPerCycle=500)
 
 $Logfile = "C:\Windows\Temp\win-updates.log"
+$NextCommand = "a:\openssh.ps1 -AutoStart"
 
 function LogWrite {
    Param ([string]$logstring)
@@ -30,10 +31,10 @@ function Check-ContinueRestartOrEnd() {
                 Install-WindowsUpdates
             } elseif ($script:Cycles -gt $global:MaxCycles) {
                 LogWrite "Exceeded Cycle Count - Stopping"
-                Invoke-Expression "a:\openssh.ps1 -AutoStart"
+                Invoke-Expression $NextCommand
             } else {
                 LogWrite "Done Installing Windows Updates"
-                Invoke-Expression "a:\openssh.ps1 -AutoStart"
+                Invoke-Expression $NextCommand
             }
         }
         1 {
@@ -125,7 +126,7 @@ function Install-WindowsUpdates() {
         LogWrite 'No updates available to install...'
         $global:MoreUpdates=0
         $global:RestartRequired=0
-        Invoke-Expression "a:\openssh.ps1 -AutoStart"
+        Invoke-Expression $NextCommand
         break
     }
 
@@ -193,10 +194,12 @@ function Check-WindowsUpdates() {
         LogWrite $Message
         try {
             for($i=0; $i -lt $script:SearchResult.Updates.Count; $i++) {
-              LogWrite $script:SearchResult.Updates.Item($i).Title
-              LogWrite $script:SearchResult.Updates.Item($i).Description
-              LogWrite $script:SearchResult.Updates.Item($i).RebootRequired
-              LogWrite $script:SearchResult.Updates.Item($i).EulaAccepted
+              LogWrite "==========================================================================="
+              LogWrite "Title: " + $script:SearchResult.Updates.Item($i).Title
+              LogWrite "Description: " + $script:SearchResult.Updates.Item($i).Description
+              LogWrite "Reboot Required: " + $script:SearchResult.Updates.Item($i).RebootRequired
+              LogWrite "EulaAccepted: " + $script:SearchResult.Updates.Item($i).EulaAccepted
+              LogWrite "==========================================================================="
           }
             $global:MoreUpdates=1
         } catch {
@@ -205,7 +208,6 @@ function Check-WindowsUpdates() {
             $global:RestartRequired=1
             $global:MoreUpdates=0
             Check-ContinueRestartOrEnd
-            LogWrite "Show never happen to see this text!"
             Restart-Computer
         }
     } else {
