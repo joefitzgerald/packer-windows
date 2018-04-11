@@ -20,22 +20,23 @@ Some of my enhancements are:
 
 ### Packer Version
 
-[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `1.1.2`
-or greater is recommended.
+[Packer](https://github.com/mitchellh/packer/blob/master/CHANGELOG.md) `1.1.3` is recommended.
 
 ### Windows Versions
 
 The following Windows versions are known to work (built with VMware Fusion Pro
-10.0.1):
+10.1.1):
 
 * Windows 10
   * Windows 10 1709
   * Windows 10 Insider
 * Windows Server 2016 Desktop
+* Windows Server 2019 Desktop (Insider Preview)
 * Windows Server Core
   * Windows Server 2016 without and with Docker
   * Windows Server 1709 without and with Docker
-  * Windows Server Insider without and with Docker
+  * Windows Server InsiderPreview Semi-Annual without and with Docker
+  * Windows Server 2019 Core(Insider Preview)
 
 You may find other packer template files, but older versions of Windows doesn't
 work so nice with a Retina display.
