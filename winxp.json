@@ -31,6 +31,36 @@
           "scripts/extract_wget_zip.vbs",
           "scripts/setup_winrm.bat"
       ]
+    },
+    {
+      "type": "vmware-iso",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": "{{user `headless`}}",
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "8h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "winxppro",
+      "tools_upload_flavor": "windows",
+      "disk_adapter_type": "ide",
+      "disk_size": "{{user `disk_size`}}",
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "scripts/wget-win32-static.zip",
+        "scripts/extract_wget_zip.vbs",
+        "scripts/setup_winrm.bat"
+      ],
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "{{user `memory_size`}}",
+        "numvcpus": "{{user `cpus`}}"
+      }
     }
   ],
   "variables": {
