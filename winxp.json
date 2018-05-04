@@ -1,0 +1,42 @@
+{
+  "builders": [
+    {
+      "type": "qemu",
+      "accelerator": "kvm",
+      "vm_name": "winxp",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "skip_compaction": true,
+      "boot_wait": "2m",
+      "communicator": "winrm",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "8h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "disk_size": 20000,
+      "disk_interface": "ide",
+      "net_device": "rtl8139",
+      "http_directory": "http",
+      "http_port_min": 8500,
+      "http_port_max": 8500,
+      "qemuargs": [
+          [ "-smp", "2,sockets=1,cores=2,threads=1" ],
+          [ "-m", "1024" ]
+      ],
+      "floppy_files": [
+          "{{user `autounattend`}}",
+          "scripts/wget-win32-static.zip",
+          "scripts/extract_wget_zip.vbs",
+          "scripts/setup_winrm.bat"
+      ]
+    }
+  ],
+  "variables": {
+    "iso_url": "iso/en_windows_xp_professional_sp3_Nov_2013_Incl_SATA_Drivers.iso",
+    "iso_checksum_type": "sha256",
+    "iso_checksum": "3855a4049663edb2c7b7b11b448a86e01274a4d1a9bb49392420bdb61f830a0e",
+    "autounattend": "answer_files/xp/WINNT.SIF"
+  }
+}
