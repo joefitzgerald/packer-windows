@@ -1,4 +1,4 @@
-powershell.exe -Command "Enable-PSRemoting -Force"
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Enable-PSRemoting -Force"
 
 cmd.exe /c winrm set winrm/config @{MaxTimeoutms="1800000"}
 cmd.exe /c winrm set winrm/config/winrs @{MaxConcurrentUsers="100"}
