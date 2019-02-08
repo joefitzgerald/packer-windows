@@ -27,7 +27,7 @@ OemSkipWelcome=1
 [Components]
 
 [UserData]
-ProductKey="QW4HD-DQCRG-HM64M-6GJRK-8K83T"
+ProductKey=""
 ComputerName=vagrant
 FullName="vagrant"
 OrgName="vagrant"
