@@ -67,10 +67,10 @@
     "cpus": "2",
     "memory_size": "2048",
     "disk_size": "65535",
-    "headless": "false",
-    "iso_url": "iso/en_windows_xp_professional_sp3_Nov_2013_Incl_SATA_Drivers.iso",
+    "headless": "true",
+    "iso_url": "",
     "iso_checksum_type": "sha256",
-    "iso_checksum": "3855a4049663edb2c7b7b11b448a86e01274a4d1a9bb49392420bdb61f830a0e",
+    "iso_checksum": "",
     "autounattend": "answer_files/xp/WINNT.SIF"
   }
 }
