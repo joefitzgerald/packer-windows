@@ -1,0 +1,76 @@
+{
+  "builders": [
+    {
+      "type": "qemu",
+      "accelerator": "kvm",
+      "vm_name": "winxp",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "skip_compaction": true,
+      "boot_wait": "2m",
+      "communicator": "winrm",
+      "winrm_username": "Administrator",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "8h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "disk_size": 20000,
+      "disk_interface": "ide",
+      "net_device": "rtl8139",
+      "http_directory": "http",
+      "http_port_min": 8500,
+      "http_port_max": 8500,
+      "qemuargs": [
+          [ "-smp", "2,sockets=1,cores=2,threads=1" ],
+          [ "-m", "1024" ]
+      ],
+      "floppy_files": [
+          "{{user `autounattend`}}",
+          "scripts/wget-win32-static.zip",
+          "scripts/extract_wget_zip.vbs",
+          "scripts/setup_winrm.bat"
+      ]
+    },
+    {
+      "type": "vmware-iso",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": "{{user `headless`}}",
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "8h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "winxppro",
+      "tools_upload_flavor": "windows",
+      "disk_adapter_type": "ide",
+      "disk_size": "{{user `disk_size`}}",
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "scripts/wget-win32-static.zip",
+        "scripts/extract_wget_zip.vbs",
+        "scripts/setup_winrm.bat"
+      ],
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "{{user `memory_size`}}",
+        "numvcpus": "{{user `cpus`}}"
+      }
+    }
+  ],
+  "variables": {
+    "cpus": "2",
+    "memory_size": "2048",
+    "disk_size": "65535",
+    "headless": "true",
+    "iso_url": "",
+    "iso_checksum_type": "sha256",
+    "iso_checksum": "",
+    "autounattend": "answer_files/xp/WINNT.SIF"
+  }
+}

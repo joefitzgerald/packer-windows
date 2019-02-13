@@ -1,0 +1,53 @@
+[Data]
+Autopartition=1
+MsDosInitiated=0
+UnattendedInstall="Yes"
+
+[Unattended]
+Repartition=Yes
+UnattendMode=FullUnattended
+UnattendSwitch="Yes"
+OemPreinstall="Yes"
+OemSkipEula="Yes"
+FileSystem=*
+WaitForReboot="No"
+NoWaitAfterTextMode=1
+NoWaitAfterGUIMode=1
+DriverSigningPolicy=Ignore
+NonDriverSigningPolicy=Ignore
+
+[GuiUnattended]
+EncryptedAdminPassword="No"
+AutoLogon="Yes"
+AdminPassword="vagrant"
+TimeZone=020
+OEMSkipRegional=1
+OemSkipWelcome=1
+
+[Components]
+
+[UserData]
+ProductKey=""
+ComputerName=vagrant
+FullName="vagrant"
+OrgName="vagrant"
+
+[RegionalSettings]
+LanguageGroup=1
+Language="0409"
+
+[Networking]
+InstallDefaultComponents="Yes"
+
+[Identification]
+JoinWorkgroup="WORKGROUP"
+
+[GuiRunOnce]
+Command0="cmd /c mkdir c:\temp"
+Command1="cmd /c reg add HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v forceguest /t REG_DWORD /d 0 /f"
+Command2="cmd /c cscript a:\extract_wget_zip.vbs"
+Command3="cmd /c c:\temp\bin\wget https://download.microsoft.com/download/0/8/c/08c19fa4-4c4f-4ffb-9d6c-150906578c9e/NetFx20SP1_x86.exe -O c:\temp\dotnet.exe --no-check-certificate"
+Command4="cmd /c start /w c:\temp\dotnet.exe /passive /norestart"
+Command5="cmd /c c:\temp\bin\wget https://download.microsoft.com/download/E/C/E/ECE99583-2003-455D-B681-68DB610B44A4/WindowsXP-KB968930-x86-ENG.exe -O c:\temp\winrm.exe --no-check-certificate"
+Command6="cmd /c start /w c:\temp\winrm.exe /passive /norestart"
+Command7="cmd /c a:\setup_winrm.bat"
