@@ -46,7 +46,7 @@ $sshd_config = $sshd_config -replace '#PermitUserEnvironment no', 'PermitUserEnv
 $sshd_config = $sshd_config -replace '#UseDNS yes', 'UseDNS no'
 # disable the login banner
 $sshd_config = $sshd_config -replace 'Banner /etc/banner.txt', '#Banner /etc/banner.txt'
-# next time OpenSSH starts have it listen on th eproper port
+# next time OpenSSH starts have it listen on the proper port
 $sshd_config = $sshd_config -replace 'Port 2222', "Port 22"
 Set-Content "C:\Program Files\OpenSSH\etc\sshd_config" $sshd_config
 
