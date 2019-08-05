@@ -31,22 +31,11 @@
                 <AcceptEula>true</AcceptEula>
                 <FullName>Vagrant Administrator</FullName>
                 <Organization>Vagrant Inc.</Organization>
-
-                <!--
-                    NOTE: If you are re-configuring this for use of a retail key
-                    and using a retail ISO, you need to adjust the <ProductKey> block
-                    below to look like this:
-
-                    <ProductKey>
-                        <Key>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</Key>
-                        <WillShowUI>Never</WillShowUI>
-                    </ProductKey>
-
-                    Notice the addition of the `<Key>` element.
-                -->
-
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
-                <ProductKey>NPPR9-FWDCX-D2C8J-H872K-2YT43
+                <ProductKey>
+                    <!-- Do not uncomment the Key element if you are using trial ISOs -->
+                    <!-- You must uncomment the Key element (and optionally insert your own key) if you are using retail or volume license ISOs -->
+                    <!--<Key>NPPR9-FWDCX-D2C8J-H872K-2YT43</Key>-->
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
